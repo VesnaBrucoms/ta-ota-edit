@@ -13,5 +13,14 @@ namespace OTAEdit
     /// </summary>
     public partial class App : Application
     {
+        public void App_Startup(object sender, StartupEventArgs e)
+        {
+            IniSettings.Ini.GetInstance.Read(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\OTA Edit", "settings");
+        }
+
+        public void App_Exit(object sender, ExitEventArgs e)
+        {
+            IniSettings.Ini.GetInstance.Write(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\OTA Edit", "settings");
+        }
     }
 }

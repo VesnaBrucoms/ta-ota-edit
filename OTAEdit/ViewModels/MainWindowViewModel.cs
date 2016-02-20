@@ -1,10 +1,14 @@
-﻿using OTAEdit.Models;
+﻿using OTAEdit.IniSettings;
+using OTAEdit.InputOutput;
+using OTAEdit.Models;
+using OTAEdit.ViewModels.Commands;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace OTAEdit.ViewModels
 {
@@ -59,13 +63,18 @@ namespace OTAEdit.ViewModels
             }
         }
 
-        public string Planet
+        public List<string> GetPlanets
+        {
+            get { return otaModel.GetPlanets; }
+        }
+
+        public string SetPlanet
         {
             get { return otaModel.Planet; }
             set
             {
                 otaModel.Planet = value;
-                OnPropertyChanged("Planet");
+                OnPropertyChanged("SetPlanet");
             }
         }
 
@@ -76,6 +85,170 @@ namespace OTAEdit.ViewModels
             {
                 otaModel.NumPlayers = value;
                 OnPropertyChanged("NumPlayers");
+            }
+        }
+
+        public int MinWindSpeed
+        {
+            get { return otaModel.MinWindSpeed; }
+            set
+            {
+                otaModel.MinWindSpeed = value;
+                OnPropertyChanged("MinWindSpeed");
+            }
+        }
+
+        public int TidalStrength
+        {
+            get { return otaModel.TidalStrength; }
+            set
+            {
+                otaModel.TidalStrength = value;
+                OnPropertyChanged("TidalStrength");
+            }
+        }
+
+        public int SeaLevel
+        {
+            get { return otaModel.SeaLevel; }
+            set
+            {
+                otaModel.SeaLevel = value;
+                OnPropertyChanged("SeaLevel");
+            }
+        }
+
+        public int SurfaceMetal
+        {
+            get { return otaModel.SurfaceMetal; }
+            set
+            {
+                otaModel.SurfaceMetal = value;
+                OnPropertyChanged("SurfaceMetal");
+            }
+        }
+
+        public int MaxWindSpeed
+        {
+            get { return otaModel.MaxWindSpeed; }
+            set
+            {
+                otaModel.MaxWindSpeed = value;
+                OnPropertyChanged("MaxWindSpeed");
+            }
+        }
+
+        public int SolarStrength
+        {
+            get { return otaModel.SolarStrength; }
+            set
+            {
+                otaModel.SolarStrength = value;
+                OnPropertyChanged("SolarStrength");
+            }
+        }
+
+        public int Gravity
+        {
+            get { return otaModel.Gravity; }
+            set
+            {
+                otaModel.Gravity = value;
+                OnPropertyChanged("Gravity");
+            }
+        }
+
+        public int MohoMetal
+        {
+            get { return otaModel.MohoMetal; }
+            set
+            {
+                otaModel.MohoMetal = value;
+                OnPropertyChanged("MohoMetal");
+            }
+        }
+
+        public List<string> GetWeapons
+        {
+            get { return otaModel.GetWeapons; }
+        }
+
+        public string SetWeapon
+        {
+            set
+            {
+                otaModel.MeteorWeapon = value;
+                OnPropertyChanged("SetWeapon");
+            }
+        }
+
+        public int Radius
+        {
+            get { return otaModel.MeteorRadius; }
+            set
+            {
+                otaModel.MeteorRadius = value;
+                OnPropertyChanged("Radius");
+            }
+        }
+
+        public int Duration
+        {
+            get { return otaModel.MeteorDuration; }
+            set
+            {
+                otaModel.MeteorDuration = value;
+                OnPropertyChanged("Duration");
+            }
+        }
+
+        public int Density
+        {
+            get { return otaModel.MeteorDensity; }
+            set
+            {
+                otaModel.MeteorDensity = value;
+                OnPropertyChanged("Density");
+            }
+        }
+
+        public int Interval
+        {
+            get { return otaModel.MeteorInterval; }
+            set
+            {
+                otaModel.MeteorInterval = value;
+                OnPropertyChanged("Interval");
+            }
+        }
+
+        public bool ImpassableWater
+        {
+            get { return otaModel.LavaWorld; }
+            set
+            {
+                otaModel.LavaWorld = value;
+                OnPropertyChanged("ImpassableWater");
+            }
+        }
+
+        public bool WaterDoesDamage
+        {
+            get { return otaModel.WaterDoesDamage; }
+            set
+            {
+                otaModel.WaterDoesDamage = value;
+                OnPropertyChanged("WaterDoesDamage");
+            }
+        }
+
+        public int WaterDamage
+        {
+            get { return otaModel.WaterDamage; }
+            set
+            {
+                otaModel.WaterDamage = value;
+                OnPropertyChanged("WaterDamage");
             }
         }
         #endregion
@@ -97,12 +270,63 @@ namespace OTAEdit.ViewModels
         }
         #endregion
 
+        #region CommandProperties
+        public ICommand OpenOTACommand
+        {
+            get { return new DelegateCommand(OpenOTA); }
+        }
+        #endregion
+
         public MainWindowViewModel()
         {
+            if (!Ini.GetInstance.SettingExists(IniKeys.STRING_OTA_LAST_PATH))
+                Ini.GetInstance.AddNewSetting(IniKeys.STRING_OTA_LAST_PATH, IniDefaultValues.STRING_OTA_LAST_PATH);
+
             otaModel = new OTAModel();
             windowTitle = "OTA Edit";
             useWeapon = false;
         }
+
+        private void updateProperties()
+        {
+            OnPropertyChanged("MapName");
+            OnPropertyChanged("MapDesc");
+            OnPropertyChanged("SetMemory");
+            OnPropertyChanged("AiProfile");
+            OnPropertyChanged("SetPlanet");
+            OnPropertyChanged("NumPlayers");
+            OnPropertyChanged("MinWindSpeed");
+            OnPropertyChanged("TidalStrength");
+            OnPropertyChanged("SeaLevel");
+            OnPropertyChanged("SurfaceMetal");
+            OnPropertyChanged("MaxWindSpeed");
+            OnPropertyChanged("SolarStrength");
+            OnPropertyChanged("Gravity");
+            OnPropertyChanged("MohoMetal");
+            OnPropertyChanged("SetWeapon");
+            OnPropertyChanged("Radius");
+            OnPropertyChanged("Duration");
+            OnPropertyChanged("Density");
+            OnPropertyChanged("Interval");
+            OnPropertyChanged("ImpassableWater");
+            OnPropertyChanged("WaterDoesDamage");
+            OnPropertyChanged("WaterDamage");
+        }
+
+        #region Commands
+        public void OpenOTA(object parameter)
+        {
+            string filepath = File.GetOpenFileName(Ini.GetInstance.GetValueByName(IniKeys.STRING_OTA_LAST_PATH), "OTA file (*.ota)|*.ota");
+
+            if (filepath != null)
+            {
+                otaModel = OtaInputOutput.Read(filepath);
+                updateProperties();
+
+                Ini.GetInstance.ChangeValueByName(IniKeys.STRING_OTA_LAST_PATH, File.ExtractFilePath(filepath));
+            }
+        }
+        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
 

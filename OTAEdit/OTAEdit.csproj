@@ -52,6 +52,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -81,6 +82,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="IniSettings\Ini.cs" />
+    <Compile Include="IniSettings\IniDefaultValues.cs" />
+    <Compile Include="IniSettings\IniKeys.cs" />
+    <Compile Include="IniSettings\SettingKey.cs" />
+    <Compile Include="InputOutput\Directory.cs" />
+    <Compile Include="InputOutput\File.cs" />
+    <Compile Include="InputOutput\OtaInputOutput.cs" />
     <Compile Include="Models\OTAModel.cs" />
     <Compile Include="Models\SpecialModel.cs" />
     <Compile Include="ViewModels\Commands\DelegateCommand.cs" />
@@ -118,7 +126,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="IniSettings\" />
     <Folder Include="Views\AboutViews\" />
   </ItemGroup>
   <ItemGroup>

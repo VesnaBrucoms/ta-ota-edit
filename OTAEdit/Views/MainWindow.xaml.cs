@@ -24,5 +24,10 @@ namespace OTAEdit.Views
         {
             InitializeComponent();
         }
+
+        public void ApplicationClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

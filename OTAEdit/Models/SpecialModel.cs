@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OTAEdit.Models
 {
-    class SpecialModel
+    public class SpecialModel
     {
         public string SpecialWhat;
         public string XPos;
