@@ -15,6 +15,7 @@ namespace OTAEdit.ViewModels
     class MainWindowViewModel : INotifyPropertyChanged
     {
         private string windowTitle;
+        private string statusText;
         private OTAModel otaModel;
         private bool useWeapon;
 
@@ -46,6 +47,7 @@ namespace OTAEdit.ViewModels
 
         public string SetMemory
         {
+            get { return otaModel.Memory; }
             set
             {
                 otaModel.Memory = value;
@@ -259,6 +261,11 @@ namespace OTAEdit.ViewModels
             get { return windowTitle; }
         }
 
+        public string GetStatusText
+        {
+            get { return statusText; }
+        }
+
         public bool UseWeapon
         {
             get { return useWeapon; }
@@ -282,13 +289,19 @@ namespace OTAEdit.ViewModels
             if (!Ini.GetInstance.SettingExists(IniKeys.STRING_OTA_LAST_PATH))
                 Ini.GetInstance.AddNewSetting(IniKeys.STRING_OTA_LAST_PATH, IniDefaultValues.STRING_OTA_LAST_PATH);
 
-            otaModel = new OTAModel();
             windowTitle = "OTA Edit";
+            statusText = "Ready";
+            otaModel = new OTAModel();
             useWeapon = false;
         }
 
         private void updateProperties()
         {
+            windowTitle = otaModel.Filename + " - OTA Edit";
+            OnPropertyChanged("GetWindowTitle");
+            statusText = "Loaded " + otaModel.Filename;
+            OnPropertyChanged("GetStatusText");
+
             OnPropertyChanged("MapName");
             OnPropertyChanged("MapDesc");
             OnPropertyChanged("SetMemory");

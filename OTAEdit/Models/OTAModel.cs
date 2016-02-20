@@ -11,7 +11,7 @@ namespace OTAEdit.Models
         private List<string> memory;
         private List<string> planets;
         private List<string> weapons;
-        private List<SpecialModel> specials;
+        private SchemaModel[] schemas;
 
         public string Filename;
         public string MapName;
@@ -34,7 +34,7 @@ namespace OTAEdit.Models
         public bool WaterDoesDamage;
         public int WaterDamage;
         public string NumPlayers;
-        public string size;
+        public string Size;
         public string Memory;
         public string UseOnlyUnits;
         public int DestroyAllUnits;
@@ -71,9 +71,9 @@ namespace OTAEdit.Models
             get { return weapons; }
         }
 
-        public List<SpecialModel> GetSpecials
+        public SchemaModel[] GetSchemas
         {
-            get { return specials; }
+            get { return schemas; }
         }
 
         public OTAModel()
@@ -102,7 +102,7 @@ namespace OTAEdit.Models
             planets.Add("Darkside");
             planets.Add("Desert");
             planets.Add("Ice");
-            planets.Add("Green Planets");
+            planets.Add("Green Planet");
             planets.Add("Lava");
             planets.Add("Luna");
             planets.Add("Lush");
@@ -115,7 +115,7 @@ namespace OTAEdit.Models
             weapons.Add("Meteor");
             weapons.Add("Hailstorm");
             weapons.Add("Earthquake");
-            specials = new List<SpecialModel>();
+            schemas = new SchemaModel[4];
         }
     }
 }

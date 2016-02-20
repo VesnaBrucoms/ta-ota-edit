@@ -22,26 +22,27 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
             <MenuItem Header="_File">
-                <MenuItem Header="_New" />
-                <MenuItem Header="_Open..." Command="{Binding Path=OpenOTACommand}" />
+                <MenuItem Header="_New" InputGestureText="Ctrl+N" />
+                <MenuItem Header="_Open..." InputGestureText="Ctrl+O" Command="{Binding Path=OpenOTACommand}" />
                 <Separator />
-                <MenuItem Header="_Save" />
-                <MenuItem Header="Save As..." />
+                <MenuItem Header="_Save" InputGestureText="Ctrl+S" />
+                <MenuItem Header="Save As..." InputGestureText="Ctrl+Shift+S" />
                 <Separator />
-                <MenuItem Header="_Exit" Click="ApplicationClose_Click" />
+                <MenuItem Header="_Exit" InputGestureText="Alt+F4" Click="ApplicationClose_Click" />
             </MenuItem>
-            <MenuItem Header="Help">
-                <MenuItem Header="About OTA Edit" />
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About OTA Edit" />
             </MenuItem>
         </Menu>
         <Grid Margin="5,15,5,5" Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="15" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <GroupBox Grid.Row="0" Grid.Column="0" Header="Map">
                 <Grid Margin="5,5,5,5">
@@ -53,35 +54,37 @@
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition MinWidth="90" Width="1*" />
+                        <ColumnDefinition Width="15" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="15" />
+                        <ColumnDefinition Width="1*" MaxWidth="120" />
                     </Grid.ColumnDefinitions>
-                
+
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Name:" />
-                    <TextBox Grid.Row="1" Grid.Column="0" Width="90" Text="{Binding Path=MapName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding Path=MapName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="0" Grid.Column="2" Text="Description:" />
-                    <TextBox Grid.Row="1" Grid.Column="2" Width="180" Text="{Binding Path=MapDesc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Path=MapDesc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="0" Grid.Column="4" Text="Memory:" />
-                    <ComboBox Grid.Row="1" Grid.Column="6" Width="90" ItemsSource="{Binding Path=GetMemory}" SelectedValue="{Binding Path=SetMemory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <ComboBox Grid.Row="1" Grid.Column="6" ItemsSource="{Binding Path=GetMemory}" SelectedValue="{Binding Path=SetMemory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="AI Profile:" />
-                    <TextBox Grid.Row="4" Grid.Column="0" Width="90" Text="{Binding Path=AiProfile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Grid.Row="3" Grid.Column="2" Text="Planet:" />
-                    <ComboBox Grid.Row="4" Grid.Column="2" Width="90" HorizontalAlignment="Left" ItemsSource="{Binding Path=GetPlanets}" SelectedValue="{Binding Path=SetPlanet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Grid.Row="3" Grid.Column="4" Text="Players:" />
-                    <TextBox Grid.Row="4" Grid.Column="6" Width="90" Text="{Binding Path=NumPlayers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Grid.Row="4" Grid.Column="0" Text="{Binding Path=AiProfile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="3" Grid.Column="2" Text="Players:" />
+                    <TextBox Grid.Row="4" Grid.Column="2" Width="90" HorizontalAlignment="Left" Text="{Binding Path=NumPlayers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="3" Grid.Column="4" Text="Planet:" />
+                    <ComboBox Grid.Row="4" Grid.Column="4" ItemsSource="{Binding Path=GetPlanets}" SelectedValue="{Binding Path=SetPlanet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </GroupBox>
-            <GroupBox Grid.Row="1" Grid.Column="0" Header="Settings">
+            <GroupBox Grid.Row="0" Grid.Column="2" Header="Settings">
                 <Grid Margin="5,5,5,5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="25" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="30" />
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -111,9 +114,13 @@
                     <xctk:IntegerUpDown Grid.Row="4" Grid.Column="4" Width="90" Minimum="0" Increment="1" Value="{Binding Path=Gravity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="3" Grid.Column="6" Text="Moho Metal:" />
                     <xctk:IntegerUpDown Grid.Row="4" Grid.Column="6" Width="90" Minimum="0" Increment="1" Value="{Binding Path=MohoMetal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <CheckBox Grid.Row="6" Grid.Column="0" IsChecked="{Binding Path=ImpassableWater, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Impassable Water</CheckBox>
+                    <CheckBox Grid.Row="6" Grid.Column="2" IsChecked="{Binding Path=WaterDoesDamage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Water does damage</CheckBox>
+                    <xctk:IntegerUpDown Grid.Row="6" Grid.Column="4" IsEnabled="{Binding Path=WaterDoesDamage}" Minimum="-100" Maximum="100" Increment="1" Value="{Binding Path=WaterDamage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </GroupBox>
-            <GroupBox Grid.Row="2" Grid.Column="0" Header="Special">
+            <GroupBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Header="Special">
                 <Grid Margin="5,5,5,5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
@@ -128,7 +135,7 @@
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
 
-                    <GroupBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5">
+                    <GroupBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto" />
@@ -148,7 +155,7 @@
                             <CheckBox Grid.Row="1" Grid.Column="0" IsChecked="{Binding Path=UseWeapon}">Use weapon</CheckBox>
                             <TextBlock Grid.Row="3" Grid.Column="0" Text="Weapon:" />
                             <ComboBox Grid.Row="4" Grid.Column="0" Width="90" IsEnabled="{Binding Path=UseWeapon}" ItemsSource="{Binding Path=GetWeapons}" SelectedValue="{Binding Path=SetWeapon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                            
+
                             <TextBlock Grid.Row="0" Grid.Column="2" Text="Radius:" />
                             <xctk:IntegerUpDown Grid.Row="1" Grid.Column="2" Width="60" Minimum="0" Increment="1" IsEnabled="{Binding Path=UseWeapon}" Value="{Binding Path=Radius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             <TextBlock Grid.Row="3" Grid.Column="2" Text="Density:" />
@@ -159,16 +166,12 @@
                             <xctk:IntegerUpDown Grid.Row="4" Grid.Column="4" Width="60" Minimum="0" Increment="1" IsEnabled="{Binding Path=UseWeapon}" Value="{Binding Path=Interval, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </Grid>
                     </GroupBox>
-
-                    <CheckBox Grid.Row="2" Grid.Column="0" IsChecked="{Binding Path=ImpassableWater, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Impassable Water</CheckBox>
-                    <CheckBox Grid.Row="2" Grid.Column="2" IsChecked="{Binding Path=WaterDoesDamage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Water does damage</CheckBox>
-                    <xctk:IntegerUpDown Grid.Row="2" Grid.Column="4" IsEnabled="{Binding Path=WaterDoesDamage}" Minimum="-100" Maximum="100" Increment="1" Value="{Binding Path=WaterDamage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </GroupBox>
         </Grid>
         <StatusBar Grid.Row="2">
             <StatusBarItem>
-                <TextBlock Text="test" />
+                <TextBlock Text="{Binding Path=GetStatusText, Mode=OneWay}" />
             </StatusBarItem>
         </StatusBar>
     </Grid>

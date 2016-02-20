@@ -17,6 +17,7 @@ namespace OTAEdit.InputOutput
         public static OTAModel Read(string filepath)
         {
             OTAModel otaModel = new OTAModel();
+            otaModel.Filename = filepath.Substring(filepath.LastIndexOf('\\') + 1);
 
             using (StreamReader rd = new StreamReader(filepath))
             {
@@ -48,6 +49,62 @@ namespace OTAEdit.InputOutput
                     else if (lineText.StartsWith("solarstrength="))
                     {
                         otaModel.SolarStrength = Convert.ToInt32(lineText.Substring(14));
+                    }
+                    else if (lineText.StartsWith("lavaworld="))
+                    {
+                        otaModel.LavaWorld = Convert.ToBoolean(Convert.ToInt32(lineText.Substring(10)));
+                    }
+                    else if (lineText.StartsWith("minwindspeed="))
+                    {
+                        otaModel.MinWindSpeed = Convert.ToInt32(lineText.Substring(13));
+                    }
+                    else if (lineText.StartsWith("maxwindspeed="))
+                    {
+                        otaModel.MaxWindSpeed = Convert.ToInt32(lineText.Substring(13));
+                    }
+                    else if (lineText.StartsWith("gravity="))
+                    {
+                        otaModel.Gravity = Convert.ToInt32(lineText.Substring(8));
+                    }
+                    else if (lineText.StartsWith("waterdoesdamage="))
+                    {
+                        otaModel.WaterDoesDamage = Convert.ToBoolean(Convert.ToInt32(lineText.Substring(16)));
+                    }
+                    else if (lineText.StartsWith("waterdamage="))
+                    {
+                        otaModel.WaterDamage = Convert.ToInt32(lineText.Substring(12));
+                    }
+                    else if (lineText.StartsWith("numplayers="))
+                    {
+                        otaModel.NumPlayers = lineText.Substring(11);
+                    }
+                    else if (lineText.StartsWith("size="))
+                    {
+                        otaModel.Size = lineText.Substring(5);
+                    }
+                    else if (lineText.StartsWith("memory="))
+                    {
+                        otaModel.Memory = lineText.Substring(7);
+                    }
+                    else if (lineText.StartsWith("SCHEMACOUNT="))
+                    {
+                        otaModel.SchemaCount = Convert.ToInt32(lineText.Substring(12));
+                    }
+                    else if (lineText.StartsWith("aiprofile="))
+                    {
+                        otaModel.AiProfile = lineText.Substring(10);
+                    }
+                    else if (lineText.StartsWith("SurfaceMetal="))
+                    {
+                        otaModel.SurfaceMetal = Convert.ToInt32(lineText.Substring(13));
+                    }
+                    else if (lineText.StartsWith("MohoMetal="))
+                    {
+                        otaModel.MohoMetal = Convert.ToInt32(lineText.Substring(10));
+                    }
+                    else if (lineText.StartsWith("MeteorWeapon="))
+                    {
+                        otaModel.MeteorWeapon = lineText.Substring(13);
                     }
                 }
             }

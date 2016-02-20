@@ -90,6 +90,7 @@
     <Compile Include="InputOutput\File.cs" />
     <Compile Include="InputOutput\OtaInputOutput.cs" />
     <Compile Include="Models\OTAModel.cs" />
+    <Compile Include="Models\SchemaModel.cs" />
     <Compile Include="Models\SpecialModel.cs" />
     <Compile Include="ViewModels\Commands\DelegateCommand.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
