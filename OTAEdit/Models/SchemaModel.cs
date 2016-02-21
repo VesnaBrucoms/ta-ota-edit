@@ -13,19 +13,6 @@ namespace OTAEdit.Models
         private string schemaName;
 
         public bool IsActive;
-        /*public string Type;
-        public string AiProfile;
-        public int SurfaceMetal;
-        public int MohoMetal;
-        public int HumanMetal;
-        public int ComputerMetal;
-        public int HumanEnergy;
-        public int ComputerEnergy;
-        public string MeteorWeapon;
-        public int MeteorRadius;
-        public int MeteorDensity;
-        public int MeteorDuration;
-        public int MeteorInterval;*/
 
         public string GetName
         {
@@ -45,7 +32,6 @@ namespace OTAEdit.Models
             IsActive = true;
             Properties = new Dictionary<string, object>();
             initTypes();
-            //MeteorWeapon = "EMPTY";
         }
 
         private static void initTypes()

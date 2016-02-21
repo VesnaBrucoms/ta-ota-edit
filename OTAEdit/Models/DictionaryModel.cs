@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OTAEdit.Models
 {
@@ -19,7 +16,7 @@ namespace OTAEdit.Models
                 return (string)value;
             }
             else
-                return "ERROR - Key not found!";
+                return "";
         }
 
         public int GetIntValue(string dictKey)

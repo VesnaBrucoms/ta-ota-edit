@@ -58,16 +58,6 @@ namespace OTAEdit.ViewModels
             }
         }
 
-        public string AiProfile
-        {
-            get { return otaModel.GetSchemas[selectedSchemaIndex].GetStringValue("aiprofile"); }
-            set
-            {
-                otaModel.GetSchemas[selectedSchemaIndex].SetValue("aiprofile", value);
-                OnPropertyChanged("AiProfile");
-            }
-        }
-
         public List<string> GetPlanets
         {
             get { return otaModel.GetPlanets; }
@@ -123,16 +113,6 @@ namespace OTAEdit.ViewModels
             }
         }
 
-        public int SurfaceMetal
-        {
-            get { return otaModel.GetSchemas[selectedSchemaIndex].GetIntValue("SurfaceMetal"); }
-            set
-            {
-                otaModel.GetSchemas[selectedSchemaIndex].SetValue("SurfaceMetal", value);
-                OnPropertyChanged("SurfaceMetal");
-            }
-        }
-
         public int MaxWindSpeed
         {
             get { return otaModel.GetIntValue("maxwindspeed"); }
@@ -163,6 +143,71 @@ namespace OTAEdit.ViewModels
             }
         }
 
+        public bool ImpassableWater
+        {
+            get { return otaModel.GetBoolValue("lavaworld"); }
+            set
+            {
+                otaModel.SetValue("lavaworld", value);
+                OnPropertyChanged("ImpassableWater");
+            }
+        }
+
+        public bool WaterDoesDamage
+        {
+            get { return otaModel.GetBoolValue("waterdoesdamage"); }
+            set
+            {
+                otaModel.SetValue("waterdoesdamage", value);
+                OnPropertyChanged("WaterDoesDamage");
+            }
+        }
+
+        public int WaterDamage
+        {
+            get { return otaModel.GetIntValue("waterdamage"); }
+            set
+            {
+                otaModel.SetValue("waterdamage", value);
+                OnPropertyChanged("WaterDamage");
+            }
+        }
+
+        public List<string> GetSchemaTypes
+        {
+            get { return SchemaModel.SchemaTypes; }
+        }
+
+        public string Type
+        {
+            get { return otaModel.GetSchemas[selectedSchemaIndex].GetStringValue("Type"); }
+            set
+            {
+                otaModel.GetSchemas[selectedSchemaIndex].SetValue("Type", value);
+                OnPropertyChanged("Type");
+            }
+        }
+
+        public string AiProfile
+        {
+            get { return otaModel.GetSchemas[selectedSchemaIndex].GetStringValue("aiprofile"); }
+            set
+            {
+                otaModel.GetSchemas[selectedSchemaIndex].SetValue("aiprofile", value);
+                OnPropertyChanged("AiProfile");
+            }
+        }
+
+        public int SurfaceMetal
+        {
+            get { return otaModel.GetSchemas[selectedSchemaIndex].GetIntValue("SurfaceMetal"); }
+            set
+            {
+                otaModel.GetSchemas[selectedSchemaIndex].SetValue("SurfaceMetal", value);
+                OnPropertyChanged("SurfaceMetal");
+            }
+        }
+
         public int MohoMetal
         {
             get { return otaModel.GetSchemas[selectedSchemaIndex].GetIntValue("MohoMetal"); }
@@ -173,9 +218,44 @@ namespace OTAEdit.ViewModels
             }
         }
 
-        public List<string> GetSchemaTypes
+        public int HumanMetal
         {
-            get { return SchemaModel.SchemaTypes; }
+            get { return otaModel.GetSchemas[selectedSchemaIndex].GetIntValue("HumanMetal"); }
+            set
+            {
+                otaModel.GetSchemas[selectedSchemaIndex].SetValue("HumanMetal", value);
+                OnPropertyChanged("HumanMetal");
+            }
+        }
+
+        public int ComputerMetal
+        {
+            get { return otaModel.GetSchemas[selectedSchemaIndex].GetIntValue("ComputerMetal"); }
+            set
+            {
+                otaModel.GetSchemas[selectedSchemaIndex].SetValue("ComputerMetal", value);
+                OnPropertyChanged("ComputerMetal");
+            }
+        }
+
+        public int HumanEnergy
+        {
+            get { return otaModel.GetSchemas[selectedSchemaIndex].GetIntValue("HumanEnergy"); }
+            set
+            {
+                otaModel.GetSchemas[selectedSchemaIndex].SetValue("HumanEnergy", value);
+                OnPropertyChanged("HumanEnergy");
+            }
+        }
+
+        public int ComputerEnergy
+        {
+            get { return otaModel.GetSchemas[selectedSchemaIndex].GetIntValue("ComputerEnergy"); }
+            set
+            {
+                otaModel.GetSchemas[selectedSchemaIndex].SetValue("ComputerEnergy", value);
+                OnPropertyChanged("ComputerEnergy");
+            }
         }
 
         public List<string> GetWeapons
@@ -230,36 +310,6 @@ namespace OTAEdit.ViewModels
             {
                 otaModel.GetSchemas[selectedSchemaIndex].SetValue("MeteorInterval", value);
                 OnPropertyChanged("Interval");
-            }
-        }
-
-        public bool ImpassableWater
-        {
-            get { return otaModel.GetBoolValue("lavaworld"); }
-            set
-            {
-                otaModel.SetValue("lavaworld", value);
-                OnPropertyChanged("ImpassableWater");
-            }
-        }
-
-        public bool WaterDoesDamage
-        {
-            get { return otaModel.GetBoolValue("waterdoesdamage"); }
-            set
-            {
-                otaModel.SetValue("waterdoesdamage", value);
-                OnPropertyChanged("WaterDoesDamage");
-            }
-        }
-
-        public int WaterDamage
-        {
-            get { return otaModel.GetIntValue("waterdamage"); }
-            set
-            {
-                otaModel.SetValue("waterdamage", value);
-                OnPropertyChanged("WaterDamage");
             }
         }
         #endregion
@@ -371,11 +421,16 @@ namespace OTAEdit.ViewModels
             OnPropertyChanged("MinWindSpeed");
             OnPropertyChanged("TidalStrength");
             OnPropertyChanged("SeaLevel");
-            OnPropertyChanged("SurfaceMetal");
             OnPropertyChanged("MaxWindSpeed");
             OnPropertyChanged("SolarStrength");
             OnPropertyChanged("Gravity");
+            OnPropertyChanged("Type");
+            OnPropertyChanged("SurfaceMetal");
             OnPropertyChanged("MohoMetal");
+            OnPropertyChanged("HumanMetal");
+            OnPropertyChanged("ComputerMetal");
+            OnPropertyChanged("HumanEnergy");
+            OnPropertyChanged("ComputerEnergy");
             OnPropertyChanged("SetWeapon");
             OnPropertyChanged("Radius");
             OnPropertyChanged("Duration");

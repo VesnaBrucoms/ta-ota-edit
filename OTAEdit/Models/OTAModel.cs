@@ -14,45 +14,6 @@ namespace OTAEdit.Models
         private SchemaModel[] schemas;
 
         public string Filename;
-        /*public string MapName;
-        public string MapDesc;
-        public string Planet;
-        public string MissionHint;
-        public string Brief;
-        public string Narration;
-        public string Glamour;
-        public int LineOfSight;
-        public int Mapping;
-        public int TidalStrength;
-        public int SolarStrength;
-        public bool LavaWorld;
-        public int KillMul;
-        public int TimeMul;
-        public int MinWindSpeed;
-        public int MaxWindSpeed;
-        public int Gravity;
-        public bool WaterDoesDamage;
-        public int WaterDamage;
-        public string NumPlayers;
-        public string Size;
-        public string Memory;
-        public string UseOnlyUnits;
-        public int DestroyAllUnits;
-        public int AllUnitsKilled;
-        public int SchemaCount;
-        public string Type;
-        public string AiProfile;
-        public int SurfaceMetal;
-        public int MohoMetal;
-        public int HumanMetal;
-        public int ComputerMetal;
-        public int HumanEnergy;
-        public int ComputerEnergy;
-        public string MeteorWeapon;
-        public int MeteorRadius;
-        public int MeteorDensity;
-        public int MeteorDuration;
-        public int MeteorInterval;*/
 
         public int SeaLevel; //TODO: investigate where sealevel is stored
 
