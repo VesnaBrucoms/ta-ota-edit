@@ -90,26 +90,95 @@ namespace OTAEdit.InputOutput
                     {
                         otaModel.SchemaCount = Convert.ToInt32(lineText.Substring(12));
                     }
-                    else if (lineText.StartsWith("aiprofile="))
+                    else if (lineText.StartsWith("["))
                     {
-                        otaModel.AiProfile = lineText.Substring(10);
-                    }
-                    else if (lineText.StartsWith("SurfaceMetal="))
-                    {
-                        otaModel.SurfaceMetal = Convert.ToInt32(lineText.Substring(13));
-                    }
-                    else if (lineText.StartsWith("MohoMetal="))
-                    {
-                        otaModel.MohoMetal = Convert.ToInt32(lineText.Substring(10));
-                    }
-                    else if (lineText.StartsWith("MeteorWeapon="))
-                    {
-                        otaModel.MeteorWeapon = lineText.Substring(13);
+                        for (int i = 0; i < otaModel.SchemaCount; i++)
+                        {
+                            otaModel.GetSchemas[i] = readSchema(rd, i);
+                        }
                     }
                 }
             }
 
             return otaModel;
+        }
+
+        private static SchemaModel readSchema(StreamReader rd, int index)
+        {
+            SchemaModel schema = new SchemaModel(index);
+            string lineText = "";
+
+            while (lineText != "}")
+            {
+                lineText = rd.ReadLine();
+                if (lineText.Contains(";"))
+                {
+                    lineText = lineText.Substring(0, lineText.Length - 1);
+                }
+                lineText = lineText.TrimStart(' ', '\t');
+
+                if (lineText == null || lineText == "" || lineText == "{" || lineText == "}")
+                    continue;
+
+                if (lineText.StartsWith("Type="))
+                {
+                    schema.Type = lineText.Substring(5);
+                }
+                else if (lineText.StartsWith("aiprofile="))
+                {
+                    schema.AiProfile = lineText.Substring(10);
+                }
+                else if (lineText.StartsWith("SurfaceMetal="))
+                {
+                    schema.SurfaceMetal = Convert.ToInt32(lineText.Substring(13));
+                }
+                else if (lineText.StartsWith("MohoMetal="))
+                {
+                    schema.MohoMetal = Convert.ToInt32(lineText.Substring(10));
+                }
+                else if (lineText.StartsWith("HumanMetal="))
+                {
+                    schema.HumanMetal = Convert.ToInt32(lineText.Substring(11));
+                }
+                else if (lineText.StartsWith("ComputerMetal="))
+                {
+                    schema.ComputerMetal = Convert.ToInt32(lineText.Substring(14));
+                }
+                else if (lineText.StartsWith("HumanEnergy="))
+                {
+                    schema.HumanEnergy = Convert.ToInt32(lineText.Substring(12));
+                }
+                else if (lineText.StartsWith("ComputerEnergy="))
+                {
+                    schema.ComputerEnergy = Convert.ToInt32(lineText.Substring(15));
+                }
+                else if (lineText.StartsWith("MeteorWeapon="))
+                {
+                    lineText = lineText.Substring(13);
+                    if (lineText == "")
+                        schema.MeteorWeapon = "EMPTY";
+                    else
+                        schema.MeteorWeapon = lineText;
+                }
+                else if (lineText.StartsWith("MeteorRadius="))
+                {
+                    schema.MeteorRadius = Convert.ToInt32(lineText.Substring(13));
+                }
+                else if (lineText.StartsWith("MeteorDensity="))
+                {
+                    schema.MeteorDensity = Convert.ToInt32(lineText.Substring(14));
+                }
+                else if (lineText.StartsWith("MeteorDuration="))
+                {
+                    schema.MeteorDuration = Convert.ToInt32(lineText.Substring(15));
+                }
+                else if (lineText.StartsWith("MeteorInterval="))
+                {
+                    schema.MeteorInterval = Convert.ToInt32(lineText.Substring(15));
+                }
+            }
+
+            return schema;
         }
         #endregion
     }

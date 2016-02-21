@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace OTAEdit.Models
 {
-    public class SpecialModel
+    public class SpecialModel : SchemaItemModel
     {
-        public string SpecialWhat;
-        public string XPos;
-        public string YPos;
+        public SpecialModel()
+        {
+            ItemNameIdentifier = "specialwhat";
+        }
     }
 }

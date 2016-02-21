@@ -4,6 +4,7 @@ using OTAEdit.Models;
 using OTAEdit.ViewModels.Commands;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,8 @@ namespace OTAEdit.ViewModels
         private string windowTitle;
         private string statusText;
         private OTAModel otaModel;
+        private ObservableCollection<SchemaModel> schemaCollection;
+        private int selectedSchemaIndex;
         private bool useWeapon;
 
         #region ModelProperties
@@ -177,6 +180,7 @@ namespace OTAEdit.ViewModels
 
         public string SetWeapon
         {
+            get { return otaModel.MeteorWeapon; }
             set
             {
                 otaModel.MeteorWeapon = value;
@@ -266,6 +270,33 @@ namespace OTAEdit.ViewModels
             get { return statusText; }
         }
 
+        public ObservableCollection<SchemaModel> GetSchemas
+        {
+            get { return schemaCollection; }
+        }
+
+        public int SelectedSchema
+        {
+            get { return selectedSchemaIndex; }
+            set
+            {
+                selectedSchemaIndex = value;
+                OnPropertyChanged("SelectedSchema");
+                OnPropertyChanged("IsSchemaActive");
+            }
+        }
+
+        public bool IsSchemaActive
+        {
+            get
+            {
+                if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
+                    return otaModel.GetSchemas[selectedSchemaIndex].IsActive;
+                else
+                    return false;
+            }
+        }
+
         public bool UseWeapon
         {
             get { return useWeapon; }
@@ -282,6 +313,16 @@ namespace OTAEdit.ViewModels
         {
             get { return new DelegateCommand(OpenOTA); }
         }
+
+        public ICommand AddSchemaCommand
+        {
+            get { return new DelegateCommand(AddSchema, CanAddSchema); }
+        }
+
+        public ICommand RemoveSchemaCommand
+        {
+            get { return new DelegateCommand(RemoveSchema, CanRemoveSchema); }
+        }
         #endregion
 
         public MainWindowViewModel()
@@ -293,6 +334,20 @@ namespace OTAEdit.ViewModels
             statusText = "Ready";
             otaModel = new OTAModel();
             useWeapon = false;
+            createSchemaCollection();
+        }
+
+        private void createSchemaCollection()
+        {
+            schemaCollection = new ObservableCollection<SchemaModel>();
+            schemaCollection.Add(otaModel.GetSchemas[0]);
+            schemaCollection.Add(otaModel.GetSchemas[1]);
+            schemaCollection.Add(otaModel.GetSchemas[2]);
+            schemaCollection.Add(otaModel.GetSchemas[3]);
+            OnPropertyChanged("GetSchemas");
+            selectedSchemaIndex = 0; //TODO: remember previously selected index
+            OnPropertyChanged("SelectedSchema");
+            OnPropertyChanged("IsSchemaActive");
         }
 
         private void updateProperties()
@@ -324,6 +379,7 @@ namespace OTAEdit.ViewModels
             OnPropertyChanged("ImpassableWater");
             OnPropertyChanged("WaterDoesDamage");
             OnPropertyChanged("WaterDamage");
+            createSchemaCollection();
         }
 
         #region Commands
@@ -338,6 +394,44 @@ namespace OTAEdit.ViewModels
 
                 Ini.GetInstance.ChangeValueByName(IniKeys.STRING_OTA_LAST_PATH, File.ExtractFilePath(filepath));
             }
+        }
+
+        public void AddSchema(object parameter)
+        {
+            otaModel.GetSchemas[selectedSchemaIndex] = new SchemaModel(selectedSchemaIndex);
+            createSchemaCollection();
+        }
+
+        public bool CanAddSchema()
+        {
+            if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
+            {
+                if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
+                    return false;
+                else
+                    return true;
+            }
+            else
+                return false;
+        }
+
+        public void RemoveSchema(object parameter)
+        {
+            otaModel.GetSchemas[selectedSchemaIndex] = new SchemaModel();
+            createSchemaCollection();
+        }
+
+        public bool CanRemoveSchema()
+        {
+            if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
+            {
+                if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
         }
         #endregion
 

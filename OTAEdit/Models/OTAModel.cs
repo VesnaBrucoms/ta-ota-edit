@@ -78,16 +78,16 @@ namespace OTAEdit.Models
 
         public OTAModel()
         {
-            initLists();
+            init();
         }
 
         public OTAModel(string filename)
         {
             Filename = filename;
-            initLists();
+            init();
         }
 
-        private void initLists()
+        private void init()
         {
             memory = new List<string>();
             memory.Add("16 mb");
@@ -112,10 +112,15 @@ namespace OTAEdit.Models
             planets.Add("Urban");
             planets.Add("Wet Desert");
             weapons = new List<string>();
-            weapons.Add("Meteor");
-            weapons.Add("Hailstorm");
+            weapons.Add("EMPTY"); //TODO: decide whether to keep weapon.EMPTY
             weapons.Add("Earthquake");
+            weapons.Add("Hailstorm");
+            weapons.Add("Meteor");
             schemas = new SchemaModel[4];
+            schemas[0] = new SchemaModel();
+            schemas[1] = new SchemaModel();
+            schemas[2] = new SchemaModel();
+            schemas[3] = new SchemaModel();
         }
     }
 }

@@ -49,9 +49,10 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
-                        <RowDefinition Height="25" />
+                        <RowDefinition Height="20" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="2*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition MinWidth="90" Width="1*" />
@@ -81,39 +82,40 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
-                        <RowDefinition Height="25" />
+                        <RowDefinition Height="20" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
-                        <RowDefinition Height="30" />
+                        <RowDefinition Height="2*" />
                         <RowDefinition Height="auto" />
+                        <RowDefinition Height="2*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition MinWidth="40" Width="1*" />
+                        <ColumnDefinition Width="15" />
+                        <ColumnDefinition MinWidth="40" Width="1*" />
+                        <ColumnDefinition Width="15" />
+                        <ColumnDefinition MinWidth="40" Width="1*" />
+                        <ColumnDefinition Width="15" />
+                        <ColumnDefinition MinWidth="40" Width="1*" />
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Min Wind Speed:" />
-                    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="0" Width="90" Minimum="0" Increment="1" Value="{Binding Path=MinWindSpeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="0" Minimum="0" Increment="1" Value="{Binding Path=MinWindSpeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="0" Grid.Column="2" Text="Tidal Strength:" />
-                    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="2" Width="90" Minimum="0" Increment="1" Value="{Binding Path=TidalStrength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="2" Minimum="0" Increment="1" Value="{Binding Path=TidalStrength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="0" Grid.Column="4" Text="Sea Level:" />
-                    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="4" Width="90" Minimum="0" Increment="1" Value="{Binding Path=SeaLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="4" Minimum="0" Increment="1" Value="{Binding Path=SeaLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="0" Grid.Column="6" Text="Surface Metal:" />
-                    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="6" Width="90" Minimum="0" Increment="1" Value="{Binding Path=SurfaceMetal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="6" Minimum="0" Increment="1" Value="{Binding Path=SurfaceMetal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Max Wind Speed:" />
-                    <xctk:IntegerUpDown Grid.Row="4" Grid.Column="0" Width="90" Minimum="0" Increment="1" Value="{Binding Path=MaxWindSpeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <xctk:IntegerUpDown Grid.Row="4" Grid.Column="0" Minimum="0" Increment="1" Value="{Binding Path=MaxWindSpeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="3" Grid.Column="2" Text="Solar Strength:" />
-                    <xctk:IntegerUpDown Grid.Row="4" Grid.Column="2" Width="90" Minimum="0" Increment="1" Value="{Binding Path=SolarStrength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <xctk:IntegerUpDown Grid.Row="4" Grid.Column="2" Minimum="0" Increment="1" Value="{Binding Path=SolarStrength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="3" Grid.Column="4" Text="Gravity:" />
-                    <xctk:IntegerUpDown Grid.Row="4" Grid.Column="4" Width="90" Minimum="0" Increment="1" Value="{Binding Path=Gravity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <xctk:IntegerUpDown Grid.Row="4" Grid.Column="4" Minimum="0" Increment="1" Value="{Binding Path=Gravity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="3" Grid.Column="6" Text="Moho Metal:" />
-                    <xctk:IntegerUpDown Grid.Row="4" Grid.Column="6" Width="90" Minimum="0" Increment="1" Value="{Binding Path=MohoMetal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <xctk:IntegerUpDown Grid.Row="4" Grid.Column="6" Minimum="0" Increment="1" Value="{Binding Path=MohoMetal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <CheckBox Grid.Row="6" Grid.Column="0" IsChecked="{Binding Path=ImpassableWater, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Impassable Water</CheckBox>
                     <CheckBox Grid.Row="6" Grid.Column="2" IsChecked="{Binding Path=WaterDoesDamage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Water does damage</CheckBox>
@@ -128,12 +130,27 @@
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="20" />
-                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                        <ComboBox Name="cmbxSchemas" Margin="0,0,20,0" MinWidth="80" ItemsSource="{Binding Path=GetSchemas, Mode=OneWay}" SelectedIndex="{Binding Path=SelectedSchema}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding GetName}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <Button Margin="0,0,15,0" Width="60" Command="{Binding AddSchemaCommand}">Add</Button>
+                        <Button Width="60" Command="{Binding RemoveSchemaCommand}">Remove</Button>
+                    </StackPanel>
 
                     <GroupBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5">
                         <Grid>
@@ -152,7 +169,7 @@
                                 <ColumnDefinition Width="auto" />
                             </Grid.ColumnDefinitions>
 
-                            <CheckBox Grid.Row="1" Grid.Column="0" IsChecked="{Binding Path=UseWeapon}">Use weapon</CheckBox>
+                            <CheckBox Grid.Row="1" Grid.Column="0" IsEnabled="{Binding Path=IsSchemaActive, Mode=OneWay}" IsChecked="{Binding Path=UseWeapon}">Use weapon</CheckBox>
                             <TextBlock Grid.Row="3" Grid.Column="0" Text="Weapon:" />
                             <ComboBox Grid.Row="4" Grid.Column="0" Width="90" IsEnabled="{Binding Path=UseWeapon}" ItemsSource="{Binding Path=GetWeapons}" SelectedValue="{Binding Path=SetWeapon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
