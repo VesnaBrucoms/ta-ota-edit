@@ -25,20 +25,20 @@ namespace OTAEdit.ViewModels
         #region ModelProperties
         public string MapName
         {
-            get { return otaModel.MapName; }
+            get { return otaModel.GetStringValue("missionname"); }
             set
             {
-                otaModel.MapName = value;
+                otaModel.SetValue("missionname", value);
                 OnPropertyChanged("MapName");
             }
         }
 
         public string MapDesc
         {
-            get { return otaModel.MapDesc; }
+            get { return otaModel.GetStringValue("missiondescription"); }
             set
             {
-                otaModel.MapDesc = value;
+                otaModel.SetValue("missiondescription", value);
                 OnPropertyChanged("MapDesc");
             }
         }
@@ -50,20 +50,20 @@ namespace OTAEdit.ViewModels
 
         public string SetMemory
         {
-            get { return otaModel.Memory; }
+            get { return otaModel.GetStringValue("memory"); }
             set
             {
-                otaModel.Memory = value;
+                otaModel.SetValue("memory", value);
                 OnPropertyChanged("SetMemory");
             }
         }
 
         public string AiProfile
         {
-            get { return otaModel.AiProfile; }
+            get { return otaModel.GetSchemas[selectedSchemaIndex].GetStringValue("aiprofile"); }
             set
             {
-                otaModel.AiProfile = value;
+                otaModel.GetSchemas[selectedSchemaIndex].SetValue("aiprofile", value);
                 OnPropertyChanged("AiProfile");
             }
         }
@@ -75,40 +75,40 @@ namespace OTAEdit.ViewModels
 
         public string SetPlanet
         {
-            get { return otaModel.Planet; }
+            get { return otaModel.GetStringValue("planet"); }
             set
             {
-                otaModel.Planet = value;
+                otaModel.SetValue("planet", value);
                 OnPropertyChanged("SetPlanet");
             }
         }
 
         public string NumPlayers
         {
-            get { return otaModel.NumPlayers; }
+            get { return otaModel.GetStringValue("numplayers"); }
             set
             {
-                otaModel.NumPlayers = value;
+                otaModel.SetValue("numplayers", value);
                 OnPropertyChanged("NumPlayers");
             }
         }
 
         public int MinWindSpeed
         {
-            get { return otaModel.MinWindSpeed; }
+            get { return otaModel.GetIntValue("minwindspeed"); }
             set
             {
-                otaModel.MinWindSpeed = value;
+                otaModel.SetValue("minwindspeed", value);
                 OnPropertyChanged("MinWindSpeed");
             }
         }
 
         public int TidalStrength
         {
-            get { return otaModel.TidalStrength; }
+            get { return otaModel.GetIntValue("tidalstrength"); }
             set
             {
-                otaModel.TidalStrength = value;
+                otaModel.SetValue("tidalstrength", value);
                 OnPropertyChanged("TidalStrength");
             }
         }
@@ -125,52 +125,57 @@ namespace OTAEdit.ViewModels
 
         public int SurfaceMetal
         {
-            get { return otaModel.SurfaceMetal; }
+            get { return otaModel.GetSchemas[selectedSchemaIndex].GetIntValue("SurfaceMetal"); }
             set
             {
-                otaModel.SurfaceMetal = value;
+                otaModel.GetSchemas[selectedSchemaIndex].SetValue("SurfaceMetal", value);
                 OnPropertyChanged("SurfaceMetal");
             }
         }
 
         public int MaxWindSpeed
         {
-            get { return otaModel.MaxWindSpeed; }
+            get { return otaModel.GetIntValue("maxwindspeed"); }
             set
             {
-                otaModel.MaxWindSpeed = value;
+                otaModel.SetValue("maxwindspeed", value);
                 OnPropertyChanged("MaxWindSpeed");
             }
         }
 
         public int SolarStrength
         {
-            get { return otaModel.SolarStrength; }
+            get { return otaModel.GetIntValue("solarstrength"); }
             set
             {
-                otaModel.SolarStrength = value;
+                otaModel.SetValue("solarstrength", value);
                 OnPropertyChanged("SolarStrength");
             }
         }
 
         public int Gravity
         {
-            get { return otaModel.Gravity; }
+            get { return otaModel.GetIntValue("gravity"); }
             set
             {
-                otaModel.Gravity = value;
+                otaModel.SetValue("gravity", value);
                 OnPropertyChanged("Gravity");
             }
         }
 
         public int MohoMetal
         {
-            get { return otaModel.MohoMetal; }
+            get { return otaModel.GetSchemas[selectedSchemaIndex].GetIntValue("MohoMetal"); }
             set
             {
-                otaModel.MohoMetal = value;
+                otaModel.GetSchemas[selectedSchemaIndex].SetValue("MohoMetal", value);
                 OnPropertyChanged("MohoMetal");
             }
+        }
+
+        public List<string> GetSchemaTypes
+        {
+            get { return SchemaModel.SchemaTypes; }
         }
 
         public List<string> GetWeapons
@@ -180,80 +185,80 @@ namespace OTAEdit.ViewModels
 
         public string SetWeapon
         {
-            get { return otaModel.MeteorWeapon; }
+            get { return otaModel.GetSchemas[selectedSchemaIndex].GetStringValue("MeteorWeapon"); }
             set
             {
-                otaModel.MeteorWeapon = value;
+                otaModel.GetSchemas[selectedSchemaIndex].SetValue("MeteorWeapon", value);
                 OnPropertyChanged("SetWeapon");
             }
         }
 
         public int Radius
         {
-            get { return otaModel.MeteorRadius; }
+            get { return otaModel.GetSchemas[selectedSchemaIndex].GetIntValue("MeteorRadius"); }
             set
             {
-                otaModel.MeteorRadius = value;
+                otaModel.GetSchemas[selectedSchemaIndex].SetValue("MeteorRadius", value);
                 OnPropertyChanged("Radius");
             }
         }
 
         public int Duration
         {
-            get { return otaModel.MeteorDuration; }
+            get { return otaModel.GetSchemas[selectedSchemaIndex].GetIntValue("MeteorDuration"); }
             set
             {
-                otaModel.MeteorDuration = value;
+                otaModel.GetSchemas[selectedSchemaIndex].SetValue("MeteorDuration", value);
                 OnPropertyChanged("Duration");
             }
         }
 
         public int Density
         {
-            get { return otaModel.MeteorDensity; }
+            get { return otaModel.GetSchemas[selectedSchemaIndex].GetIntValue("MeteorDensity"); }
             set
             {
-                otaModel.MeteorDensity = value;
+                otaModel.GetSchemas[selectedSchemaIndex].SetValue("MeteorDensity", value);
                 OnPropertyChanged("Density");
             }
         }
 
         public int Interval
         {
-            get { return otaModel.MeteorInterval; }
+            get { return otaModel.GetSchemas[selectedSchemaIndex].GetIntValue("MeteorInterval"); }
             set
             {
-                otaModel.MeteorInterval = value;
+                otaModel.GetSchemas[selectedSchemaIndex].SetValue("MeteorInterval", value);
                 OnPropertyChanged("Interval");
             }
         }
 
         public bool ImpassableWater
         {
-            get { return otaModel.LavaWorld; }
+            get { return otaModel.GetBoolValue("lavaworld"); }
             set
             {
-                otaModel.LavaWorld = value;
+                otaModel.SetValue("lavaworld", value);
                 OnPropertyChanged("ImpassableWater");
             }
         }
 
         public bool WaterDoesDamage
         {
-            get { return otaModel.WaterDoesDamage; }
+            get { return otaModel.GetBoolValue("waterdoesdamage"); }
             set
             {
-                otaModel.WaterDoesDamage = value;
+                otaModel.SetValue("waterdoesdamage", value);
                 OnPropertyChanged("WaterDoesDamage");
             }
         }
 
         public int WaterDamage
         {
-            get { return otaModel.WaterDamage; }
+            get { return otaModel.GetIntValue("waterdamage"); }
             set
             {
-                otaModel.WaterDamage = value;
+                otaModel.SetValue("waterdamage", value);
                 OnPropertyChanged("WaterDamage");
             }
         }

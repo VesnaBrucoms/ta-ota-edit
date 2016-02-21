@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace OTAEdit.Models
 {
-    public class SchemaModel
+    public class SchemaModel : DictionaryModel
     {
+        public static List<string> SchemaTypes;
+
         private string schemaName;
 
         public bool IsActive;
-        public string Type;
+        /*public string Type;
         public string AiProfile;
         public int SurfaceMetal;
         public int MohoMetal;
@@ -23,7 +25,7 @@ namespace OTAEdit.Models
         public int MeteorRadius;
         public int MeteorDensity;
         public int MeteorDuration;
-        public int MeteorInterval;
+        public int MeteorInterval;*/
 
         public string GetName
         {
@@ -34,13 +36,25 @@ namespace OTAEdit.Models
         {
             schemaName = "EMPTY";
             IsActive = false;
+            initTypes();
         }
 
         public SchemaModel(int schemaNumber)
         {
             schemaName = "Schema " + schemaNumber;
             IsActive = true;
-            MeteorWeapon = "EMPTY";
+            Properties = new Dictionary<string, object>();
+            initTypes();
+            //MeteorWeapon = "EMPTY";
+        }
+
+        private static void initTypes()
+        {
+            SchemaTypes = new List<string>();
+            SchemaTypes.Add("Network 1");
+            SchemaTypes.Add("Easy");
+            SchemaTypes.Add("Medium");
+            SchemaTypes.Add("Hard");
         }
     }
 }

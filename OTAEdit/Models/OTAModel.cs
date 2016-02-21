@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OTAEdit.Models
 {
-    public class OTAModel
+    public class OTAModel : DictionaryModel
     {
         private List<string> memory;
         private List<string> planets;
@@ -14,7 +14,7 @@ namespace OTAEdit.Models
         private SchemaModel[] schemas;
 
         public string Filename;
-        public string MapName;
+        /*public string MapName;
         public string MapDesc;
         public string Planet;
         public string MissionHint;
@@ -52,7 +52,7 @@ namespace OTAEdit.Models
         public int MeteorRadius;
         public int MeteorDensity;
         public int MeteorDuration;
-        public int MeteorInterval;
+        public int MeteorInterval;*/
 
         public int SeaLevel; //TODO: investigate where sealevel is stored
 
@@ -78,12 +78,14 @@ namespace OTAEdit.Models
 
         public OTAModel()
         {
+            Properties = new Dictionary<string, object>();
             init();
         }
 
         public OTAModel(string filename)
         {
             Filename = filename;
+            Properties = new Dictionary<string, object>();
             init();
         }
 

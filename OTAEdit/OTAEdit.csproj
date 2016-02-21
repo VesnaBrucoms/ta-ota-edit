@@ -89,6 +89,7 @@
     <Compile Include="InputOutput\Directory.cs" />
     <Compile Include="InputOutput\File.cs" />
     <Compile Include="InputOutput\OtaInputOutput.cs" />
+    <Compile Include="Models\DictionaryModel.cs" />
     <Compile Include="Models\OTAModel.cs" />
     <Compile Include="Models\SchemaItemModel.cs" />
     <Compile Include="Models\SchemaModel.cs" />
