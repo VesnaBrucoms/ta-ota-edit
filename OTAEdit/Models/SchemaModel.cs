@@ -27,6 +27,9 @@ namespace OTAEdit.Models
         {
             schemaName = "EMPTY";
             IsActive = false;
+            Units = new List<SchemaItemModel>();
+            Features = new List<SchemaItemModel>();
+            Specials = new List<SchemaItemModel>();
             initTypes();
         }
 

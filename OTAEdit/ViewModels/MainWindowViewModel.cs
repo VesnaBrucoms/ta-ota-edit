@@ -2,6 +2,8 @@
 using OTAEdit.InputOutput;
 using OTAEdit.Models;
 using OTAEdit.ViewModels.Commands;
+using OTAEdit.ViewModels.Services;
+using OTAEdit.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,6 +22,9 @@ namespace OTAEdit.ViewModels
         private OTAModel otaModel;
         private ObservableCollection<SchemaModel> schemaCollection;
         private int selectedSchemaIndex;
+        private int selectedUnitIndex;
+        private int selectedFeatureIndex;
+        private int selectedSpecialIndex;
 
         #region ModelProperties
         public string MapName
@@ -363,19 +368,34 @@ namespace OTAEdit.ViewModels
             }
         }
 
-        public List<SchemaItemModel> GetUnits
+        public ObservableCollection<SchemaItemModel> GetUnits
         {
-            get { return otaModel.GetSchemas[selectedSchemaIndex].Units; }
+            get { return new ObservableCollection<SchemaItemModel>(otaModel.GetSchemas[selectedSchemaIndex].Units); }
         }
 
-        public List<SchemaItemModel> GetFeatures
+        public int SelectedUnit
         {
-            get { return otaModel.GetSchemas[selectedSchemaIndex].Features; }
+            set { selectedUnitIndex = value; }
         }
 
-        public List<SchemaItemModel> GetSpecials
+        public ObservableCollection<SchemaItemModel> GetFeatures
         {
-            get { return otaModel.GetSchemas[selectedSchemaIndex].Specials; }
+            get { return new ObservableCollection<SchemaItemModel>(otaModel.GetSchemas[selectedSchemaIndex].Features); }
+        }
+
+        public int SelectedFeature
+        {
+            set { selectedFeatureIndex = value; }
+        }
+
+        public ObservableCollection<SchemaItemModel> GetSpecials
+        {
+            get { return new ObservableCollection<SchemaItemModel>(otaModel.GetSchemas[selectedSchemaIndex].Specials); }
+        }
+
+        public int SelectedSpecial
+        {
+            set { selectedSpecialIndex = value; }
         }
         #endregion
 
@@ -421,6 +441,7 @@ namespace OTAEdit.ViewModels
             otaModel = new OTAModel();
             createSchemaCollection();
             createSchemaCollection();
+            WindowViewLoaderService.GetInstance.Register(typeof(AddEditViewModel), typeof(AddEditView));
         }
 
         private void createSchemaCollection()
@@ -558,17 +579,34 @@ namespace OTAEdit.ViewModels
             string param = (string)parameter;
             if (param == "btnAddUnit")
             {
-                otaModel.GetSchemas[selectedSchemaIndex].Units.Add(new SchemaItemModel("test"));
+                AddEditViewModel newDialog = new AddEditViewModel(AddEditViewModel.WindowTask.Add, AddEditViewModel.SchemaItemType.Unit, otaModel.GetSchemas[selectedSchemaIndex].Units.Count);
+                bool? result = WindowViewLoaderService.GetInstance.ShowDialog(newDialog);
+                if (result == true)
+                {
+                    otaModel.GetSchemas[selectedSchemaIndex].Units.Add(newDialog.GetSchemaItem);
+                    OnPropertyChanged("GetUnits");
+                }
             }
             else if (param == "btnAddFeature")
             {
-                otaModel.GetSchemas[selectedSchemaIndex].Features.Add(new SchemaItemModel("te"));
+                AddEditViewModel newDialog = new AddEditViewModel(AddEditViewModel.WindowTask.Add, AddEditViewModel.SchemaItemType.Feature, otaModel.GetSchemas[selectedSchemaIndex].Features.Count);
+                bool? result = WindowViewLoaderService.GetInstance.ShowDialog(newDialog);
+                if (result == true)
+                {
+                    otaModel.GetSchemas[selectedSchemaIndex].Features.Add(newDialog.GetSchemaItem);
+                    OnPropertyChanged("GetFeatures");
+                }
             }
             else if (param == "btnAddSpecial")
             {
-                otaModel.GetSchemas[selectedSchemaIndex].Specials.Add(new SchemaItemModel("dd"));
+                AddEditViewModel newDialog = new AddEditViewModel(AddEditViewModel.WindowTask.Add, AddEditViewModel.SchemaItemType.Special, otaModel.GetSchemas[selectedSchemaIndex].Specials.Count);
+                bool? result = WindowViewLoaderService.GetInstance.ShowDialog(newDialog);
+                if (result == true)
+                {
+                    otaModel.GetSchemas[selectedSchemaIndex].Specials.Add(newDialog.GetSchemaItem);
+                    OnPropertyChanged("GetSpecials");
+                }
             }
-            updateSchemaProperties();
         }
 
         public bool CanAddItem()
@@ -586,8 +624,40 @@ namespace OTAEdit.ViewModels
 
         public void EditItem(object parameter)
         {
-            otaModel.GetSchemas[selectedSchemaIndex] = new SchemaModel();
-            createSchemaCollection();
+            string param = (string)parameter;
+            if (param == "btnEditUnit")
+            {
+                SchemaItemModel editCopy = otaModel.GetSchemas[selectedSchemaIndex].Units[selectedUnitIndex].Copy();
+                AddEditViewModel newDialog = new AddEditViewModel(AddEditViewModel.WindowTask.Edit, AddEditViewModel.SchemaItemType.Unit, editCopy);
+                bool? result = WindowViewLoaderService.GetInstance.ShowDialog(newDialog);
+                if (result == true)
+                {
+                    otaModel.GetSchemas[selectedSchemaIndex].Units[selectedUnitIndex] = editCopy;
+                    OnPropertyChanged("GetUnits");
+                }
+            }
+            else if (param == "btnEditFeature")
+            {
+                SchemaItemModel editCopy = otaModel.GetSchemas[selectedSchemaIndex].Features[selectedFeatureIndex].Copy();
+                AddEditViewModel newDialog = new AddEditViewModel(AddEditViewModel.WindowTask.Edit, AddEditViewModel.SchemaItemType.Feature, editCopy);
+                bool? result = WindowViewLoaderService.GetInstance.ShowDialog(newDialog);
+                if (result == true)
+                {
+                    otaModel.GetSchemas[selectedSchemaIndex].Features[selectedFeatureIndex] = editCopy;
+                    OnPropertyChanged("GetFeatures");
+                }
+            }
+            else if (param == "btnEditSpecial")
+            {
+                SchemaItemModel editCopy = otaModel.GetSchemas[selectedSchemaIndex].Specials[selectedSpecialIndex].Copy();
+                AddEditViewModel newDialog = new AddEditViewModel(AddEditViewModel.WindowTask.Edit, AddEditViewModel.SchemaItemType.Special, editCopy);
+                bool? result = WindowViewLoaderService.GetInstance.ShowDialog(newDialog);
+                if (result == true)
+                {
+                    otaModel.GetSchemas[selectedSchemaIndex].Specials[selectedSpecialIndex] = editCopy;
+                    OnPropertyChanged("GetSpecials");
+                }
+            }
         }
 
         public bool CanEditItem()

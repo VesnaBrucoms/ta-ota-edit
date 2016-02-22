@@ -24,5 +24,12 @@ namespace OTAEdit.Models
         {
             itemIdentifier = identifier;
         }
+
+        public SchemaItemModel Copy()
+        {
+            SchemaItemModel copy = new SchemaItemModel(itemIdentifier);
+            copy.Properties = new Dictionary<string, object>(Properties);
+            return copy;
+        }
     }
 }

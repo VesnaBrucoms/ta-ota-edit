@@ -138,8 +138,8 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
 
-                        <Button Margin="0,0,15,0" Width="60" Command="{Binding AddSchemaCommand}">Add</Button>
-                        <Button Width="60" Command="{Binding RemoveSchemaCommand}">Remove</Button>
+                        <Button Margin="0,0,15,0" Width="75" Command="{Binding AddSchemaCommand}">Add</Button>
+                        <Button Width="75" Command="{Binding RemoveSchemaCommand}">Remove</Button>
                     </StackPanel>
 
                     <Grid Grid.Row="2" Grid.Column="0">
@@ -254,18 +254,18 @@
 
                             <Button Name="btnAddUnit" Grid.Row="0" Grid.Column="0" Width="60" Command="{Binding AddItemCommand}" CommandParameter="{Binding ElementName=btnAddUnit, Path=Name}">Add...</Button>
                             <Button Name="btnEditUnit" Grid.Row="0" Grid.Column="1" Width="60" Command="{Binding EditItemCommand}" CommandParameter="{Binding ElementName=btnEditUnit, Path=Name}">Edit...</Button>
-                            <Button Name="btnRemoveUnit" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="60" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding ElementName=btnRemoveUnit, Path=Name}">Remove</Button>
+                            <Button Name="btnRemoveUnit" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="75" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding ElementName=btnRemoveUnit, Path=Name}">Remove</Button>
 
                             <Button Name="btnAddFeature" Grid.Row="0" Grid.Column="3" Width="60" Command="{Binding AddItemCommand}" CommandParameter="{Binding ElementName=btnAddFeature, Path=Name}">Add...</Button>
                             <Button Name="btnEditFeature" Grid.Row="0" Grid.Column="4" Width="60" Command="{Binding EditItemCommand}" CommandParameter="{Binding ElementName=btnEditFeature, Path=Name}">Edit...</Button>
-                            <Button Name="btnRemoveFeature" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Width="60" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding ElementName=btnRemoveFeature, Path=Name}">Remove</Button>
+                            <Button Name="btnRemoveFeature" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Width="75" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding ElementName=btnRemoveFeature, Path=Name}">Remove</Button>
 
                             <Button Name="btnAddSpecial" Grid.Row="0" Grid.Column="6" Width="60" Command="{Binding AddItemCommand}" CommandParameter="{Binding ElementName=btnAddSpecial, Path=Name}">Add...</Button>
                             <Button Name="btnEditSpecial" Grid.Row="0" Grid.Column="7" Width="60" Command="{Binding EditItemCommand}" CommandParameter="{Binding ElementName=btnEditSpecial, Path=Name}">Edit...</Button>
-                            <Button Name="btnRemoveSpecial" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" Width="60" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding ElementName=btnRemoveSpecial, Path=Name}">Remove</Button>
+                            <Button Name="btnRemoveSpecial" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" Width="75" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding ElementName=btnRemoveSpecial, Path=Name}">Remove</Button>
                         </Grid>
 
-                        <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=GetUnits, Mode=OneWay}">
+                        <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=GetUnits, Mode=OneWay}" SelectedIndex="{Binding Path=SelectedUnit, Mode=OneWayToSource}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
@@ -277,7 +277,7 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                        <ListBox Grid.Row="1" Grid.Column="2" ItemsSource="{Binding Path=GetFeatures, Mode=OneWay}">
+                        <ListBox Grid.Row="1" Grid.Column="2" ItemsSource="{Binding Path=GetFeatures, Mode=OneWay}" SelectedIndex="{Binding Path=SelectedFeature, Mode=OneWayToSource}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
@@ -289,7 +289,7 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                        <ListBox Grid.Row="1" Grid.Column="4" ItemsSource="{Binding Path=GetSpecials, Mode=OneWay}">
+                        <ListBox Grid.Row="1" Grid.Column="4" ItemsSource="{Binding Path=GetSpecials, Mode=OneWay}" SelectedIndex="{Binding Path=SelectedSpecial, Mode=OneWayToSource}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
