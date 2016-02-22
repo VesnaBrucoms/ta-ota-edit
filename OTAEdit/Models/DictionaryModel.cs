@@ -5,7 +5,7 @@ namespace OTAEdit.Models
 {
     public abstract class DictionaryModel
     {
-        public Dictionary<string, object> Properties;
+        public Dictionary<string, object> Properties = new Dictionary<string, object>();
 
         public string GetStringValue(string dictKey)
         {
@@ -45,9 +45,16 @@ namespace OTAEdit.Models
 
         public void SetValue(string dictKey, object value)
         {
-            if (Properties != null && Properties.ContainsKey(dictKey))
+            if (Properties != null)
             {
-                Properties[dictKey] = value;
+                if (Properties.ContainsKey(dictKey))
+                {
+                    Properties[dictKey] = value;
+                }
+                else
+                {
+                    Properties.Add(dictKey, value);
+                }
             }
         }
     }

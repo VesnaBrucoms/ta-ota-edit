@@ -13,6 +13,10 @@ namespace OTAEdit.Models
         private string schemaName;
 
         public bool IsActive;
+        public bool UseWeapon;
+        public List<SchemaItemModel> Units;
+        public List<SchemaItemModel> Features;
+        public List<SchemaItemModel> Specials;
 
         public string GetName
         {
@@ -30,7 +34,9 @@ namespace OTAEdit.Models
         {
             schemaName = "Schema " + schemaNumber;
             IsActive = true;
-            Properties = new Dictionary<string, object>();
+            Units = new List<SchemaItemModel>();
+            Features = new List<SchemaItemModel>();
+            Specials = new List<SchemaItemModel>();
             initTypes();
         }
 

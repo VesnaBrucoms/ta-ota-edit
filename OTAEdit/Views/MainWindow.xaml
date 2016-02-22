@@ -70,7 +70,7 @@
                     <ComboBox Grid.Row="1" Grid.Column="6" ItemsSource="{Binding Path=GetMemory}" SelectedValue="{Binding Path=SetMemory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Description:" />
-                    <TextBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Path=MapDesc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" MaxLength="128" Text="{Binding Path=MapDesc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="3" Grid.Column="4" Text="Planet:" />
                     <ComboBox Grid.Row="4" Grid.Column="4" ItemsSource="{Binding Path=GetPlanets}" SelectedValue="{Binding Path=SetPlanet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>

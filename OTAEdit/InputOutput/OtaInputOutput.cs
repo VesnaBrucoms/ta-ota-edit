@@ -23,10 +23,7 @@ namespace OTAEdit.InputOutput
                 while (!rd.EndOfStream)
                 {
                     string lineText = rd.ReadLine();
-                    if (lineText.Contains(";"))
-                    {
-                        lineText = lineText.Substring(0, lineText.Length - 1);
-                    }
+                    lineText = removeLineTerminator(lineText, ';');
                     lineText = lineText.TrimStart(' ', '\t');
 
                     if (lineText == null || lineText == "" || lineText == "{" || lineText == "}")
@@ -44,7 +41,6 @@ namespace OTAEdit.InputOutput
                         {
                             otaModel.GetSchemas[i] = readSchema(rd, i);
                         }
-                        break;
                     }
                 }
             }
@@ -57,16 +53,15 @@ namespace OTAEdit.InputOutput
             SchemaModel schema = new SchemaModel(index);
             string lineText = "";
 
-            while (lineText != "}")
+            while (lineText != null && lineText != "}" && !rd.EndOfStream)
             {
                 lineText = rd.ReadLine();
-                if (lineText.Contains(";"))
-                {
-                    lineText = lineText.Substring(0, lineText.Length - 1);
-                }
+                if (lineText == null)
+                    continue;
+                lineText = removeLineTerminator(lineText, ';');
                 lineText = lineText.TrimStart(' ', '\t');
 
-                if (lineText == null || lineText == "" || lineText == "{" || lineText == "}")
+                if (lineText == "" || lineText == "{" || lineText == "}")
                     continue;
 
                 if (lineText.Contains('='))
@@ -75,11 +70,70 @@ namespace OTAEdit.InputOutput
                     schema.Properties.Add(splitText[0], splitText[1]);
                     continue;
                 }
-                else if (lineText.StartsWith("[specials "))
-                    break;
+                else if (lineText == "[units]")
+                {
+                    schema.Units = readSchemaItems(rd);
+                }
+                else if (lineText == "[features]")
+                {
+                    schema.Features = readSchemaItems(rd);
+                }
+                else if (lineText == "[specials]")
+                {
+                    schema.Specials = readSchemaItems(rd);
+                }
             }
 
             return schema;
+        }
+
+        private static List<SchemaItemModel> readSchemaItems(StreamReader rd)
+        {
+            List<SchemaItemModel> items = new List<SchemaItemModel>();
+            string lineText = "";
+
+            while (lineText.Contains("[units]") || lineText.Contains("[features]") || lineText.Contains("[specials]") || !rd.EndOfStream)
+            {
+                lineText = rd.ReadLine();
+                lineText = removeLineTerminator(lineText, ';');
+                lineText = lineText.TrimStart(' ', '\t');
+
+                if (lineText == null || lineText == "" || lineText == "{" || lineText == "}")
+                    continue;
+
+                if (lineText.Contains('['))
+                {
+                    SchemaItemModel newItem = new SchemaItemModel(lineText);
+                    while (lineText != "}")
+                    {
+                        lineText = rd.ReadLine();
+                        lineText = removeLineTerminator(lineText, ';');
+                        lineText = lineText.TrimStart(' ', '\t');
+
+                        if (lineText == null || lineText == "" || lineText == "{" || lineText == "}")
+                            continue;
+
+                        if (lineText.Contains('='))
+                        {
+                            string[] splitText = lineText.Split('=');
+                            newItem.Properties.Add(splitText[0], splitText[1]);
+                        }
+                    }
+                    items.Add(newItem);
+                }
+            }
+
+            return items;
+        }
+
+        private static string removeLineTerminator(string text, char terminator)
+        {
+            if (text.Contains(terminator))
+            {
+                return text.Substring(0, text.Length - 1);
+            }
+            else
+                return text;
         }
         #endregion
     }

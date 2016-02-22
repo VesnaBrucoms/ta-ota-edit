@@ -6,12 +6,23 @@ using System.Threading.Tasks;
 
 namespace OTAEdit.Models
 {
-    public abstract class SchemaItemModel
+    public class SchemaItemModel : DictionaryModel
     {
-        public string ItemNameIdentifier = "EMPTY";
+        private string itemIdentifier;
 
-        public string Name;
-        public int XPos;
-        public int YPos;
+        public string GetItemIdentifier
+        {
+            get { return itemIdentifier; }
+        }
+
+        public SchemaItemModel()
+        {
+            itemIdentifier = "";
+        }
+
+        public SchemaItemModel(string identifier)
+        {
+            itemIdentifier = identifier;
+        }
     }
 }

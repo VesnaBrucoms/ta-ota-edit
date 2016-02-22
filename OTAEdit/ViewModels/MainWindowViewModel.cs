@@ -20,7 +20,6 @@ namespace OTAEdit.ViewModels
         private OTAModel otaModel;
         private ObservableCollection<SchemaModel> schemaCollection;
         private int selectedSchemaIndex;
-        private bool useWeapon;
 
         #region ModelProperties
         public string MapName
@@ -338,6 +337,8 @@ namespace OTAEdit.ViewModels
                 selectedSchemaIndex = value;
                 OnPropertyChanged("SelectedSchema");
                 OnPropertyChanged("IsSchemaActive");
+                updateSchemaProperties();
+
             }
         }
 
@@ -354,10 +355,10 @@ namespace OTAEdit.ViewModels
 
         public bool UseWeapon
         {
-            get { return useWeapon; }
+            get { return otaModel.GetSchemas[selectedSchemaIndex].UseWeapon; }
             set
             {
-                useWeapon = value;
+                otaModel.GetSchemas[selectedSchemaIndex].UseWeapon = value;
                 OnPropertyChanged("UseWeapon");
             }
         }
@@ -388,7 +389,6 @@ namespace OTAEdit.ViewModels
             windowTitle = "OTA Edit";
             statusText = "Ready";
             otaModel = new OTAModel();
-            useWeapon = false;
             createSchemaCollection();
         }
 
@@ -440,6 +440,27 @@ namespace OTAEdit.ViewModels
             OnPropertyChanged("WaterDoesDamage");
             OnPropertyChanged("WaterDamage");
             createSchemaCollection();
+        }
+
+        private void updateSchemaProperties()
+        {
+            if (selectedSchemaIndex != -1)
+            {
+                OnPropertyChanged("Type");
+                OnPropertyChanged("AiProfile");
+                OnPropertyChanged("SurfaceMetal");
+                OnPropertyChanged("MohoMetal");
+                OnPropertyChanged("HumanMetal");
+                OnPropertyChanged("ComputerMetal");
+                OnPropertyChanged("HumanEnergy");
+                OnPropertyChanged("ComputerEnergy");
+                OnPropertyChanged("UseWeapon");
+                OnPropertyChanged("SetWeapon");
+                OnPropertyChanged("Radius");
+                OnPropertyChanged("Duration");
+                OnPropertyChanged("Density");
+                OnPropertyChanged("Interval");
+            }
         }
 
         #region Commands

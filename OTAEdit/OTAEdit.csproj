@@ -93,7 +93,6 @@
     <Compile Include="Models\OTAModel.cs" />
     <Compile Include="Models\SchemaItemModel.cs" />
     <Compile Include="Models\SchemaModel.cs" />
-    <Compile Include="Models\SpecialModel.cs" />
     <Compile Include="ViewModels\Commands\DelegateCommand.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
