@@ -36,7 +36,7 @@
         </Menu>
         <Grid Margin="5,15,5,5" Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" MaxHeight="200" />
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -119,10 +119,10 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="20" />
-                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="1*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition MinWidth="60" Width="2*" />
+                        <ColumnDefinition MinWidth="60" Width="2*" MaxWidth="550" />
                         <ColumnDefinition Width="20" />
                         <ColumnDefinition Width="3*" />
                     </Grid.ColumnDefinitions>
@@ -214,6 +214,93 @@
                                 <xctk:IntegerUpDown Grid.Row="4" Grid.Column="4" Minimum="0" Increment="1" IsEnabled="{Binding Path=UseWeapon}" Value="{Binding Path=Interval, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             </Grid>
                         </GroupBox>
+                    </Grid>
+
+                    <Grid Grid.Row="2" Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="15" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="15" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="15" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Units:" />
+                        <TextBlock Grid.Row="0" Grid.Column="2" Text="Features:" />
+                        <TextBlock Grid.Row="0" Grid.Column="4" Text="Specials:" />
+                        
+                        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="15" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="15" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button Name="btnAddUnit" Grid.Row="0" Grid.Column="0" Width="60" Command="{Binding AddItemCommand}" CommandParameter="{Binding ElementName=btnAddUnit, Path=Name}">Add...</Button>
+                            <Button Name="btnEditUnit" Grid.Row="0" Grid.Column="1" Width="60" Command="{Binding EditItemCommand}" CommandParameter="{Binding ElementName=btnEditUnit, Path=Name}">Edit...</Button>
+                            <Button Name="btnRemoveUnit" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Width="60" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding ElementName=btnRemoveUnit, Path=Name}">Remove</Button>
+
+                            <Button Name="btnAddFeature" Grid.Row="0" Grid.Column="3" Width="60" Command="{Binding AddItemCommand}" CommandParameter="{Binding ElementName=btnAddFeature, Path=Name}">Add...</Button>
+                            <Button Name="btnEditFeature" Grid.Row="0" Grid.Column="4" Width="60" Command="{Binding EditItemCommand}" CommandParameter="{Binding ElementName=btnEditFeature, Path=Name}">Edit...</Button>
+                            <Button Name="btnRemoveFeature" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Width="60" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding ElementName=btnRemoveFeature, Path=Name}">Remove</Button>
+
+                            <Button Name="btnAddSpecial" Grid.Row="0" Grid.Column="6" Width="60" Command="{Binding AddItemCommand}" CommandParameter="{Binding ElementName=btnAddSpecial, Path=Name}">Add...</Button>
+                            <Button Name="btnEditSpecial" Grid.Row="0" Grid.Column="7" Width="60" Command="{Binding EditItemCommand}" CommandParameter="{Binding ElementName=btnEditSpecial, Path=Name}">Edit...</Button>
+                            <Button Name="btnRemoveSpecial" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2" Width="60" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding ElementName=btnRemoveSpecial, Path=Name}">Remove</Button>
+                        </Grid>
+
+                        <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Path=GetUnits, Mode=OneWay}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding GetItemIdentifier}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox Grid.Row="1" Grid.Column="2" ItemsSource="{Binding Path=GetFeatures, Mode=OneWay}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding GetItemIdentifier}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ListBox Grid.Row="1" Grid.Column="4" ItemsSource="{Binding Path=GetSpecials, Mode=OneWay}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding GetItemIdentifier}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </Grid>
                 </Grid>
             </GroupBox>

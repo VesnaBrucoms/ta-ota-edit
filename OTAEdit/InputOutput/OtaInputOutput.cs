@@ -35,7 +35,7 @@ namespace OTAEdit.InputOutput
                         otaModel.Properties.Add(splitText[0], splitText[1]);
                         continue;
                     }
-                    else if (lineText.StartsWith("[Schema "))
+                    else if (lineText.StartsWith("[Schema"))
                     {
                         for (int i = 0; i < otaModel.GetIntValue("SCHEMACOUNT"); i++)
                         {
@@ -72,27 +72,27 @@ namespace OTAEdit.InputOutput
                 }
                 else if (lineText == "[units]")
                 {
-                    schema.Units = readSchemaItems(rd);
+                    schema.Units = readSchemaItemGroup(rd);
                 }
                 else if (lineText == "[features]")
                 {
-                    schema.Features = readSchemaItems(rd);
+                    schema.Features = readSchemaItemGroup(rd);
                 }
                 else if (lineText == "[specials]")
                 {
-                    schema.Specials = readSchemaItems(rd);
+                    schema.Specials = readSchemaItemGroup(rd);
                 }
             }
 
             return schema;
         }
 
-        private static List<SchemaItemModel> readSchemaItems(StreamReader rd)
+        private static List<SchemaItemModel> readSchemaItemGroup(StreamReader rd)
         {
             List<SchemaItemModel> items = new List<SchemaItemModel>();
             string lineText = "";
 
-            while (lineText.Contains("[units]") || lineText.Contains("[features]") || lineText.Contains("[specials]") || !rd.EndOfStream)
+            while (lineText != "}")
             {
                 lineText = rd.ReadLine();
                 lineText = removeLineTerminator(lineText, ';');
@@ -103,27 +103,34 @@ namespace OTAEdit.InputOutput
 
                 if (lineText.Contains('['))
                 {
-                    SchemaItemModel newItem = new SchemaItemModel(lineText);
-                    while (lineText != "}")
-                    {
-                        lineText = rd.ReadLine();
-                        lineText = removeLineTerminator(lineText, ';');
-                        lineText = lineText.TrimStart(' ', '\t');
-
-                        if (lineText == null || lineText == "" || lineText == "{" || lineText == "}")
-                            continue;
-
-                        if (lineText.Contains('='))
-                        {
-                            string[] splitText = lineText.Split('=');
-                            newItem.Properties.Add(splitText[0], splitText[1]);
-                        }
-                    }
-                    items.Add(newItem);
+                    items.Add(readSchemaItem(rd, lineText));
                 }
             }
 
             return items;
+        }
+
+        private static SchemaItemModel readSchemaItem(StreamReader rd, string itemName)
+        {
+            SchemaItemModel newItem = new SchemaItemModel(itemName);
+            string lineText = "";
+
+            while (lineText != "}")
+            {
+                lineText = rd.ReadLine();
+                lineText = removeLineTerminator(lineText, ';');
+                lineText = lineText.TrimStart(' ', '\t');
+
+                if (lineText == null || lineText == "" || lineText == "{" || lineText == "}")
+                    continue;
+
+                if (lineText.Contains('='))
+                {
+                    string[] splitText = lineText.Split('=');
+                    newItem.Properties.Add(splitText[0], splitText[1]);
+                }
+            }
+            return newItem;
         }
 
         private static string removeLineTerminator(string text, char terminator)

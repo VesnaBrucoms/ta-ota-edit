@@ -362,6 +362,21 @@ namespace OTAEdit.ViewModels
                 OnPropertyChanged("UseWeapon");
             }
         }
+
+        public List<SchemaItemModel> GetUnits
+        {
+            get { return otaModel.GetSchemas[selectedSchemaIndex].Units; }
+        }
+
+        public List<SchemaItemModel> GetFeatures
+        {
+            get { return otaModel.GetSchemas[selectedSchemaIndex].Features; }
+        }
+
+        public List<SchemaItemModel> GetSpecials
+        {
+            get { return otaModel.GetSchemas[selectedSchemaIndex].Specials; }
+        }
         #endregion
 
         #region CommandProperties
@@ -379,6 +394,21 @@ namespace OTAEdit.ViewModels
         {
             get { return new DelegateCommand(RemoveSchema, CanRemoveSchema); }
         }
+
+        public ICommand AddItemCommand
+        {
+            get { return new DelegateCommand(AddItem, CanAddItem); }
+        }
+
+        public ICommand EditItemCommand
+        {
+            get { return new DelegateCommand(EditItem, CanEditItem); }
+        }
+
+        public ICommand RemoveItemCommand
+        {
+            get { return new DelegateCommand(RemoveItem, CanRemoveItem); }
+        }
         #endregion
 
         public MainWindowViewModel()
@@ -389,6 +419,7 @@ namespace OTAEdit.ViewModels
             windowTitle = "OTA Edit";
             statusText = "Ready";
             otaModel = new OTAModel();
+            createSchemaCollection();
             createSchemaCollection();
         }
 
@@ -439,6 +470,9 @@ namespace OTAEdit.ViewModels
             OnPropertyChanged("ImpassableWater");
             OnPropertyChanged("WaterDoesDamage");
             OnPropertyChanged("WaterDamage");
+            OnPropertyChanged("GetUnits");
+            OnPropertyChanged("GetFeatures");
+            OnPropertyChanged("GetSpecials");
             createSchemaCollection();
         }
 
@@ -460,6 +494,10 @@ namespace OTAEdit.ViewModels
                 OnPropertyChanged("Duration");
                 OnPropertyChanged("Density");
                 OnPropertyChanged("Interval");
+
+                OnPropertyChanged("GetUnits");
+                OnPropertyChanged("GetFeatures");
+                OnPropertyChanged("GetSpecials");
             }
         }
 
@@ -503,6 +541,75 @@ namespace OTAEdit.ViewModels
         }
 
         public bool CanRemoveSchema()
+        {
+            if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
+            {
+                if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+
+        public void AddItem(object parameter)
+        {
+            string param = (string)parameter;
+            if (param == "btnAddUnit")
+            {
+                otaModel.GetSchemas[selectedSchemaIndex].Units.Add(new SchemaItemModel("test"));
+            }
+            else if (param == "btnAddFeature")
+            {
+                otaModel.GetSchemas[selectedSchemaIndex].Features.Add(new SchemaItemModel("te"));
+            }
+            else if (param == "btnAddSpecial")
+            {
+                otaModel.GetSchemas[selectedSchemaIndex].Specials.Add(new SchemaItemModel("dd"));
+            }
+            updateSchemaProperties();
+        }
+
+        public bool CanAddItem()
+        {
+            if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
+            {
+                if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+
+        public void EditItem(object parameter)
+        {
+            otaModel.GetSchemas[selectedSchemaIndex] = new SchemaModel();
+            createSchemaCollection();
+        }
+
+        public bool CanEditItem()
+        {
+            if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
+            {
+                if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+
+        public void RemoveItem(object parameter)
+        {
+            otaModel.GetSchemas[selectedSchemaIndex] = new SchemaModel();
+            createSchemaCollection();
+        }
+
+        public bool CanRemoveItem()
         {
             if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
             {
