@@ -99,6 +99,7 @@
     <Compile Include="Models\SchemaModel.cs" />
     <Compile Include="ViewModels\AddEditViewModel.cs" />
     <Compile Include="ViewModels\Commands\DelegateCommand.cs" />
+    <Compile Include="ViewModels\Commands\DelegatePredicateCommand.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\Services\WindowViewLoaderService.cs" />
     <Compile Include="Views\AddEditView.xaml.cs">

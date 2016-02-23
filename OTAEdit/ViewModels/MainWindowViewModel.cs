@@ -400,9 +400,19 @@ namespace OTAEdit.ViewModels
         #endregion
 
         #region CommandProperties
+        public ICommand NewOTACommand
+        {
+            get { return new DelegateCommand(NewOTA); }
+        }
+
         public ICommand OpenOTACommand
         {
             get { return new DelegateCommand(OpenOTA); }
+        }
+
+        public ICommand SaveOTACommand
+        {
+            get { return new DelegateCommand(SaveOTA, CanSaveOTA); }
         }
 
         public ICommand AddSchemaCommand
@@ -422,12 +432,12 @@ namespace OTAEdit.ViewModels
 
         public ICommand EditItemCommand
         {
-            get { return new DelegateCommand(EditItem, CanEditItem); }
+            get { return new DelegatePredicateCommand(EditItem, CanEditItem); }
         }
 
         public ICommand RemoveItemCommand
         {
-            get { return new DelegateCommand(RemoveItem, CanRemoveItem); }
+            get { return new DelegatePredicateCommand(RemoveItem, CanRemoveItem); }
         }
         #endregion
 
@@ -523,6 +533,11 @@ namespace OTAEdit.ViewModels
         }
 
         #region Commands
+        public void NewOTA(object parameter)
+        {
+            //TODO: create a new .ota file
+        }
+
         public void OpenOTA(object parameter)
         {
             string filepath = File.GetOpenFileName(Ini.GetInstance.GetValueByName(IniKeys.STRING_OTA_LAST_PATH), "OTA file (*.ota)|*.ota");
@@ -534,6 +549,17 @@ namespace OTAEdit.ViewModels
 
                 Ini.GetInstance.ChangeValueByName(IniKeys.STRING_OTA_LAST_PATH, File.ExtractFilePath(filepath));
             }
+        }
+
+        public void SaveOTA(object parameter)
+        {
+            //TODO: adding sava & save as code
+        }
+
+        public bool CanSaveOTA()
+        {
+            //TODO: checks that saving is currently ok to do
+            return true;
         }
 
         public void AddSchema(object parameter)
@@ -660,12 +686,37 @@ namespace OTAEdit.ViewModels
             }
         }
 
-        public bool CanEditItem()
+        public bool CanEditItem(object parameter)
         {
             if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
             {
                 if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
-                    return true;
+                {
+                    string param = (string)parameter;
+                    if (param == "btnEditUnit")
+                    {
+                        if (selectedUnitIndex >= 0)
+                            return true;
+                        else
+                            return false;
+                    }
+                    else if (param == "btnEditFeature")
+                    {
+                        if (selectedFeatureIndex >= 0)
+                            return true;
+                        else
+                            return false;
+                    }
+                    else if (param == "btnEditSpecial")
+                    {
+                        if (selectedSpecialIndex >= 0)
+                            return true;
+                        else
+                            return false;
+                    }
+                    else
+                        return false;
+                }
                 else
                     return false;
             }
@@ -675,16 +726,55 @@ namespace OTAEdit.ViewModels
 
         public void RemoveItem(object parameter)
         {
-            otaModel.GetSchemas[selectedSchemaIndex] = new SchemaModel();
-            createSchemaCollection();
+            string param = (string)parameter;
+            if (param == "btnRemoveUnit")
+            {
+                otaModel.GetSchemas[selectedSchemaIndex].Units.RemoveAt(selectedUnitIndex);
+                OnPropertyChanged("GetUnits");
+            }
+            else if (param == "btnRemoveFeature")
+            {
+                otaModel.GetSchemas[selectedSchemaIndex].Features.RemoveAt(selectedFeatureIndex);
+                OnPropertyChanged("GetFeatures");
+            }
+            else if (param == "btnRemoveSpecial")
+            {
+                otaModel.GetSchemas[selectedSchemaIndex].Specials.RemoveAt(selectedSpecialIndex);
+                OnPropertyChanged("GetSpecials");
+            }
         }
 
-        public bool CanRemoveItem()
+        public bool CanRemoveItem(object parameter)
         {
             if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
             {
                 if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
-                    return true;
+                {
+                    string param = (string)parameter;
+                    if (param == "btnRemoveUnit")
+                    {
+                        if (selectedUnitIndex >= 0)
+                            return true;
+                        else
+                            return false;
+                    }
+                    else if (param == "btnRemoveFeature")
+                    {
+                        if (selectedFeatureIndex >= 0)
+                            return true;
+                        else
+                            return false;
+                    }
+                    else if (param == "btnRemoveSpecial")
+                    {
+                        if (selectedSpecialIndex >= 0)
+                            return true;
+                        else
+                            return false;
+                    }
+                    else
+                        return false;
+                }
                 else
                     return false;
             }

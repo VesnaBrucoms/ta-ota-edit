@@ -15,6 +15,27 @@ namespace OTAEdit.Models
             get { return itemIdentifier; }
         }
 
+        public string GetItemName
+        {
+            get
+            {
+                if (Properties.ContainsKey("Unitname"))
+                {
+                    return GetStringValue("Unitname");
+                }
+                else if (Properties.ContainsKey("Featurename"))
+                {
+                    return GetStringValue("Featurename");
+                }
+                else if (Properties.ContainsKey("specialwhat"))
+                {
+                    return GetStringValue("specialwhat");
+                }
+                else
+                    return "";
+            }
+        }
+
         public SchemaItemModel()
         {
             itemIdentifier = "";

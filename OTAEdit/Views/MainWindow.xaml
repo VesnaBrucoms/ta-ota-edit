@@ -271,8 +271,10 @@
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="auto" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="{Binding GetItemIdentifier}" />
+                                        <TextBlock Grid.Column="0" Text="{Binding GetItemIdentifier}" />
+                                        <TextBlock Grid.Column="1" Text="{Binding GetItemName}" />
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -283,8 +285,10 @@
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="auto" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="{Binding GetItemIdentifier}" />
+                                        <TextBlock Grid.Column="0" Text="{Binding GetItemIdentifier}" />
+                                        <TextBlock Grid.Column="1" Text="{Binding GetItemName}" />
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -295,8 +299,10 @@
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="auto" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="{Binding GetItemIdentifier}" />
+                                        <TextBlock Grid.Column="0" Text="{Binding GetItemIdentifier}" />
+                                        <TextBlock Grid.Column="1" Text="{Binding GetItemName}" />
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
