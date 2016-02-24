@@ -78,6 +78,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Controls\ItemDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\SchemaItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -100,10 +108,18 @@
     <Compile Include="ViewModels\AddEditViewModel.cs" />
     <Compile Include="ViewModels\Commands\DelegateCommand.cs" />
     <Compile Include="ViewModels\Commands\DelegatePredicateCommand.cs" />
+    <Compile Include="ViewModels\Controls\ItemDataViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\Services\WindowViewLoaderService.cs" />
+    <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="Views\AddEditView.xaml.cs">
       <DependentUpon>AddEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ItemDataView.xaml.cs">
+      <DependentUpon>ItemDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\SchemaItemView.xaml.cs">
+      <DependentUpon>SchemaItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

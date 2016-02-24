@@ -11,6 +11,13 @@ namespace OTAEdit.InputOutput
     public static class OtaInputOutput
     {
         #region Writing
+        public static void Write(string filePath)
+        {
+            using (StreamWriter wr = new StreamWriter(filePath))
+            {
+                //
+            }
+        }
         #endregion
 
         #region Reading

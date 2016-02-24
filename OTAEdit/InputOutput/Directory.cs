@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace OTAEdit.InputOutput
 {
+    /// <summary>
+    /// Handles operations on directories.
+    /// </summary>
     static class Directory
     {
         /// <summary>

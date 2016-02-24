@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OTAEdit.ViewModels
 {
-    class AddEditViewModel : INotifyPropertyChanged
+    class AddEditViewModel : ViewModel
     {
         public enum WindowTask
         {
@@ -22,7 +22,6 @@ namespace OTAEdit.ViewModels
             Special
         }
 
-        private string windowTitle;
         private SchemaItemModel schemaItem;
         private WindowTask task;
         private SchemaItemType type;
@@ -156,11 +155,6 @@ namespace OTAEdit.ViewModels
         #endregion
 
         #region ViewModelProperties
-        public string GetWindowTitle
-        {
-            get { return windowTitle; }
-        }
-
         public SchemaItemModel GetSchemaItem
         {
             get { return schemaItem; }
@@ -225,25 +219,14 @@ namespace OTAEdit.ViewModels
             {
                 if (type == SchemaItemType.Unit)
                 {
-                    windowTitle = "Edit Unit";
+                    windowTitle = schemaItem.GetItemName + " - Edit Unit";
                 }
                 else if (type == SchemaItemType.Feature)
                 {
-                    windowTitle = "Edit Feature";
+                    windowTitle = schemaItem.GetItemName + " - Edit Feature";
                 }
                 else
-                    windowTitle = "Edit Special";
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-                Console.WriteLine(propertyName);
+                    windowTitle = schemaItem.GetItemName + " - Edit Special";
             }
         }
     }

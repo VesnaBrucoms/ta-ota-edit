@@ -2,6 +2,7 @@
 using OTAEdit.InputOutput;
 using OTAEdit.Models;
 using OTAEdit.ViewModels.Commands;
+using OTAEdit.ViewModels.Controls;
 using OTAEdit.ViewModels.Services;
 using OTAEdit.Views;
 using System;
@@ -15,10 +16,13 @@ using System.Windows.Input;
 
 namespace OTAEdit.ViewModels
 {
-    class MainWindowViewModel : INotifyPropertyChanged
+    class MainWindowViewModel : ViewModel
     {
-        private string windowTitle;
-        private string statusText;
+        private ItemDataViewModel unitViewModel;
+        private ItemDataViewModel featureViewModel;
+        private ItemDataViewModel specialViewModel;
+
+        private int windowHeight;
         private OTAModel otaModel;
         private ObservableCollection<SchemaModel> schemaCollection;
         private int selectedSchemaIndex;
@@ -319,16 +323,6 @@ namespace OTAEdit.ViewModels
         #endregion
 
         #region ViewModelProperties
-        public string GetWindowTitle
-        {
-            get { return windowTitle; }
-        }
-
-        public string GetStatusText
-        {
-            get { return statusText; }
-        }
-
         public ObservableCollection<SchemaModel> GetSchemas
         {
             get { return schemaCollection; }
@@ -375,7 +369,17 @@ namespace OTAEdit.ViewModels
 
         public int SelectedUnit
         {
-            set { selectedUnitIndex = value; }
+            set
+            {
+                selectedUnitIndex = value;
+                if (selectedUnitIndex >= 0)
+                    unitViewModel.SetSchemaItem = otaModel.GetSchemas[selectedSchemaIndex].Units[selectedUnitIndex];
+            }
+        }
+
+        public ItemDataViewModel GetUnitDataViewModel
+        {
+            get { return unitViewModel; }
         }
 
         public ObservableCollection<SchemaItemModel> GetFeatures
@@ -385,7 +389,17 @@ namespace OTAEdit.ViewModels
 
         public int SelectedFeature
         {
-            set { selectedFeatureIndex = value; }
+            set
+            {
+                selectedFeatureIndex = value;
+                if (selectedFeatureIndex >= 0)
+                    featureViewModel.SetSchemaItem = otaModel.GetSchemas[selectedSchemaIndex].Features[selectedFeatureIndex];
+            }
+        }
+
+        public ItemDataViewModel GetFeatureDataViewModel
+        {
+            get { return featureViewModel; }
         }
 
         public ObservableCollection<SchemaItemModel> GetSpecials
@@ -395,7 +409,17 @@ namespace OTAEdit.ViewModels
 
         public int SelectedSpecial
         {
-            set { selectedSpecialIndex = value; }
+            set
+            {
+                selectedSpecialIndex = value;
+                if (selectedSpecialIndex >= 0)
+                    specialViewModel.SetSchemaItem = otaModel.GetSchemas[selectedSchemaIndex].Specials[selectedSpecialIndex];
+            }
+        }
+
+        public ItemDataViewModel GetSpecialDataViewModel
+        {
+            get { return specialViewModel; }
         }
         #endregion
 
@@ -446,8 +470,13 @@ namespace OTAEdit.ViewModels
             if (!Ini.GetInstance.SettingExists(IniKeys.STRING_OTA_LAST_PATH))
                 Ini.GetInstance.AddNewSetting(IniKeys.STRING_OTA_LAST_PATH, IniDefaultValues.STRING_OTA_LAST_PATH);
 
+            unitViewModel = new ItemDataViewModel(ItemDataViewModel.SchemaItemType.Unit);
+            featureViewModel = new ItemDataViewModel(ItemDataViewModel.SchemaItemType.Feature);
+            specialViewModel = new ItemDataViewModel(ItemDataViewModel.SchemaItemType.Special);
+
+            windowHeight = 600;
             windowTitle = "OTA Edit";
-            statusText = "Ready";
+            statusBarText = "Ready";
             otaModel = new OTAModel();
             createSchemaCollection();
             createSchemaCollection();
@@ -471,7 +500,7 @@ namespace OTAEdit.ViewModels
         {
             windowTitle = otaModel.Filename + " - OTA Edit";
             OnPropertyChanged("GetWindowTitle");
-            statusText = "Loaded " + otaModel.Filename;
+            statusBarText = "Loaded " + otaModel.Filename;
             OnPropertyChanged("GetStatusText");
 
             OnPropertyChanged("MapName");
@@ -782,16 +811,5 @@ namespace OTAEdit.ViewModels
                 return false;
         }
         #endregion
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-                Console.WriteLine(propertyName);
-            }
-        }
     }
 }
