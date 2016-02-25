@@ -68,7 +68,7 @@ namespace OTAEdit.ViewModels
             get { return schemaItem.GetIntValue("XPos"); }
             set
             {
-                schemaItem.SetValue("XPos", value);
+                schemaItem.SetValue("XPos", "" + value);
                 OnPropertyChanged("XPos");
             }
         }
@@ -78,7 +78,7 @@ namespace OTAEdit.ViewModels
             get { return schemaItem.GetIntValue("ZPos"); }
             set
             {
-                schemaItem.SetValue("ZPos", value);
+                schemaItem.SetValue("ZPos", "" + value);
                 OnPropertyChanged("ZPos");
             }
         }
@@ -88,7 +88,7 @@ namespace OTAEdit.ViewModels
             get { return schemaItem.GetIntValue("YPos"); }
             set
             {
-                schemaItem.SetValue("YPos", value);
+                schemaItem.SetValue("YPos", "" + value);
                 OnPropertyChanged("YPos");
             }
         }
@@ -108,7 +108,7 @@ namespace OTAEdit.ViewModels
             get { return schemaItem.GetIntValue("Player"); }
             set
             {
-                schemaItem.SetValue("Player", value);
+                schemaItem.SetValue("Player", "" + value);
                 OnPropertyChanged("Player");
             }
         }
@@ -118,7 +118,7 @@ namespace OTAEdit.ViewModels
             get { return schemaItem.GetIntValue("HealthPercentage"); }
             set
             {
-                schemaItem.SetValue("HealthPercentage", value);
+                schemaItem.SetValue("HealthPercentage", "" + value);
                 OnPropertyChanged("HealthPercentage");
             }
         }
@@ -128,7 +128,7 @@ namespace OTAEdit.ViewModels
             get { return schemaItem.GetIntValue("Angle"); }
             set
             {
-                schemaItem.SetValue("Angle", value);
+                schemaItem.SetValue("Angle", "" + value);
                 OnPropertyChanged("Angle");
             }
         }
@@ -138,7 +138,7 @@ namespace OTAEdit.ViewModels
             get { return schemaItem.GetIntValue("Kills"); }
             set
             {
-                schemaItem.SetValue("Kills", value);
+                schemaItem.SetValue("Kills", "" + value);
                 OnPropertyChanged("Kills");
             }
         }

@@ -632,7 +632,7 @@ namespace OTAEdit.ViewModels
         public void AddItem(object parameter)
         {
             string param = (string)parameter;
-            if (param == "btnAddUnit")
+            if (param == "btnAddUnit" || param == "listUnits")
             {
                 AddEditViewModel newDialog = new AddEditViewModel(AddEditViewModel.WindowTask.Add, AddEditViewModel.SchemaItemType.Unit, otaModel.GetSchemas[selectedSchemaIndex].Units.Count);
                 bool? result = WindowViewLoaderService.GetInstance.ShowDialog(newDialog);
@@ -642,7 +642,7 @@ namespace OTAEdit.ViewModels
                     OnPropertyChanged("GetUnits");
                 }
             }
-            else if (param == "btnAddFeature")
+            else if (param == "btnAddFeature" || param == "listFeatures")
             {
                 AddEditViewModel newDialog = new AddEditViewModel(AddEditViewModel.WindowTask.Add, AddEditViewModel.SchemaItemType.Feature, otaModel.GetSchemas[selectedSchemaIndex].Features.Count);
                 bool? result = WindowViewLoaderService.GetInstance.ShowDialog(newDialog);
@@ -652,7 +652,7 @@ namespace OTAEdit.ViewModels
                     OnPropertyChanged("GetFeatures");
                 }
             }
-            else if (param == "btnAddSpecial")
+            else if (param == "btnAddSpecial" || param == "listSpecials")
             {
                 AddEditViewModel newDialog = new AddEditViewModel(AddEditViewModel.WindowTask.Add, AddEditViewModel.SchemaItemType.Special, otaModel.GetSchemas[selectedSchemaIndex].Specials.Count);
                 bool? result = WindowViewLoaderService.GetInstance.ShowDialog(newDialog);
@@ -680,7 +680,7 @@ namespace OTAEdit.ViewModels
         public void EditItem(object parameter)
         {
             string param = (string)parameter;
-            if (param == "btnEditUnit")
+            if (param == "btnEditUnit" || param == "listUnits")
             {
                 SchemaItemModel editCopy = otaModel.GetSchemas[selectedSchemaIndex].Units[selectedUnitIndex].Copy();
                 AddEditViewModel newDialog = new AddEditViewModel(AddEditViewModel.WindowTask.Edit, AddEditViewModel.SchemaItemType.Unit, editCopy);
@@ -691,7 +691,7 @@ namespace OTAEdit.ViewModels
                     OnPropertyChanged("GetUnits");
                 }
             }
-            else if (param == "btnEditFeature")
+            else if (param == "btnEditFeature" || param == "listFeatures")
             {
                 SchemaItemModel editCopy = otaModel.GetSchemas[selectedSchemaIndex].Features[selectedFeatureIndex].Copy();
                 AddEditViewModel newDialog = new AddEditViewModel(AddEditViewModel.WindowTask.Edit, AddEditViewModel.SchemaItemType.Feature, editCopy);
@@ -702,7 +702,7 @@ namespace OTAEdit.ViewModels
                     OnPropertyChanged("GetFeatures");
                 }
             }
-            else if (param == "btnEditSpecial")
+            else if (param == "btnEditSpecial" || param == "listSpecials")
             {
                 SchemaItemModel editCopy = otaModel.GetSchemas[selectedSchemaIndex].Specials[selectedSpecialIndex].Copy();
                 AddEditViewModel newDialog = new AddEditViewModel(AddEditViewModel.WindowTask.Edit, AddEditViewModel.SchemaItemType.Special, editCopy);
@@ -722,21 +722,21 @@ namespace OTAEdit.ViewModels
                 if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
                 {
                     string param = (string)parameter;
-                    if (param == "btnEditUnit")
+                    if (param == "btnEditUnit" || param == "listUnits")
                     {
                         if (selectedUnitIndex >= 0)
                             return true;
                         else
                             return false;
                     }
-                    else if (param == "btnEditFeature")
+                    else if (param == "btnEditFeature" || param == "listFeatures")
                     {
                         if (selectedFeatureIndex >= 0)
                             return true;
                         else
                             return false;
                     }
-                    else if (param == "btnEditSpecial")
+                    else if (param == "btnEditSpecial" || param == "listSpecials")
                     {
                         if (selectedSpecialIndex >= 0)
                             return true;
@@ -756,17 +756,17 @@ namespace OTAEdit.ViewModels
         public void RemoveItem(object parameter)
         {
             string param = (string)parameter;
-            if (param == "btnRemoveUnit")
+            if (param == "btnRemoveUnit" || param == "listUnits")
             {
                 otaModel.GetSchemas[selectedSchemaIndex].Units.RemoveAt(selectedUnitIndex);
                 OnPropertyChanged("GetUnits");
             }
-            else if (param == "btnRemoveFeature")
+            else if (param == "btnRemoveFeature" || param == "listFeatures")
             {
                 otaModel.GetSchemas[selectedSchemaIndex].Features.RemoveAt(selectedFeatureIndex);
                 OnPropertyChanged("GetFeatures");
             }
-            else if (param == "btnRemoveSpecial")
+            else if (param == "btnRemoveSpecial" || param == "listSpecials")
             {
                 otaModel.GetSchemas[selectedSchemaIndex].Specials.RemoveAt(selectedSpecialIndex);
                 OnPropertyChanged("GetSpecials");
@@ -780,21 +780,21 @@ namespace OTAEdit.ViewModels
                 if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
                 {
                     string param = (string)parameter;
-                    if (param == "btnRemoveUnit")
+                    if (param == "btnRemoveUnit" || param == "listUnits")
                     {
                         if (selectedUnitIndex >= 0)
                             return true;
                         else
                             return false;
                     }
-                    else if (param == "btnRemoveFeature")
+                    else if (param == "btnRemoveFeature" || param == "listFeatures")
                     {
                         if (selectedFeatureIndex >= 0)
                             return true;
                         else
                             return false;
                     }
-                    else if (param == "btnRemoveSpecial")
+                    else if (param == "btnRemoveSpecial" || param == "listSpecials")
                     {
                         if (selectedSpecialIndex >= 0)
                             return true;
