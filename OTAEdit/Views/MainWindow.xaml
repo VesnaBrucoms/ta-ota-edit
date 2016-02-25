@@ -8,7 +8,7 @@
         xmlns:control="clr-namespace:OTAEdit.Views.Controls"
         xmlns:viewmodel="clr-namespace:OTAEdit.ViewModels"
         mc:Ignorable="d"
-        Title="{Binding Path=GetWindowTitle, Mode=OneWay}" MinHeight="600" Height="600" Width="800">
+        Title="{Binding Path=GetWindowTitle, Mode=OneWay}" MinHeight="600" Height="800" MinWidth="800" Width="1000">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel />
     </Window.DataContext>
@@ -17,6 +17,7 @@
     </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="auto" />
@@ -29,13 +30,40 @@
                 <MenuItem Header="_Save" InputGestureText="Ctrl+S" />
                 <MenuItem Header="Save As..." InputGestureText="Ctrl+Shift+S" />
                 <Separator />
-                <MenuItem Header="_Exit" InputGestureText="Alt+F4" Click="ApplicationClose_Click" />
+                <MenuItem Header="_Exit" Click="ApplicationClose_Click" />
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Add Unit..." />
+                <MenuItem Header="Add Feature..." />
+                <MenuItem Header="Add Special..." />
+                <Separator />
+                <MenuItem Header="Mission Settings..." />
+            </MenuItem>
+            <MenuItem Header="View">
+                <MenuItem IsCheckable="True" Header="Tool Bar" />
+                <MenuItem IsCheckable="True" Header="Status Bar" />
             </MenuItem>
             <MenuItem Header="_Help">
+                <MenuItem Header="Help" InputGestureText="F1" />
+                <Separator />
                 <MenuItem Header="_About OTA Edit" />
             </MenuItem>
         </Menu>
-        <Grid Margin="5,15,5,5" Grid.Row="1">
+        <ToolBarTray Grid.Row="1" Visibility="Visible">
+            <ToolBar>
+                <Button Content="New" />
+                <Button Content="Open" />
+                <Button Content="Save" />
+            </ToolBar>
+            <ToolBar>
+                <Button Content="New Unit" />
+                <Button Content="New Feature" />
+                <Button Content="New Special" />
+                <Separator />
+                <Button Content="Mission Settings" />
+            </ToolBar>
+        </ToolBarTray>
+        <Grid Margin="5,15,5,5" Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" MaxHeight="200" />
                 <RowDefinition Height="2*" />
@@ -221,7 +249,7 @@
                 </Grid>
             </GroupBox>
         </Grid>
-        <StatusBar Grid.Row="2">
+        <StatusBar Grid.Row="3">
             <StatusBarItem>
                 <TextBlock Text="{Binding Path=GetStatusBarText, Mode=OneWay}" />
             </StatusBarItem>
