@@ -15,8 +15,6 @@ namespace OTAEdit.Models
 
         public string Filename;
 
-        public int SeaLevel; //TODO: investigate where sealevel is stored
-
         public List<string> GetMemory
         {
             get { return memory; }

@@ -8,10 +8,19 @@
         xmlns:control="clr-namespace:OTAEdit.Views.Controls"
         xmlns:viewmodel="clr-namespace:OTAEdit.ViewModels"
         mc:Ignorable="d"
-        Title="{Binding Path=GetWindowTitle, Mode=OneWay}" MinHeight="600" Height="800" MinWidth="800" Width="1000">
+        Title="{Binding Path=GetWindowTitle, Mode=OneWay}" UseLayoutRounding="True" MinHeight="600" Height="800" MinWidth="800" Width="1000">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel />
     </Window.DataContext>
+    <Window.Resources>
+        <Image x:Key="NewFileMenu" Source="pack://application:,,,/Resources/NewFile_16x.png" />
+        <Image x:Key="OpenFolderMenu" Source="pack://application:,,,/Resources/OpenFolder_16x.png" />
+        <Image x:Key="SaveMenu" Source="pack://application:,,,/Resources/Save_16x.png" />
+
+        <Image x:Key="NewFileToolbar" Source="pack://application:,,,/Resources/NewFile_16x.png" />
+        <Image x:Key="OpenFolderToolbar" Source="pack://application:,,,/Resources/OpenFolder_16x.png" />
+        <Image x:Key="SaveToolbar" Source="pack://application:,,,/Resources/Save_16x.png" />
+    </Window.Resources>
     <Window.InputBindings>
         <KeyBinding Key="O" Modifiers="Ctrl" Command="{Binding Path=OpenOTACommand}" />
     </Window.InputBindings>
@@ -24,10 +33,10 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
             <MenuItem Header="_File">
-                <MenuItem Header="_New" InputGestureText="Ctrl+N" />
-                <MenuItem Header="_Open..." InputGestureText="Ctrl+O" Command="{Binding Path=OpenOTACommand}" />
+                <MenuItem Icon="{StaticResource NewFileMenu}" Header="_New" InputGestureText="Ctrl+N" />
+                <MenuItem Icon="{StaticResource OpenFolderMenu}" Header="_Open..." InputGestureText="Ctrl+O" Command="{Binding Path=OpenOTACommand}" />
                 <Separator />
-                <MenuItem Header="_Save" InputGestureText="Ctrl+S" />
+                <MenuItem Icon="{StaticResource SaveMenu}" Header="_Save" InputGestureText="Ctrl+S" />
                 <MenuItem Header="Save As..." InputGestureText="Ctrl+Shift+S" />
                 <Separator />
                 <MenuItem Header="_Exit" Click="ApplicationClose_Click" />
@@ -40,8 +49,8 @@
                 <MenuItem Header="Mission Settings..." />
             </MenuItem>
             <MenuItem Header="View">
-                <MenuItem IsCheckable="True" Header="Tool Bar" />
-                <MenuItem IsCheckable="True" Header="Status Bar" />
+                <MenuItem IsCheckable="True" IsChecked="{Binding Path=IsToolBarChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tool Bar" />
+                <MenuItem IsCheckable="True" IsChecked="{Binding Path=IsStatusBarChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Status Bar" />
             </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Header="Help" InputGestureText="F1" />
@@ -49,18 +58,18 @@
                 <MenuItem Header="_About OTA Edit" />
             </MenuItem>
         </Menu>
-        <ToolBarTray Grid.Row="1" Visibility="Visible">
+        <ToolBarTray Grid.Row="1" Visibility="{Binding Path=GetToolBarVisibility, Mode=OneWay}">
             <ToolBar>
-                <Button Content="New" />
-                <Button Content="Open" />
-                <Button Content="Save" />
+                <Button Content="{StaticResource NewFileToolbar}" />
+                <Button Content="{StaticResource OpenFolderToolbar}" Command="{Binding Path=OpenOTACommand}" />
+                <Button Content="{StaticResource SaveToolbar}" />
             </ToolBar>
             <ToolBar>
                 <Button Content="New Unit" />
                 <Button Content="New Feature" />
                 <Button Content="New Special" />
                 <Separator />
-                <Button Content="Mission Settings" />
+                <Button Content="Mission Settings" Command="{Binding Path=EditMissionCommand}" />
             </ToolBar>
         </ToolBarTray>
         <Grid Margin="5,15,5,5" Grid.Row="2">
@@ -249,7 +258,7 @@
                 </Grid>
             </GroupBox>
         </Grid>
-        <StatusBar Grid.Row="3">
+        <StatusBar Grid.Row="3" Visibility="{Binding Path=GetStatusBarVisibility, Mode=OneWay}">
             <StatusBarItem>
                 <TextBlock Text="{Binding Path=GetStatusBarText, Mode=OneWay}" />
             </StatusBarItem>

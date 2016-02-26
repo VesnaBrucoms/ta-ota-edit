@@ -22,7 +22,8 @@ namespace OTAEdit.ViewModels
         private ItemDataViewModel featureViewModel;
         private ItemDataViewModel specialViewModel;
 
-        private int windowHeight;
+        private bool isToolBarChecked;
+        private bool isStatusBarChecked;
         private OTAModel otaModel;
         private ObservableCollection<SchemaModel> schemaCollection;
         private int selectedSchemaIndex;
@@ -108,16 +109,6 @@ namespace OTAEdit.ViewModels
             {
                 otaModel.SetValue("tidalstrength", value);
                 OnPropertyChanged("TidalStrength");
-            }
-        }
-
-        public int SeaLevel
-        {
-            get { return otaModel.SeaLevel; }
-            set
-            {
-                otaModel.SeaLevel = value;
-                OnPropertyChanged("SeaLevel");
             }
         }
 
@@ -323,6 +314,54 @@ namespace OTAEdit.ViewModels
         #endregion
 
         #region ViewModelProperties
+        public bool IsToolBarChecked
+        {
+            get { return isToolBarChecked; }
+            set
+            {
+                isToolBarChecked = value;
+                OnPropertyChanged("IsTooBarChecked");
+                OnPropertyChanged("GetToolBarVisibility");
+            }
+        }
+
+        public string GetToolBarVisibility
+        {
+            get
+            {
+                if (isToolBarChecked)
+                {
+                    return "Visible";
+                }
+                else
+                    return "Collapsed";
+            }
+        }
+
+        public bool IsStatusBarChecked
+        {
+            get { return isStatusBarChecked; }
+            set
+            {
+                isStatusBarChecked = value;
+                OnPropertyChanged("IsStatusBarChecked");
+                OnPropertyChanged("GetStatusBarVisibility");
+            }
+        }
+
+        public string GetStatusBarVisibility
+        {
+            get
+            {
+                if (isStatusBarChecked)
+                {
+                    return "Visible";
+                }
+                else
+                    return "Collapsed";
+            }
+        }
+
         public ObservableCollection<SchemaModel> GetSchemas
         {
             get { return schemaCollection; }
@@ -439,6 +478,11 @@ namespace OTAEdit.ViewModels
             get { return new DelegateCommand(SaveOTA, CanSaveOTA); }
         }
 
+        public ICommand EditMissionCommand
+        {
+            get { return new DelegateCommand(EditMission, CanEditMission); }
+        }
+
         public ICommand AddSchemaCommand
         {
             get { return new DelegateCommand(AddSchema, CanAddSchema); }
@@ -474,12 +518,14 @@ namespace OTAEdit.ViewModels
             featureViewModel = new ItemDataViewModel(ItemDataViewModel.SchemaItemType.Feature);
             specialViewModel = new ItemDataViewModel(ItemDataViewModel.SchemaItemType.Special);
 
-            windowHeight = 600;
             windowTitle = "OTA Edit";
+            isToolBarChecked = true;
+            isStatusBarChecked = true;
             statusBarText = "Ready";
             otaModel = new OTAModel();
             createSchemaCollection();
             createSchemaCollection();
+            WindowViewLoaderService.GetInstance.Register(typeof(MissionSettingsViewModel), typeof(MissionSettingsView));
             WindowViewLoaderService.GetInstance.Register(typeof(AddEditViewModel), typeof(AddEditView));
         }
 
@@ -588,6 +634,17 @@ namespace OTAEdit.ViewModels
         public bool CanSaveOTA()
         {
             //TODO: checks that saving is currently ok to do
+            return true;
+        }
+
+        public void EditMission(object parameter)
+        {
+            MissionSettingsViewModel newDialog = new MissionSettingsViewModel();
+            bool? result = WindowViewLoaderService.GetInstance.ShowDialog(newDialog);
+        }
+
+        public bool CanEditMission()
+        {
             return true;
         }
 

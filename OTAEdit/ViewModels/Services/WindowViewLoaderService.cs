@@ -35,7 +35,14 @@ namespace OTAEdit.ViewModels.Services
                 Type view;
                 viewViewModels.TryGetValue(viewModel.GetType(), out view);
 
-                if (view == typeof(AddEditView))
+                if (view == typeof(MissionSettingsView))
+                {
+                    MissionSettingsView window = new MissionSettingsView();
+                    MissionSettingsViewModel missionSettingsViewModel = (MissionSettingsViewModel)viewModel;
+                    window.DataContext = missionSettingsViewModel;
+                    window.Show();
+                }
+                else if (view == typeof(AddEditView))
                 {
                     AddEditView window = new AddEditView();
                     AddEditViewModel addEditViewModel = (AddEditViewModel)viewModel;
@@ -54,7 +61,14 @@ namespace OTAEdit.ViewModels.Services
                 Type view;
                 viewViewModels.TryGetValue(viewModel.GetType(), out view);
 
-                if (view == typeof(AddEditView))
+                if (view == typeof(MissionSettingsView))
+                {
+                    MissionSettingsView window = new MissionSettingsView();
+                    MissionSettingsViewModel missionSettingsViewModel = (MissionSettingsViewModel)viewModel;
+                    window.DataContext = missionSettingsViewModel;
+                    result = window.ShowDialog();
+                }
+                else if (view == typeof(AddEditView))
                 {
                     AddEditView window = new AddEditView();
                     AddEditViewModel addEditViewModel = (AddEditViewModel)viewModel;
