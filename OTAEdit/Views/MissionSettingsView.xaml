@@ -5,51 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OTAEdit.Views"
         mc:Ignorable="d"
-        Title="Mission Settings" WindowStartupLocation="CenterScreen" Height="300" Width="450" ResizeMode="NoResize">
-    <Grid Margin="5,5,5,5">
+        Title="Mission Settings" WindowStartupLocation="CenterScreen" Height="200" Width="450" ResizeMode="NoResize">
+    <Grid Margin="11,11,11,11">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="15" />
+            <RowDefinition Height="20" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="7" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Gray" BorderThickness="1">
-            <Grid Margin="5,5,5,5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="1*" />                    
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="0.5*" />
-                    <ColumnDefinition Width="15" />
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="0.5*" />
-                </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Grid.ColumnSpan="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="7" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <!-- <RowDefinition Height="1*" /> -->
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="7" />
+                <ColumnDefinition Width="0.4*" />
+                <ColumnDefinition Width="15" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="7" />
+                <ColumnDefinition Width="0.4*" />
+            </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Brief:" />
-                <TextBox Grid.Row="1" Grid.Column="0" />
-                <TextBlock Grid.Row="0" Grid.Column="3" Text="Narration:" />
-                <TextBox Grid.Row="1" Grid.Column="3" />
-                
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Glamour shot:" />
-                <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" />
-                <Button Grid.Row="3" Grid.Column="4" Content="..." />
-                
-                <Image Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" />
-            </Grid>
-        </Border>
-        
-        <Button Grid.Row="2" Grid.Column="1" Content="Accept" Click="WindowAccept_Click" />
-        <Button Grid.Row="2" Grid.Column="3" Content="Cancel" Click="WindowCancel_Click" />
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Brief:" />
+            <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding Path=Brief, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Grid.Row="1" Grid.Column="2" Content="..." Command="{Binding Path=OpenBriefCommand}" />
+            <TextBlock Grid.Row="0" Grid.Column="4" Text="Narration:" />
+            <TextBox Grid.Row="1" Grid.Column="4" Text="{Binding Path=Narration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Grid.Row="1" Grid.Column="6" Content="..." Command="{Binding Path=OpenNarrationCommand}" />
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Glamour shot:" />
+            <TextBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Text="{Binding Path=Glamour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Grid.Row="4" Grid.Column="6" Content="..." Command="{Binding Path=OpenGlamourCommand}" />
+
+            <!-- <Image Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Visibility="Collapsed" Source="{Binding Path=Image, Mode=OneWay}" /> -->
+        </Grid>
+
+        <Button Grid.Row="2" Grid.Column="1" IsDefault="True" Content="Accept" Click="WindowAccept_Click" />
+        <Button Grid.Row="2" Grid.Column="3" IsCancel="True" Content="Cancel" Click="WindowCancel_Click" />
     </Grid>
 </Window>

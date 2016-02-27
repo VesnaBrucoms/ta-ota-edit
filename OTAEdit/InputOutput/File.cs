@@ -29,6 +29,53 @@ namespace OTAEdit.InputOutput
         }
 
         /// <summary>
+        /// Removes the file extension.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns>Returns the filename without the extension.</returns>
+        public static string RemoveExtension(string filePath)
+        {
+            int newLength = 0;
+
+            for (int i = filePath.Length - 1; i >= 0; i--)
+            {
+                char chara = filePath[i];
+                if (chara == '.')
+                {
+                    newLength = i;
+                    break;
+                }
+            }
+
+            if (newLength != 0)
+            {
+                return filePath.Substring(0, newLength);
+            }
+            else
+                return filePath;
+        }
+
+        /// <summary>
+        /// Extracts the last part of the path.
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns>Returns the name after the final '\\' character.</returns>
+        public static string ExtractFileName(string filePath)
+        {
+            for (int i = filePath.Length - 1; i >= 0; i--)
+            {
+                char chara = filePath[i];
+                if (chara == '\\')
+                {
+                    filePath = filePath.Substring(i + 1);
+                    break;
+                }
+            }
+
+            return filePath;
+        }
+
+        /// <summary>
         /// Removes the last part of the path.
         /// </summary>
         /// <param name="filePath"></param>

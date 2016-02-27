@@ -36,17 +36,19 @@
                 <MenuItem Icon="{StaticResource NewFileMenu}" Header="_New" InputGestureText="Ctrl+N" />
                 <MenuItem Icon="{StaticResource OpenFolderMenu}" Header="_Open..." InputGestureText="Ctrl+O" Command="{Binding Path=OpenOTACommand}" />
                 <Separator />
+                <MenuItem Header="Close" Command="{Binding Path=CloseOTACommand}" />
+                <Separator />
                 <MenuItem Icon="{StaticResource SaveMenu}" Header="_Save" InputGestureText="Ctrl+S" />
                 <MenuItem Header="Save As..." InputGestureText="Ctrl+Shift+S" />
                 <Separator />
                 <MenuItem Header="_Exit" Click="ApplicationClose_Click" />
             </MenuItem>
             <MenuItem Header="Edit">
-                <MenuItem Header="Add Unit..." />
-                <MenuItem Header="Add Feature..." />
-                <MenuItem Header="Add Special..." />
+                <MenuItem x:Name="menuAddUnit" Header="Add Unit..." Command="{Binding Path=AddItemCommand}" CommandParameter="{Binding ElementName=menuAddUnit, Path=Name}" />
+                <MenuItem x:Name="menuAddFeature" Header="Add Feature..." Command="{Binding Path=AddItemCommand}" CommandParameter="{Binding ElementName=menuAddFeature, Path=Name}" />
+                <MenuItem x:Name="menuAddSpecial" Header="Add Special..." Command="{Binding Path=AddItemCommand}" CommandParameter="{Binding ElementName=menuAddSpecial, Path=Name}" />
                 <Separator />
-                <MenuItem Header="Mission Settings..." />
+                <MenuItem Header="Mission Settings..." Command="{Binding Path=EditMissionCommand}" />
             </MenuItem>
             <MenuItem Header="View">
                 <MenuItem IsCheckable="True" IsChecked="{Binding Path=IsToolBarChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Tool Bar" />
@@ -65,9 +67,9 @@
                 <Button Content="{StaticResource SaveToolbar}" />
             </ToolBar>
             <ToolBar>
-                <Button Content="New Unit" />
-                <Button Content="New Feature" />
-                <Button Content="New Special" />
+                <Button x:Name="toolAddUnit" Content="New Unit" Command="{Binding Path=AddItemCommand}" CommandParameter="{Binding ElementName=toolAddUnit, Path=Name}" />
+                <Button x:Name="toolAddFeature" Content="New Feature" Command="{Binding Path=AddItemCommand}" CommandParameter="{Binding ElementName=toolAddFeature, Path=Name}" />
+                <Button x:Name="toolAddSpecial" Content="New Special" Command="{Binding Path=AddItemCommand}" CommandParameter="{Binding ElementName=toolAddSpecial, Path=Name}" />
                 <Separator />
                 <Button Content="Mission Settings" Command="{Binding Path=EditMissionCommand}" />
             </ToolBar>
@@ -75,6 +77,7 @@
         <Grid Margin="5,15,5,5" Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" MaxHeight="200" />
+                <RowDefinition Height="11" />
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -152,7 +155,7 @@
                     <xctk:IntegerUpDown Grid.Row="6" Grid.Column="4" IsEnabled="{Binding Path=WaterDoesDamage}" Minimum="-100" Maximum="100" Increment="1" Value="{Binding Path=WaterDamage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </GroupBox>
-            <GroupBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Header="Schemas">
+            <GroupBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Header="Schemas">
                 <Grid Margin="5,5,5,5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />

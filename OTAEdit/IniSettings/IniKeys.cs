@@ -8,6 +8,8 @@ namespace OTAEdit.IniSettings
     class IniKeys
     {
         public const string STRING_OTA_LAST_PATH = "sOTALastPath";
+        public const string BOOL_TOOLBAR_VISIBLE = "bIsToolBarVisible";
+        public const string BOOL_STATUSBAR_VISIBLE = "bIsStatusBarVisible";
         public const string BOOL_INCLUDE_CONTENTS = "bIncludeContents";
         public const string STRING_FILENAME = "sFilename";
         public const string STRING_ESR_DEFAULT_PATH = "sESRDefaultPath";

@@ -8,12 +8,18 @@ namespace OTAEdit.Models
 {
     public class OTAModel : DictionaryModel
     {
+        private bool isEmpty;
         private List<string> memory;
         private List<string> planets;
         private List<string> weapons;
         private SchemaModel[] schemas;
 
         public string Filename;
+
+        public bool IsEmpty
+        {
+            get { return isEmpty; }
+        }
 
         public List<string> GetMemory
         {
@@ -37,19 +43,59 @@ namespace OTAEdit.Models
 
         public OTAModel()
         {
+            isEmpty = false;
+            Filename = "untitled.ota";
             Properties = new Dictionary<string, object>();
-            init();
+            init(false);
         }
 
-        public OTAModel(string filename)
+        public OTAModel(bool isEmpty)
         {
+            this.isEmpty = isEmpty;
+            Properties = new Dictionary<string, object>();
+            init(false);
+        }
+
+        public OTAModel(string filename, bool isRead)
+        {
+            isEmpty = false;
             Filename = filename;
             Properties = new Dictionary<string, object>();
-            init();
+            init(isRead);
         }
 
-        private void init()
+        private void init(bool isRead)
         {
+            if (!isRead)
+            {
+                Properties.Add("missionname", "");
+                Properties.Add("missiondescription", "");
+                Properties.Add("planet", "");
+                Properties.Add("missionhint", "");
+                Properties.Add("brief", "");
+                Properties.Add("narration", "");
+                Properties.Add("glamour", "");
+                Properties.Add("lineofsight", false);
+                Properties.Add("mapping", false);
+                Properties.Add("tidalstrength", 0);
+                Properties.Add("solarstrength", 0);
+                Properties.Add("lavaworld", false);
+                Properties.Add("killmul", 50);
+                Properties.Add("timemul", "");
+                Properties.Add("minwindspeed", 0);
+                Properties.Add("maxwindspeed", 0);
+                Properties.Add("gravity", 0);
+                Properties.Add("waterdoesdamage", false);
+                Properties.Add("waterdamage", 0);
+                Properties.Add("numplayers", "");
+                Properties.Add("size", "");
+                Properties.Add("memory", "");
+                Properties.Add("useonlyunits", "");
+                Properties.Add("DestroyAllUnits", true);
+                Properties.Add("AllUnitsKilled", true);
+                Properties.Add("SCHEMACOUNT", 0);
+            }
+
             memory = new List<string>();
             memory.Add("16 mb");
             memory.Add("32 mb");

@@ -23,7 +23,7 @@ namespace OTAEdit.InputOutput
         #region Reading
         public static OTAModel Read(string filepath)
         {
-            OTAModel otaModel = new OTAModel(filepath.Substring(filepath.LastIndexOf('\\') + 1));
+            OTAModel otaModel = new OTAModel(filepath.Substring(filepath.LastIndexOf('\\') + 1), true);
 
             using (StreamReader rd = new StreamReader(filepath))
             {

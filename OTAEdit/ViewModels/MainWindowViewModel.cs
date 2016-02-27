@@ -22,8 +22,6 @@ namespace OTAEdit.ViewModels
         private ItemDataViewModel featureViewModel;
         private ItemDataViewModel specialViewModel;
 
-        private bool isToolBarChecked;
-        private bool isStatusBarChecked;
         private OTAModel otaModel;
         private ObservableCollection<SchemaModel> schemaCollection;
         private int selectedSchemaIndex;
@@ -316,10 +314,10 @@ namespace OTAEdit.ViewModels
         #region ViewModelProperties
         public bool IsToolBarChecked
         {
-            get { return isToolBarChecked; }
+            get { return Convert.ToBoolean(Ini.GetInstance.GetValueByName(IniKeys.BOOL_TOOLBAR_VISIBLE)); }
             set
             {
-                isToolBarChecked = value;
+                Ini.GetInstance.ChangeValueByName(IniKeys.BOOL_TOOLBAR_VISIBLE, Convert.ToString(value));
                 OnPropertyChanged("IsTooBarChecked");
                 OnPropertyChanged("GetToolBarVisibility");
             }
@@ -329,7 +327,7 @@ namespace OTAEdit.ViewModels
         {
             get
             {
-                if (isToolBarChecked)
+                if (Convert.ToBoolean(Ini.GetInstance.GetValueByName(IniKeys.BOOL_TOOLBAR_VISIBLE)))
                 {
                     return "Visible";
                 }
@@ -340,10 +338,10 @@ namespace OTAEdit.ViewModels
 
         public bool IsStatusBarChecked
         {
-            get { return isStatusBarChecked; }
+            get { return Convert.ToBoolean(Ini.GetInstance.GetValueByName(IniKeys.BOOL_STATUSBAR_VISIBLE)); }
             set
             {
-                isStatusBarChecked = value;
+                Ini.GetInstance.ChangeValueByName(IniKeys.BOOL_STATUSBAR_VISIBLE, Convert.ToString(value));
                 OnPropertyChanged("IsStatusBarChecked");
                 OnPropertyChanged("GetStatusBarVisibility");
             }
@@ -353,7 +351,7 @@ namespace OTAEdit.ViewModels
         {
             get
             {
-                if (isStatusBarChecked)
+                if (Convert.ToBoolean(Ini.GetInstance.GetValueByName(IniKeys.BOOL_STATUSBAR_VISIBLE)))
                 {
                     return "Visible";
                 }
@@ -473,6 +471,11 @@ namespace OTAEdit.ViewModels
             get { return new DelegateCommand(OpenOTA); }
         }
 
+        public ICommand CloseOTACommand
+        {
+            get { return new DelegateCommand(CloseOTA, CanCloseOTA); }
+        }
+
         public ICommand SaveOTACommand
         {
             get { return new DelegateCommand(SaveOTA, CanSaveOTA); }
@@ -513,18 +516,20 @@ namespace OTAEdit.ViewModels
         {
             if (!Ini.GetInstance.SettingExists(IniKeys.STRING_OTA_LAST_PATH))
                 Ini.GetInstance.AddNewSetting(IniKeys.STRING_OTA_LAST_PATH, IniDefaultValues.STRING_OTA_LAST_PATH);
+            if (!Ini.GetInstance.SettingExists(IniKeys.BOOL_TOOLBAR_VISIBLE))
+                Ini.GetInstance.AddNewSetting(IniKeys.BOOL_TOOLBAR_VISIBLE, Convert.ToString(IniDefaultValues.BOOL_TOOLBAR_VISIBLE));
+            if (!Ini.GetInstance.SettingExists(IniKeys.BOOL_STATUSBAR_VISIBLE))
+                Ini.GetInstance.AddNewSetting(IniKeys.BOOL_STATUSBAR_VISIBLE, Convert.ToString(IniDefaultValues.BOOL_STATUSBAR_VISIBLE));
 
             unitViewModel = new ItemDataViewModel(ItemDataViewModel.SchemaItemType.Unit);
             featureViewModel = new ItemDataViewModel(ItemDataViewModel.SchemaItemType.Feature);
             specialViewModel = new ItemDataViewModel(ItemDataViewModel.SchemaItemType.Special);
 
-            windowTitle = "OTA Edit";
-            isToolBarChecked = true;
-            isStatusBarChecked = true;
-            statusBarText = "Ready";
             otaModel = new OTAModel();
+            windowTitle = otaModel.Filename + " - OTA Edit";
+            statusBarText = "Ready";
             createSchemaCollection();
-            createSchemaCollection();
+            //createSchemaCollection();
             WindowViewLoaderService.GetInstance.Register(typeof(MissionSettingsViewModel), typeof(MissionSettingsView));
             WindowViewLoaderService.GetInstance.Register(typeof(AddEditViewModel), typeof(AddEditView));
         }
@@ -544,7 +549,12 @@ namespace OTAEdit.ViewModels
 
         private void updateProperties()
         {
-            windowTitle = otaModel.Filename + " - OTA Edit";
+            if (!otaModel.IsEmpty)
+            {
+                windowTitle = otaModel.Filename + " - OTA Edit";
+            }
+            else
+                windowTitle = "OTA Edit";
             OnPropertyChanged("GetWindowTitle");
             statusBarText = "Loaded " + otaModel.Filename;
             OnPropertyChanged("GetStatusText");
@@ -626,6 +636,17 @@ namespace OTAEdit.ViewModels
             }
         }
 
+        public void CloseOTA(object parameter)
+        {
+            otaModel = new OTAModel(true);
+            updateProperties();
+        }
+
+        public bool CanCloseOTA()
+        {
+            return !otaModel.IsEmpty;
+        }
+
         public void SaveOTA(object parameter)
         {
             //TODO: adding sava & save as code
@@ -633,63 +654,78 @@ namespace OTAEdit.ViewModels
 
         public bool CanSaveOTA()
         {
-            //TODO: checks that saving is currently ok to do
-            return true;
+            return !otaModel.IsEmpty;
         }
 
         public void EditMission(object parameter)
         {
-            MissionSettingsViewModel newDialog = new MissionSettingsViewModel();
+            MissionSettingsViewModel newDialog = new MissionSettingsViewModel(otaModel.GetStringValue("brief"), otaModel.GetStringValue("narration"), otaModel.GetStringValue("glamour"));
             bool? result = WindowViewLoaderService.GetInstance.ShowDialog(newDialog);
+            if (result == true)
+            {
+                otaModel.SetValue("brief", newDialog.Brief);
+                otaModel.SetValue("narration", newDialog.Narration);
+                otaModel.SetValue("glamour", newDialog.Glamour);
+            }
         }
 
         public bool CanEditMission()
         {
-            return true;
+            return !otaModel.IsEmpty;
         }
 
         public void AddSchema(object parameter)
         {
             otaModel.GetSchemas[selectedSchemaIndex] = new SchemaModel(selectedSchemaIndex);
+            otaModel.SetValue("SCHEMACOUNT", otaModel.GetIntValue("SCHEMACOUNT") + 1);
             createSchemaCollection();
         }
 
         public bool CanAddSchema()
         {
-            if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
+            if (!otaModel.IsEmpty)
             {
-                if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
-                    return false;
+                if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
+                {
+                    if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
+                        return false;
+                    else
+                        return true;
+                }
                 else
-                    return true;
+                    return false;
             }
-            else
-                return false;
+            return false;
         }
 
         public void RemoveSchema(object parameter)
         {
             otaModel.GetSchemas[selectedSchemaIndex] = new SchemaModel();
+            otaModel.SetValue("SCHEMACOUNT", otaModel.GetIntValue("SCHEMACOUNT") - 1);
             createSchemaCollection();
         }
 
         public bool CanRemoveSchema()
         {
-            if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
+            if (!otaModel.IsEmpty)
             {
-                if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
-                    return true;
+                if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
+                {
+                    if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
+                        return true;
+                    else
+                        return false;
+                }
                 else
                     return false;
             }
-            else
-                return false;
+            return false;
         }
 
         public void AddItem(object parameter)
         {
             string param = (string)parameter;
-            if (param == "btnAddUnit" || param == "listUnits")
+            if (param == "menuAddUnit" || param == "toolAddUnit" || param == "btnAddUnit" || param == "listUnits")
             {
                 AddEditViewModel newDialog = new AddEditViewModel(AddEditViewModel.WindowTask.Add, AddEditViewModel.SchemaItemType.Unit, otaModel.GetSchemas[selectedSchemaIndex].Units.Count);
                 bool? result = WindowViewLoaderService.GetInstance.ShowDialog(newDialog);
@@ -699,7 +735,7 @@ namespace OTAEdit.ViewModels
                     OnPropertyChanged("GetUnits");
                 }
             }
-            else if (param == "btnAddFeature" || param == "listFeatures")
+            else if (param == "menuAddFeature" || param == "toolAddFeature" || param == "btnAddFeature" || param == "listFeatures")
             {
                 AddEditViewModel newDialog = new AddEditViewModel(AddEditViewModel.WindowTask.Add, AddEditViewModel.SchemaItemType.Feature, otaModel.GetSchemas[selectedSchemaIndex].Features.Count);
                 bool? result = WindowViewLoaderService.GetInstance.ShowDialog(newDialog);
@@ -709,7 +745,7 @@ namespace OTAEdit.ViewModels
                     OnPropertyChanged("GetFeatures");
                 }
             }
-            else if (param == "btnAddSpecial" || param == "listSpecials")
+            else if (param == "menuAddSpecial" || param == "toolAddSpecial" || param == "btnAddSpecial" || param == "listSpecials")
             {
                 AddEditViewModel newDialog = new AddEditViewModel(AddEditViewModel.WindowTask.Add, AddEditViewModel.SchemaItemType.Special, otaModel.GetSchemas[selectedSchemaIndex].Specials.Count);
                 bool? result = WindowViewLoaderService.GetInstance.ShowDialog(newDialog);
@@ -723,15 +759,19 @@ namespace OTAEdit.ViewModels
 
         public bool CanAddItem()
         {
-            if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
+            if (!otaModel.IsEmpty)
             {
-                if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
-                    return true;
+                if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
+                {
+                    if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
+                        return true;
+                    else
+                        return false;
+                }
                 else
                     return false;
             }
-            else
-                return false;
+            return false;
         }
 
         public void EditItem(object parameter)
@@ -774,29 +814,34 @@ namespace OTAEdit.ViewModels
 
         public bool CanEditItem(object parameter)
         {
-            if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
+            if (!otaModel.IsEmpty)
             {
-                if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
+                if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
                 {
-                    string param = (string)parameter;
-                    if (param == "btnEditUnit" || param == "listUnits")
+                    if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
                     {
-                        if (selectedUnitIndex >= 0)
-                            return true;
-                        else
-                            return false;
-                    }
-                    else if (param == "btnEditFeature" || param == "listFeatures")
-                    {
-                        if (selectedFeatureIndex >= 0)
-                            return true;
-                        else
-                            return false;
-                    }
-                    else if (param == "btnEditSpecial" || param == "listSpecials")
-                    {
-                        if (selectedSpecialIndex >= 0)
-                            return true;
+                        string param = (string)parameter;
+                        if (param == "btnEditUnit" || param == "listUnits")
+                        {
+                            if (selectedUnitIndex >= 0)
+                                return true;
+                            else
+                                return false;
+                        }
+                        else if (param == "btnEditFeature" || param == "listFeatures")
+                        {
+                            if (selectedFeatureIndex >= 0)
+                                return true;
+                            else
+                                return false;
+                        }
+                        else if (param == "btnEditSpecial" || param == "listSpecials")
+                        {
+                            if (selectedSpecialIndex >= 0)
+                                return true;
+                            else
+                                return false;
+                        }
                         else
                             return false;
                     }
@@ -806,8 +851,7 @@ namespace OTAEdit.ViewModels
                 else
                     return false;
             }
-            else
-                return false;
+            return false;
         }
 
         public void RemoveItem(object parameter)
@@ -832,29 +876,34 @@ namespace OTAEdit.ViewModels
 
         public bool CanRemoveItem(object parameter)
         {
-            if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
+            if (!otaModel.IsEmpty)
             {
-                if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
+                if (selectedSchemaIndex >= 0 && selectedSchemaIndex <= 3)
                 {
-                    string param = (string)parameter;
-                    if (param == "btnRemoveUnit" || param == "listUnits")
+                    if (otaModel.GetSchemas[selectedSchemaIndex].IsActive)
                     {
-                        if (selectedUnitIndex >= 0)
-                            return true;
-                        else
-                            return false;
-                    }
-                    else if (param == "btnRemoveFeature" || param == "listFeatures")
-                    {
-                        if (selectedFeatureIndex >= 0)
-                            return true;
-                        else
-                            return false;
-                    }
-                    else if (param == "btnRemoveSpecial" || param == "listSpecials")
-                    {
-                        if (selectedSpecialIndex >= 0)
-                            return true;
+                        string param = (string)parameter;
+                        if (param == "btnRemoveUnit" || param == "listUnits")
+                        {
+                            if (selectedUnitIndex >= 0)
+                                return true;
+                            else
+                                return false;
+                        }
+                        else if (param == "btnRemoveFeature" || param == "listFeatures")
+                        {
+                            if (selectedFeatureIndex >= 0)
+                                return true;
+                            else
+                                return false;
+                        }
+                        else if (param == "btnRemoveSpecial" || param == "listSpecials")
+                        {
+                            if (selectedSpecialIndex >= 0)
+                                return true;
+                            else
+                                return false;
+                        }
                         else
                             return false;
                     }
@@ -864,8 +913,7 @@ namespace OTAEdit.ViewModels
                 else
                     return false;
             }
-            else
-                return false;
+            return false;
         }
         #endregion
     }
