@@ -23,5 +23,16 @@ namespace OTAEdit.Views
         {
             InitializeComponent();
         }
+
+        public void WindowAccept_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+            Close();
+        }
+
+        public void WindowCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

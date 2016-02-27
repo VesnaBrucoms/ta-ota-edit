@@ -71,6 +71,7 @@ namespace OTAEdit.Models
             planets.Add("Red Planet");
             planets.Add("Slate");
             planets.Add("Urban");
+            planets.Add("Water World");
             planets.Add("Wet Desert");
             weapons = new List<string>();
             weapons.Add("EMPTY"); //TODO: decide whether to keep weapon.EMPTY

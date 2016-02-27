@@ -26,6 +26,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="1*" />                    
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*" />
@@ -39,10 +40,16 @@
                 <TextBox Grid.Row="1" Grid.Column="0" />
                 <TextBlock Grid.Row="0" Grid.Column="3" Text="Narration:" />
                 <TextBox Grid.Row="1" Grid.Column="3" />
+                
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Glamour shot:" />
+                <TextBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" />
+                <Button Grid.Row="3" Grid.Column="4" Content="..." />
+                
+                <Image Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" />
             </Grid>
         </Border>
         
-        <Button Grid.Row="2" Grid.Column="1" Content="Accept" />
-        <Button Grid.Row="2" Grid.Column="3" Content="Cancel" />
+        <Button Grid.Row="2" Grid.Column="1" Content="Accept" Click="WindowAccept_Click" />
+        <Button Grid.Row="2" Grid.Column="3" Content="Cancel" Click="WindowCancel_Click" />
     </Grid>
 </Window>
