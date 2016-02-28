@@ -15,6 +15,7 @@ namespace OTAEdit.Models
         private SchemaModel[] schemas;
 
         public string Filename;
+        public string Filepath;
 
         public bool IsEmpty
         {
@@ -41,17 +42,10 @@ namespace OTAEdit.Models
             get { return schemas; }
         }
 
-        public OTAModel()
-        {
-            isEmpty = false;
-            Filename = "untitled.ota";
-            Properties = new Dictionary<string, object>();
-            init(false);
-        }
-
         public OTAModel(bool isEmpty)
         {
             this.isEmpty = isEmpty;
+            Filename = "untitled.ota";
             Properties = new Dictionary<string, object>();
             init(false);
         }
@@ -120,7 +114,7 @@ namespace OTAEdit.Models
             planets.Add("Water World");
             planets.Add("Wet Desert");
             weapons = new List<string>();
-            weapons.Add("EMPTY"); //TODO: decide whether to keep weapon.EMPTY
+            weapons.Add("");
             weapons.Add("Earthquake");
             weapons.Add("Hailstorm");
             weapons.Add("Meteor");

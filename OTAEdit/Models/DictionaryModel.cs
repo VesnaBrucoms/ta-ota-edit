@@ -57,5 +57,26 @@ namespace OTAEdit.Models
                 }
             }
         }
+
+        public string GetWriteString(string key)
+        {
+            string writeString = "";
+
+            if (Properties.ContainsKey(key))
+            {
+                if (Convert.ToString(Properties[key]) == "True" || Convert.ToString(Properties[key]) == "true")
+                {
+                    writeString = key + "=1";
+                }
+                else if (Convert.ToString(Properties[key]) == "False" || Convert.ToString(Properties[key]) == "false")
+                {
+                    writeString = key + "=0";
+                }
+                else
+                    writeString = key + "=" + Convert.ToString(Properties[key]);
+            }
+
+            return writeString;
+        }
     }
 }

@@ -22,7 +22,10 @@
         <Image x:Key="SaveToolbar" Source="pack://application:,,,/Resources/Save_16x.png" />
     </Window.Resources>
     <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding Path=NewOTACommand}" />
         <KeyBinding Key="O" Modifiers="Ctrl" Command="{Binding Path=OpenOTACommand}" />
+        <KeyBinding Key="S" Modifiers="Ctrl" Command="{Binding Path=SaveOTACommand}" />
+        <KeyBinding Key="S" Modifiers="Ctrl+Shift" Command="{Binding Path=SaveAsOTACommand}" />
     </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -33,13 +36,13 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
             <MenuItem Header="_File">
-                <MenuItem Icon="{StaticResource NewFileMenu}" Header="_New" InputGestureText="Ctrl+N" />
+                <MenuItem Icon="{StaticResource NewFileMenu}" Header="_New" InputGestureText="Ctrl+N" Command="{Binding Path=NewOTACommand}" />
                 <MenuItem Icon="{StaticResource OpenFolderMenu}" Header="_Open..." InputGestureText="Ctrl+O" Command="{Binding Path=OpenOTACommand}" />
                 <Separator />
                 <MenuItem Header="Close" Command="{Binding Path=CloseOTACommand}" />
                 <Separator />
-                <MenuItem Icon="{StaticResource SaveMenu}" Header="_Save" InputGestureText="Ctrl+S" />
-                <MenuItem Header="Save As..." InputGestureText="Ctrl+Shift+S" />
+                <MenuItem Icon="{StaticResource SaveMenu}" Header="_Save" InputGestureText="Ctrl+S" Command="{Binding Path=SaveOTACommand}" />
+                <MenuItem Header="Save As..." InputGestureText="Ctrl+Shift+S" Command="{Binding Path=SaveAsOTACommand}" />
                 <Separator />
                 <MenuItem Header="_Exit" Click="ApplicationClose_Click" />
             </MenuItem>
@@ -62,9 +65,9 @@
         </Menu>
         <ToolBarTray Grid.Row="1" Visibility="{Binding Path=GetToolBarVisibility, Mode=OneWay}">
             <ToolBar>
-                <Button Content="{StaticResource NewFileToolbar}" />
+                <Button Content="{StaticResource NewFileToolbar}" Command="{Binding Path=NewOTACommand}" />
                 <Button Content="{StaticResource OpenFolderToolbar}" Command="{Binding Path=OpenOTACommand}" />
-                <Button Content="{StaticResource SaveToolbar}" />
+                <Button Content="{StaticResource SaveToolbar}" Command="{Binding Path=SaveOTACommand}" />
             </ToolBar>
             <ToolBar>
                 <Button x:Name="toolAddUnit" Content="New Unit" Command="{Binding Path=AddItemCommand}" CommandParameter="{Binding ElementName=toolAddUnit, Path=Name}" />
@@ -104,16 +107,16 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Name:" />
-                    <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding Path=MapName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Grid.Row="1" Grid.Column="0" IsEnabled="{Binding Path=IsNotEmpty}" Text="{Binding Path=MapName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="0" Grid.Column="2" Text="Players:" />
-                    <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Path=NumPlayers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Grid.Row="1" Grid.Column="2" IsEnabled="{Binding Path=IsNotEmpty}" Text="{Binding Path=NumPlayers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="0" Grid.Column="4" Text="Memory:" />
-                    <ComboBox Grid.Row="1" Grid.Column="6" ItemsSource="{Binding Path=GetMemory}" SelectedValue="{Binding Path=SetMemory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <ComboBox Grid.Row="1" Grid.Column="6" IsEnabled="{Binding Path=IsNotEmpty}" ItemsSource="{Binding Path=GetMemory}" SelectedValue="{Binding Path=SetMemory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Description:" />
-                    <TextBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" MaxLength="128" Text="{Binding Path=MapDesc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Grid.Row="4" Grid.Column="0" IsEnabled="{Binding Path=IsNotEmpty}" Grid.ColumnSpan="3" MaxLength="128" Text="{Binding Path=MapDesc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="3" Grid.Column="4" Text="Planet:" />
-                    <ComboBox Grid.Row="4" Grid.Column="4" ItemsSource="{Binding Path=GetPlanets}" SelectedValue="{Binding Path=SetPlanet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <ComboBox Grid.Row="4" Grid.Column="4" IsEnabled="{Binding Path=IsNotEmpty}" ItemsSource="{Binding Path=GetPlanets}" SelectedValue="{Binding Path=SetPlanet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </GroupBox>
             <GroupBox Grid.Row="0" Grid.Column="2" Header="Settings">
@@ -137,21 +140,21 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Min wind speed:" />
-                    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="0" Minimum="0" Increment="1" Value="{Binding Path=MinWindSpeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="0" IsEnabled="{Binding Path=IsNotEmpty}" Minimum="0" Increment="1" Value="{Binding Path=MinWindSpeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="0" Grid.Column="2" Text="Tidal strength:" />
-                    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="2" Minimum="0" Increment="1" Value="{Binding Path=TidalStrength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="2" IsEnabled="{Binding Path=IsNotEmpty}" Minimum="0" Increment="1" Value="{Binding Path=TidalStrength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="0" Grid.Column="4" Text="Sea level:" />
-                    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="4" Minimum="0" Increment="1" Value="{Binding Path=SeaLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="4" IsEnabled="{Binding Path=IsNotEmpty}" Minimum="0" Increment="1" />
 
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Max wind speed:" />
-                    <xctk:IntegerUpDown Grid.Row="4" Grid.Column="0" Minimum="0" Increment="1" Value="{Binding Path=MaxWindSpeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <xctk:IntegerUpDown Grid.Row="4" Grid.Column="0" IsEnabled="{Binding Path=IsNotEmpty}" Minimum="0" Increment="1" Value="{Binding Path=MaxWindSpeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="3" Grid.Column="2" Text="Solar strength:" />
-                    <xctk:IntegerUpDown Grid.Row="4" Grid.Column="2" Minimum="0" Increment="1" Value="{Binding Path=SolarStrength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <xctk:IntegerUpDown Grid.Row="4" Grid.Column="2" IsEnabled="{Binding Path=IsNotEmpty}" Minimum="0" Increment="1" Value="{Binding Path=SolarStrength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="3" Grid.Column="4" Text="Gravity:" />
-                    <xctk:IntegerUpDown Grid.Row="4" Grid.Column="4" Minimum="0" Increment="1" Value="{Binding Path=Gravity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <xctk:IntegerUpDown Grid.Row="4" Grid.Column="4" IsEnabled="{Binding Path=IsNotEmpty}" Minimum="0" Increment="1" Value="{Binding Path=Gravity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                    <CheckBox Grid.Row="6" Grid.Column="0" IsChecked="{Binding Path=ImpassableWater, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Impassable water</CheckBox>
-                    <CheckBox Grid.Row="6" Grid.Column="2" IsChecked="{Binding Path=WaterDoesDamage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Water does damage</CheckBox>
+                    <CheckBox Grid.Row="6" Grid.Column="0" IsEnabled="{Binding Path=IsNotEmpty}" IsChecked="{Binding Path=ImpassableWater, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Impassable water</CheckBox>
+                    <CheckBox Grid.Row="6" Grid.Column="2" IsEnabled="{Binding Path=IsNotEmpty}" IsChecked="{Binding Path=WaterDoesDamage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Water does damage</CheckBox>
                     <xctk:IntegerUpDown Grid.Row="6" Grid.Column="4" IsEnabled="{Binding Path=WaterDoesDamage}" Minimum="-100" Maximum="100" Increment="1" Value="{Binding Path=WaterDamage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </GroupBox>
@@ -169,7 +172,7 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
-                        <ComboBox Name="cmbxSchemas" Margin="0,0,20,0" MinWidth="80" ItemsSource="{Binding Path=GetSchemas, Mode=OneWay}" SelectedIndex="{Binding Path=SelectedSchema}">
+                        <ComboBox Name="cmbxSchemas" Margin="0,0,20,0" MinWidth="80" IsEnabled="{Binding Path=IsNotEmpty, Mode=OneWay}" ItemsSource="{Binding Path=GetSchemas, Mode=OneWay}" SelectedIndex="{Binding Path=SelectedSchema}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Vertical">

@@ -49,6 +49,13 @@ namespace OTAEdit.ViewModels.Services
                     window.DataContext = addEditViewModel;
                     window.Show();
                 }
+                else if (view == typeof(SaveDialogView))
+                {
+                    SaveDialogView window = new SaveDialogView();
+                    SaveDialogViewModel saveDialogViewModel = (SaveDialogViewModel)viewModel;
+                    window.DataContext = saveDialogViewModel;
+                    window.Show();
+                }
             }
         }
 
@@ -73,6 +80,13 @@ namespace OTAEdit.ViewModels.Services
                     AddEditView window = new AddEditView();
                     AddEditViewModel addEditViewModel = (AddEditViewModel)viewModel;
                     window.DataContext = addEditViewModel;
+                    result = window.ShowDialog();
+                }
+                else if (view == typeof(SaveDialogView))
+                {
+                    SaveDialogView window = new SaveDialogView();
+                    SaveDialogViewModel saveDialogViewModel = (SaveDialogViewModel)viewModel;
+                    window.DataContext = saveDialogViewModel;
                     result = window.ShowDialog();
                 }
             }

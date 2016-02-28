@@ -29,6 +29,26 @@ namespace OTAEdit.InputOutput
         }
 
         /// <summary>
+        /// Checks if filename ends with the specified extension. Adds the extension if it doesn't.
+        /// </summary>
+        public static string CheckNameExtensionExists(string fileName, string extension, bool ignoreCase)
+        {
+            if (ignoreCase)
+            {
+                if (!fileName.EndsWith(extension, true, null))
+                {
+                    return fileName += extension;
+                }
+                else
+                {
+                    return fileName;
+                }
+            }
+            else
+                return CheckNameExtensionExists(fileName, extension);
+        }
+
+        /// <summary>
         /// Removes the file extension.
         /// </summary>
         /// <param name="filePath"></param>

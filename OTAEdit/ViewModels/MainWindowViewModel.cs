@@ -23,6 +23,7 @@ namespace OTAEdit.ViewModels
         private ItemDataViewModel specialViewModel;
 
         private OTAModel otaModel;
+        private bool hasModified;
         private ObservableCollection<SchemaModel> schemaCollection;
         private int selectedSchemaIndex;
         private int selectedUnitIndex;
@@ -30,12 +31,23 @@ namespace OTAEdit.ViewModels
         private int selectedSpecialIndex;
 
         #region ModelProperties
+        public bool IsEmpty
+        {
+            get { return otaModel.IsEmpty; }
+        }
+
+        public bool IsNotEmpty
+        {
+            get { return !otaModel.IsEmpty; }
+        }
+
         public string MapName
         {
             get { return otaModel.GetStringValue("missionname"); }
             set
             {
                 otaModel.SetValue("missionname", value);
+                modelModified();
                 OnPropertyChanged("MapName");
             }
         }
@@ -46,6 +58,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.SetValue("missiondescription", value);
+                modelModified();
                 OnPropertyChanged("MapDesc");
             }
         }
@@ -61,6 +74,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.SetValue("memory", value);
+                modelModified();
                 OnPropertyChanged("SetMemory");
             }
         }
@@ -76,6 +90,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.SetValue("planet", value);
+                modelModified();
                 OnPropertyChanged("SetPlanet");
             }
         }
@@ -86,6 +101,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.SetValue("numplayers", value);
+                modelModified();
                 OnPropertyChanged("NumPlayers");
             }
         }
@@ -96,6 +112,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.SetValue("minwindspeed", value);
+                modelModified();
                 OnPropertyChanged("MinWindSpeed");
             }
         }
@@ -106,6 +123,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.SetValue("tidalstrength", value);
+                modelModified();
                 OnPropertyChanged("TidalStrength");
             }
         }
@@ -116,6 +134,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.SetValue("maxwindspeed", value);
+                modelModified();
                 OnPropertyChanged("MaxWindSpeed");
             }
         }
@@ -126,6 +145,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.SetValue("solarstrength", value);
+                modelModified();
                 OnPropertyChanged("SolarStrength");
             }
         }
@@ -136,6 +156,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.SetValue("gravity", value);
+                modelModified();
                 OnPropertyChanged("Gravity");
             }
         }
@@ -146,6 +167,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.SetValue("lavaworld", value);
+                modelModified();
                 OnPropertyChanged("ImpassableWater");
             }
         }
@@ -156,6 +178,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.SetValue("waterdoesdamage", value);
+                modelModified();
                 OnPropertyChanged("WaterDoesDamage");
             }
         }
@@ -166,6 +189,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.SetValue("waterdamage", value);
+                modelModified();
                 OnPropertyChanged("WaterDamage");
             }
         }
@@ -181,6 +205,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.GetSchemas[selectedSchemaIndex].SetValue("Type", value);
+                modelModified();
                 OnPropertyChanged("Type");
             }
         }
@@ -191,6 +216,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.GetSchemas[selectedSchemaIndex].SetValue("aiprofile", value);
+                modelModified();
                 OnPropertyChanged("AiProfile");
             }
         }
@@ -201,6 +227,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.GetSchemas[selectedSchemaIndex].SetValue("SurfaceMetal", value);
+                modelModified();
                 OnPropertyChanged("SurfaceMetal");
             }
         }
@@ -211,6 +238,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.GetSchemas[selectedSchemaIndex].SetValue("MohoMetal", value);
+                modelModified();
                 OnPropertyChanged("MohoMetal");
             }
         }
@@ -221,6 +249,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.GetSchemas[selectedSchemaIndex].SetValue("HumanMetal", value);
+                modelModified();
                 OnPropertyChanged("HumanMetal");
             }
         }
@@ -231,6 +260,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.GetSchemas[selectedSchemaIndex].SetValue("ComputerMetal", value);
+                modelModified();
                 OnPropertyChanged("ComputerMetal");
             }
         }
@@ -241,6 +271,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.GetSchemas[selectedSchemaIndex].SetValue("HumanEnergy", value);
+                modelModified();
                 OnPropertyChanged("HumanEnergy");
             }
         }
@@ -251,6 +282,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.GetSchemas[selectedSchemaIndex].SetValue("ComputerEnergy", value);
+                modelModified();
                 OnPropertyChanged("ComputerEnergy");
             }
         }
@@ -266,6 +298,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.GetSchemas[selectedSchemaIndex].SetValue("MeteorWeapon", value);
+                modelModified();
                 OnPropertyChanged("SetWeapon");
             }
         }
@@ -276,6 +309,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.GetSchemas[selectedSchemaIndex].SetValue("MeteorRadius", value);
+                modelModified();
                 OnPropertyChanged("Radius");
             }
         }
@@ -286,6 +320,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.GetSchemas[selectedSchemaIndex].SetValue("MeteorDuration", value);
+                modelModified();
                 OnPropertyChanged("Duration");
             }
         }
@@ -296,6 +331,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.GetSchemas[selectedSchemaIndex].SetValue("MeteorDensity", value);
+                modelModified();
                 OnPropertyChanged("Density");
             }
         }
@@ -306,6 +342,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 otaModel.GetSchemas[selectedSchemaIndex].SetValue("MeteorInterval", value);
+                modelModified();
                 OnPropertyChanged("Interval");
             }
         }
@@ -481,6 +518,11 @@ namespace OTAEdit.ViewModels
             get { return new DelegateCommand(SaveOTA, CanSaveOTA); }
         }
 
+        public ICommand SaveAsOTACommand
+        {
+            get { return new DelegateCommand(SaveAsOTA, CanSaveOTA); }
+        }
+
         public ICommand EditMissionCommand
         {
             get { return new DelegateCommand(EditMission, CanEditMission); }
@@ -525,13 +567,15 @@ namespace OTAEdit.ViewModels
             featureViewModel = new ItemDataViewModel(ItemDataViewModel.SchemaItemType.Feature);
             specialViewModel = new ItemDataViewModel(ItemDataViewModel.SchemaItemType.Special);
 
-            otaModel = new OTAModel();
+            otaModel = new OTAModel(false);
             windowTitle = otaModel.Filename + " - OTA Edit";
             statusBarText = "Ready";
             createSchemaCollection();
-            //createSchemaCollection();
             WindowViewLoaderService.GetInstance.Register(typeof(MissionSettingsViewModel), typeof(MissionSettingsView));
             WindowViewLoaderService.GetInstance.Register(typeof(AddEditViewModel), typeof(AddEditView));
+            WindowViewLoaderService.GetInstance.Register(typeof(SaveDialogViewModel), typeof(SaveDialogView));
+
+            hasModified = false;
         }
 
         private void createSchemaCollection()
@@ -552,13 +596,18 @@ namespace OTAEdit.ViewModels
             if (!otaModel.IsEmpty)
             {
                 windowTitle = otaModel.Filename + " - OTA Edit";
+                statusBarText = "Loaded " + otaModel.Filename;
             }
             else
+            {
                 windowTitle = "OTA Edit";
+                statusBarText = "Ready";
+            }
             OnPropertyChanged("GetWindowTitle");
-            statusBarText = "Loaded " + otaModel.Filename;
             OnPropertyChanged("GetStatusText");
 
+            OnPropertyChanged("IsEmpty");
+            OnPropertyChanged("IsNotEmpty");
             OnPropertyChanged("MapName");
             OnPropertyChanged("MapDesc");
             OnPropertyChanged("SetMemory");
@@ -617,13 +666,69 @@ namespace OTAEdit.ViewModels
             }
         }
 
+        private void modelModified()
+        {
+            if (!hasModified)
+            {
+                hasModified = true;
+                windowTitle = windowTitle + '*';
+                OnPropertyChanged("GetWindowTitle");
+            }
+        }
+
         #region Commands
         public void NewOTA(object parameter)
         {
-            //TODO: create a new .ota file
+            if (hasModified)
+            {
+                SaveDialogViewModel dialog = new SaveDialogViewModel(otaModel.Filename);
+                WindowViewLoaderService.GetInstance.ShowDialog(dialog);
+                if (dialog.GetResult == SaveDialogViewModel.Result.Save)
+                {
+                    SaveAsOTA(null);
+                    otaModel = new OTAModel(false);
+                    updateProperties();
+                }
+                else if (dialog.GetResult == SaveDialogViewModel.Result.DontSave)
+                {
+                    otaModel = new OTAModel(false);
+                    updateProperties();
+                }
+                else
+                    return;
+            }
+            else
+            {
+                otaModel = new OTAModel(false);
+                updateProperties();
+            }
         }
 
         public void OpenOTA(object parameter)
+        {
+            if (hasModified)
+            {
+                SaveDialogViewModel dialog = new SaveDialogViewModel(otaModel.Filename);
+                WindowViewLoaderService.GetInstance.ShowDialog(dialog);
+                if (dialog.GetResult == SaveDialogViewModel.Result.Save)
+                {
+                    SaveAsOTA(null);
+                    open();
+                }
+                else if (dialog.GetResult == SaveDialogViewModel.Result.DontSave)
+                {
+                    open();
+                }
+                else
+                    return;
+            }
+            else
+            {
+                open();
+            }
+        }
+
+        private void open()
         {
             string filepath = File.GetOpenFileName(Ini.GetInstance.GetValueByName(IniKeys.STRING_OTA_LAST_PATH), "OTA file (*.ota)|*.ota");
 
@@ -638,8 +743,29 @@ namespace OTAEdit.ViewModels
 
         public void CloseOTA(object parameter)
         {
-            otaModel = new OTAModel(true);
-            updateProperties();
+            if (hasModified)
+            {
+                SaveDialogViewModel dialog = new SaveDialogViewModel(otaModel.Filename);
+                WindowViewLoaderService.GetInstance.ShowDialog(dialog);
+                if (dialog.GetResult == SaveDialogViewModel.Result.Save)
+                {
+                    SaveAsOTA(null);
+                    otaModel = new OTAModel(true);
+                    updateProperties();
+                }
+                else if (dialog.GetResult == SaveDialogViewModel.Result.DontSave)
+                {
+                    otaModel = new OTAModel(true);
+                    updateProperties();
+                }
+                else
+                    return;
+            }
+            else
+            {
+                otaModel = new OTAModel(true);
+                updateProperties();
+            }
         }
 
         public bool CanCloseOTA()
@@ -649,7 +775,34 @@ namespace OTAEdit.ViewModels
 
         public void SaveOTA(object parameter)
         {
-            //TODO: adding sava & save as code
+            if (otaModel.Filepath != "" && otaModel.Filepath != null)
+            {
+                OtaInputOutput.Write(otaModel.Filepath + "\\" + otaModel.Filename, otaModel);
+                hasModified = false;
+                windowTitle = otaModel.Filename + " - OTA Edit";
+                OnPropertyChanged("GetWindowTitle");
+            }
+            else
+                SaveAsOTA(null);
+        }
+
+        public void SaveAsOTA(object parameter)
+        {
+            string filePath = "";
+
+            if (otaModel.Filepath != "" && otaModel.Filepath != null)
+            {
+                filePath = File.GetSaveFileName(otaModel.Filepath, otaModel.Filename, "OTA file (*.ota)|*.ota");
+            }
+            else
+                filePath = File.GetSaveFileName(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), otaModel.Filename, "OTA file (*.ota)|*.ota");
+            if (filePath != null)
+            {
+                OtaInputOutput.Write(filePath, otaModel);
+                hasModified = false;
+                windowTitle = otaModel.Filename + " - OTA Edit";
+                OnPropertyChanged("GetWindowTitle");
+            }
         }
 
         public bool CanSaveOTA()
@@ -666,6 +819,7 @@ namespace OTAEdit.ViewModels
                 otaModel.SetValue("brief", newDialog.Brief);
                 otaModel.SetValue("narration", newDialog.Narration);
                 otaModel.SetValue("glamour", newDialog.Glamour);
+                modelModified();
             }
         }
 
@@ -678,6 +832,7 @@ namespace OTAEdit.ViewModels
         {
             otaModel.GetSchemas[selectedSchemaIndex] = new SchemaModel(selectedSchemaIndex);
             otaModel.SetValue("SCHEMACOUNT", otaModel.GetIntValue("SCHEMACOUNT") + 1);
+            modelModified();
             createSchemaCollection();
         }
 
@@ -702,6 +857,7 @@ namespace OTAEdit.ViewModels
         {
             otaModel.GetSchemas[selectedSchemaIndex] = new SchemaModel();
             otaModel.SetValue("SCHEMACOUNT", otaModel.GetIntValue("SCHEMACOUNT") - 1);
+            modelModified();
             createSchemaCollection();
         }
 
@@ -732,6 +888,7 @@ namespace OTAEdit.ViewModels
                 if (result == true)
                 {
                     otaModel.GetSchemas[selectedSchemaIndex].Units.Add(newDialog.GetSchemaItem);
+                    modelModified();
                     OnPropertyChanged("GetUnits");
                 }
             }
@@ -742,6 +899,7 @@ namespace OTAEdit.ViewModels
                 if (result == true)
                 {
                     otaModel.GetSchemas[selectedSchemaIndex].Features.Add(newDialog.GetSchemaItem);
+                    modelModified();
                     OnPropertyChanged("GetFeatures");
                 }
             }
@@ -752,6 +910,7 @@ namespace OTAEdit.ViewModels
                 if (result == true)
                 {
                     otaModel.GetSchemas[selectedSchemaIndex].Specials.Add(newDialog.GetSchemaItem);
+                    modelModified();
                     OnPropertyChanged("GetSpecials");
                 }
             }
@@ -785,6 +944,7 @@ namespace OTAEdit.ViewModels
                 if (result == true)
                 {
                     otaModel.GetSchemas[selectedSchemaIndex].Units[selectedUnitIndex] = editCopy;
+                    modelModified();
                     OnPropertyChanged("GetUnits");
                 }
             }
@@ -796,6 +956,7 @@ namespace OTAEdit.ViewModels
                 if (result == true)
                 {
                     otaModel.GetSchemas[selectedSchemaIndex].Features[selectedFeatureIndex] = editCopy;
+                    modelModified();
                     OnPropertyChanged("GetFeatures");
                 }
             }
@@ -807,6 +968,7 @@ namespace OTAEdit.ViewModels
                 if (result == true)
                 {
                     otaModel.GetSchemas[selectedSchemaIndex].Specials[selectedSpecialIndex] = editCopy;
+                    modelModified();
                     OnPropertyChanged("GetSpecials");
                 }
             }
@@ -860,16 +1022,19 @@ namespace OTAEdit.ViewModels
             if (param == "btnRemoveUnit" || param == "listUnits")
             {
                 otaModel.GetSchemas[selectedSchemaIndex].Units.RemoveAt(selectedUnitIndex);
+                modelModified();
                 OnPropertyChanged("GetUnits");
             }
             else if (param == "btnRemoveFeature" || param == "listFeatures")
             {
                 otaModel.GetSchemas[selectedSchemaIndex].Features.RemoveAt(selectedFeatureIndex);
+                modelModified();
                 OnPropertyChanged("GetFeatures");
             }
             else if (param == "btnRemoveSpecial" || param == "listSpecials")
             {
                 otaModel.GetSchemas[selectedSchemaIndex].Specials.RemoveAt(selectedSpecialIndex);
+                modelModified();
                 OnPropertyChanged("GetSpecials");
             }
         }

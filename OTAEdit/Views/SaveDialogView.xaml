@@ -1,0 +1,30 @@
+﻿<Window x:Class="OTAEdit.Views.SaveDialogView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OTAEdit.Views"
+        mc:Ignorable="d"
+        Title="OTA Edit" Height="175" Width="375" ResizeMode="NoResize">
+    <Grid Margin="11,11,11,11">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="75" />
+            <ColumnDefinition Width="7" />
+            <ColumnDefinition Width="75" />
+            <ColumnDefinition Width="7" />
+            <ColumnDefinition Width="75" />
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" FontSize="12pt" Foreground="#003399" TextWrapping="WrapWithOverflow"  Text="{Binding Path=GetFileName, Mode=OneWay}" />
+        
+        <Button Grid.Row="2" Grid.Column="1" IsDefault="True" Content="Save" Click="WindowSave_Click" Command="{Binding Path=SaveCommand}" />
+        <Button Grid.Row="2" Grid.Column="3" Content="Don't save" Click="WindowDontSave_Click" Command="{Binding Path=DontSaveCommand}" />
+        <Button Grid.Row="2" Grid.Column="5" IsCancel="True" Content="Cancel" Click="WindowCancel_Click" Command="{Binding Path=CancelCommand}" />
+    </Grid>
+</Window>

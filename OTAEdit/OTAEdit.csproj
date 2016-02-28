@@ -75,8 +75,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\MissionSettingsViewModel.cs" />
+    <Compile Include="ViewModels\SaveDialogViewModel.cs" />
     <Compile Include="Views\MissionSettingsView.xaml.cs">
       <DependentUpon>MissionSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SaveDialogView.xaml.cs">
+      <DependentUpon>SaveDialogView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AddEditView.xaml">
       <SubType>Designer</SubType>
@@ -130,6 +134,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\MissionSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SaveDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
