@@ -38,6 +38,8 @@ namespace OTAEdit.InputOutput
                 wr.WriteLine("\t" + otaModel.GetWriteString("minwindspeed"));
                 wr.WriteLine("\t" + otaModel.GetWriteString("maxwindspeed"));
                 wr.WriteLine("\t" + otaModel.GetWriteString("gravity"));
+                if (otaModel.Properties.ContainsKey("maxunits"))
+                    wr.WriteLine("\t" + otaModel.GetWriteString("maxunits"));
                 wr.WriteLine("\t" + otaModel.GetWriteString("waterdoesdamage"));
                 wr.WriteLine("\t" + otaModel.GetWriteString("waterdamage"));
                 wr.WriteLine("\t" + otaModel.GetWriteString("numplayers"));

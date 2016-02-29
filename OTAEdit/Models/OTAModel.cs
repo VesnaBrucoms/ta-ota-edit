@@ -92,6 +92,7 @@ namespace OTAEdit.Models
 
             memory = new List<string>();
             memory.Add("16 mb");
+            memory.Add("24 mb");
             memory.Add("32 mb");
             memory.Add("48 mb");
             memory.Add("64 mb");
@@ -103,7 +104,7 @@ namespace OTAEdit.Models
             planets.Add("Darkside");
             planets.Add("Desert");
             planets.Add("Ice");
-            planets.Add("Green Planet");
+            planets.Add("Green planet");
             planets.Add("Lava");
             planets.Add("Luna");
             planets.Add("Lush");
