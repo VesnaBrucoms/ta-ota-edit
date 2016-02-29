@@ -571,9 +571,11 @@ namespace OTAEdit.ViewModels
             windowTitle = otaModel.Filename + " - OTA Edit";
             statusBarText = "Ready";
             createSchemaCollection();
-            WindowViewLoaderService.GetInstance.Register(typeof(MissionSettingsViewModel), typeof(MissionSettingsView));
-            WindowViewLoaderService.GetInstance.Register(typeof(AddEditViewModel), typeof(AddEditView));
-            WindowViewLoaderService.GetInstance.Register(typeof(SaveDialogViewModel), typeof(SaveDialogView));
+
+            if (EnvironmentService.GetInstance.StartupFilePath != null && EnvironmentService.GetInstance.StartupFilePath != "")
+            {
+                open(EnvironmentService.GetInstance.StartupFilePath);
+            }
 
             hasModified = false;
         }
@@ -739,6 +741,14 @@ namespace OTAEdit.ViewModels
 
                 Ini.GetInstance.ChangeValueByName(IniKeys.STRING_OTA_LAST_PATH, File.ExtractFilePath(filepath));
             }
+        }
+
+        private void open(string filepath)
+        {
+            otaModel = OtaInputOutput.Read(filepath);
+            updateProperties();
+
+            Ini.GetInstance.ChangeValueByName(IniKeys.STRING_OTA_LAST_PATH, File.ExtractFilePath(filepath));
         }
 
         public void CloseOTA(object parameter)

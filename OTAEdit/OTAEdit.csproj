@@ -76,6 +76,7 @@
     </ApplicationDefinition>
     <Compile Include="ViewModels\MissionSettingsViewModel.cs" />
     <Compile Include="ViewModels\SaveDialogViewModel.cs" />
+    <Compile Include="ViewModels\Services\EnvironmentService.cs" />
     <Compile Include="Views\MissionSettingsView.xaml.cs">
       <DependentUpon>MissionSettingsView.xaml</DependentUpon>
     </Compile>
