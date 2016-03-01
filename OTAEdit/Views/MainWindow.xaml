@@ -116,7 +116,7 @@
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Description:" />
                     <TextBox Grid.Row="4" Grid.Column="0" IsEnabled="{Binding Path=IsNotEmpty}" Grid.ColumnSpan="3" MaxLength="128" Text="{Binding Path=MapDesc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="3" Grid.Column="4" Text="Planet:" />
-                    <ComboBox Grid.Row="4" Grid.Column="4" IsEnabled="{Binding Path=IsNotEmpty}" ItemsSource="{Binding Path=GetPlanets}" SelectedValue="{Binding Path=SetPlanet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <ComboBox Grid.Row="4" Grid.Column="4" IsEnabled="{Binding Path=IsNotEmpty}" IsEditable="True" ItemsSource="{Binding Path=GetPlanets}" SelectedValue="{Binding Path=SetPlanet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </GroupBox>
             <GroupBox Grid.Row="0" Grid.Column="2" Header="Settings">

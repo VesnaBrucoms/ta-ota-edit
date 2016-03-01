@@ -17,7 +17,6 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -28,122 +27,168 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Units:" />
-        <Grid Grid.Row="1" Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="15" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
+        <TabControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5">
+            <TabItem Header="Units">
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="7" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="7" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
 
-            <ListBox Name="listUnits" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" ContextMenu="{StaticResource listMenu}" ItemsSource="{Binding Path=GetUnits, Mode=OneWay}" SelectedIndex="{Binding Path=SelectedUnit, Mode=OneWayToSource}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="{Binding GetItemIdentifier}" />
-                            <TextBlock Grid.Column="1" Text="{Binding GetItemName}" />
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                    <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="150" Width="1*" />
+                            <ColumnDefinition Width="11" />
+                            <ColumnDefinition MinWidth="150" Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <ListBox Name="listUnits" Grid.Row="0" Grid.Column="0" ContextMenu="{StaticResource listMenu}" ItemsSource="{Binding Path=GetUnits, Mode=OneWay}" SelectedIndex="{Binding Path=SelectedUnit, Mode=OneWayToSource}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding GetItemIdentifier}" />
+                                        <TextBlock Grid.Column="1" Text="{Binding GetItemName}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
 
-            <Expander Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsExpanded="False" Header="Show Unit Data">
-                <control:ItemDataView DataContext="{Binding Path=GetUnitDataViewModel}" />
-            </Expander>
+                        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+                        
+                        <!--<Expander Grid.Row="0" Grid.Column="2" IsExpanded="False" Header="Show Unit Data">-->
+                            <control:ItemDataView Grid.Row="0" Grid.Column="2" DataContext="{Binding Path=GetUnitDataViewModel}" />
+                        <!--</Expander>-->
+                    </Grid>
+                    
+                    <Button Name="btnAddUnit" Grid.Row="0" Grid.Column="0" Width="75" Command="{Binding AddItemCommand}" CommandParameter="{Binding ElementName=btnAddUnit, Path=Name}">Add...</Button>
+                    <Button Name="btnEditUnit" Grid.Row="0" Grid.Column="2" Width="75" Command="{Binding EditItemCommand}" CommandParameter="{Binding ElementName=btnEditUnit, Path=Name}">Edit...</Button>
+                    <Button Name="btnRemoveUnit" Grid.Row="0" Grid.Column="4" Width="75" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding ElementName=btnRemoveUnit, Path=Name}">Remove</Button>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Features">
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="7" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="7" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
 
-            <Button Name="btnAddUnit" Grid.Row="4" Grid.Column="0" Width="60" Command="{Binding AddItemCommand}" CommandParameter="{Binding ElementName=btnAddUnit, Path=Name}">Add...</Button>
-            <Button Name="btnEditUnit" Grid.Row="4" Grid.Column="2" Width="60" Command="{Binding EditItemCommand}" CommandParameter="{Binding ElementName=btnEditUnit, Path=Name}">Edit...</Button>
-            <Button Name="btnRemoveUnit" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Width="75" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding ElementName=btnRemoveUnit, Path=Name}">Remove</Button>
-        </Grid>
+                    <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="150" Width="1*" />
+                            <ColumnDefinition Width="11" />
+                            <ColumnDefinition MinWidth="150" Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <ListBox Name="listFeatures" Grid.Row="0" Grid.Column="0" ContextMenu="{StaticResource listMenu}" ItemsSource="{Binding Path=GetFeatures, Mode=OneWay}" SelectedIndex="{Binding Path=SelectedFeature, Mode=OneWayToSource}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding GetItemIdentifier}" />
+                                        <TextBlock Grid.Column="1" Text="{Binding GetItemName}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
 
-        <TextBlock Grid.Row="0" Grid.Column="2" Text="Features:" />
-        <Grid Grid.Row="1" Grid.Column="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="15" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-            
-            <ListBox Name="listFeatures" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" ContextMenu="{StaticResource listMenu}" ItemsSource="{Binding Path=GetFeatures, Mode=OneWay}" SelectedIndex="{Binding Path=SelectedFeature, Mode=OneWayToSource}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="{Binding GetItemIdentifier}" />
-                            <TextBlock Grid.Column="1" Text="{Binding GetItemName}" />
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            
-            <Expander Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsExpanded="False" Header="Show Feature Data">
-                <control:ItemDataView DataContext="{Binding Path=GetFeatureDataViewModel}" />
-            </Expander>
-            
-            <Button Name="btnAddFeature" Grid.Row="3" Grid.Column="0" Width="60" Command="{Binding AddItemCommand}" CommandParameter="{Binding ElementName=btnAddFeature, Path=Name}">Add...</Button>
-            <Button Name="btnEditFeature" Grid.Row="3" Grid.Column="2" Width="60" Command="{Binding EditItemCommand}" CommandParameter="{Binding ElementName=btnEditFeature, Path=Name}">Edit...</Button>
-            <Button Name="btnRemoveFeature" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Width="75" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding ElementName=btnRemoveFeature, Path=Name}">Remove</Button>
-        </Grid>
+                        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+                        
+                        <!--<Expander Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" IsExpanded="False" Header="Show Feature Data">-->
+                        <control:ItemDataView Grid.Row="0" Grid.Column="2" DataContext="{Binding Path=GetFeatureDataViewModel}" />
+                        <!--</Expander>-->
+                    </Grid>
 
-        <TextBlock Grid.Row="0" Grid.Column="4" Text="Specials:" />
-        <Grid Grid.Row="1" Grid.Column="4">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="15" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
+                    <Button Name="btnAddFeature" Grid.Row="0" Grid.Column="0" Width="75" Command="{Binding AddItemCommand}" CommandParameter="{Binding ElementName=btnAddFeature, Path=Name}">Add...</Button>
+                    <Button Name="btnEditFeature" Grid.Row="0" Grid.Column="2" Width="75" Command="{Binding EditItemCommand}" CommandParameter="{Binding ElementName=btnEditFeature, Path=Name}">Edit...</Button>
+                    <Button Name="btnRemoveFeature" Grid.Row="0" Grid.Column="4" Width="75" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding ElementName=btnRemoveFeature, Path=Name}">Remove</Button>
+                </Grid>
+            </TabItem>
             
-            <ListBox Name="listSpecials" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" ContextMenu="{StaticResource listMenu}" ItemsSource="{Binding Path=GetSpecials, Mode=OneWay}" SelectedIndex="{Binding Path=SelectedSpecial, Mode=OneWayToSource}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="{Binding GetItemIdentifier}" />
-                            <TextBlock Grid.Column="1" Text="{Binding GetItemName}" />
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            
-            <Expander Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsExpanded="False" Header="Show Unit Data">
-                <control:ItemDataView DataContext="{Binding Path=GetSpecialDataViewModel}" />
-            </Expander>
-            
-            <Button Name="btnAddSpecial" Grid.Row="3" Grid.Column="0" Width="60" Command="{Binding AddItemCommand}" CommandParameter="{Binding ElementName=btnAddSpecial, Path=Name}">Add...</Button>
-            <Button Name="btnEditSpecial" Grid.Row="3" Grid.Column="2" Width="60" Command="{Binding EditItemCommand}" CommandParameter="{Binding ElementName=btnEditSpecial, Path=Name}">Edit...</Button>
-            <Button Name="btnRemoveSpecial" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Width="75" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding ElementName=btnRemoveSpecial, Path=Name}">Remove</Button>
-        </Grid>
+            <TabItem Header="Specials">
+                <Grid Grid.Row="1" Grid.Column="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="7" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="7" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="150" Width="1*" />
+                            <ColumnDefinition Width="11" />
+                            <ColumnDefinition MinWidth="150" Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <ListBox Name="listSpecials" Grid.Row="0" Grid.Column="0" ContextMenu="{StaticResource listMenu}" ItemsSource="{Binding Path=GetSpecials, Mode=OneWay}" SelectedIndex="{Binding Path=SelectedSpecial, Mode=OneWayToSource}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding GetItemIdentifier}" />
+                                        <TextBlock Grid.Column="1" Text="{Binding GetItemName}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+                        
+                        <!--<Expander Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsExpanded="False" Header="Show Special Data">-->
+                            <control:ItemDataView Grid.Row="0" Grid.Column="2" DataContext="{Binding Path=GetSpecialDataViewModel}" />
+                        <!--</Expander>-->
+                    </Grid>
+
+                    <Button Name="btnAddSpecial" Grid.Row="0" Grid.Column="0" Width="75" Command="{Binding AddItemCommand}" CommandParameter="{Binding ElementName=btnAddSpecial, Path=Name}">Add...</Button>
+                    <Button Name="btnEditSpecial" Grid.Row="0" Grid.Column="2" Width="75" Command="{Binding EditItemCommand}" CommandParameter="{Binding ElementName=btnEditSpecial, Path=Name}">Edit...</Button>
+                    <Button Name="btnRemoveSpecial" Grid.Row="0" Grid.Column="4" Width="75" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding ElementName=btnRemoveSpecial, Path=Name}">Remove</Button>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>
