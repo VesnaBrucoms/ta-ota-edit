@@ -6,29 +6,31 @@
              xmlns:local="clr-namespace:OTAEdit.Views.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="15" />
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
-        
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="Bold"  Text="{Binding Path=GetTitle, Mode=OneWay}" />
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=GetXPos, Mode=OneWay}" />
-        <TextBlock Grid.Row="2" Grid.Column="0" Visibility="{Binding Path=GetVisibility}" Text="{Binding Path=GetYPos, Mode=OneWay}" />
-        <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Path=GetZPos, Mode=OneWay}" />
-        <TextBlock Grid.Row="2" Grid.Column="2" Visibility="{Binding Path=GetVisibility}" Text="{Binding Path=GetPlayer, Mode=OneWay}" />
-        <TextBlock Grid.Row="3" Grid.Column="0" Visibility="{Binding Path=GetVisibility}" Text="{Binding Path=GetHealth, Mode=OneWay}" />
-        <TextBlock Grid.Row="3" Grid.Column="2" Visibility="{Binding Path=GetVisibility}" Text="{Binding Path=GetAngle, Mode=OneWay}" />
-        <TextBlock Grid.Row="4" Grid.Column="0" Visibility="{Binding Path=GetVisibility}" Text="{Binding Path=GetKills, Mode=OneWay}" />
-        <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Visibility="{Binding Path=GetVisibility}" TextWrapping="WrapWithOverflow" Text="{Binding Path=GetMission, Mode=OneWay}" />
-    </Grid>
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="15" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontWeight="Bold"  Text="{Binding Path=GetTitle, Mode=OneWay}" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=GetXPos, Mode=OneWay}" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Visibility="{Binding Path=GetVisibility}" Text="{Binding Path=GetYPos, Mode=OneWay}" />
+            <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Path=GetZPos, Mode=OneWay}" />
+            <TextBlock Grid.Row="2" Grid.Column="2" Visibility="{Binding Path=GetVisibility}" Text="{Binding Path=GetPlayer, Mode=OneWay}" />
+            <TextBlock Grid.Row="3" Grid.Column="0" Visibility="{Binding Path=GetVisibility}" Text="{Binding Path=GetHealth, Mode=OneWay}" />
+            <TextBlock Grid.Row="3" Grid.Column="2" Visibility="{Binding Path=GetVisibility}" Text="{Binding Path=GetAngle, Mode=OneWay}" />
+            <TextBlock Grid.Row="4" Grid.Column="0" Visibility="{Binding Path=GetVisibility}" Text="{Binding Path=GetKills, Mode=OneWay}" />
+            <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Visibility="{Binding Path=GetVisibility}" TextWrapping="WrapWithOverflow" Text="{Binding Path=GetMission, Mode=OneWay}" />
+        </Grid>
+    </ScrollViewer>
 </UserControl>

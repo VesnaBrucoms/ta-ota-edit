@@ -36,6 +36,19 @@ namespace OTAEdit.Models
             }
         }
 
+        public string GetItemIdent
+        {
+            get
+            {
+                if (Properties.ContainsKey("Ident") && GetStringValue("Ident") != "")
+                {
+                    return "(" + GetStringValue("Ident") + ")";
+                }
+                else
+                    return "";
+            }
+        }
+
         public SchemaItemModel()
         {
             itemIdentifier = "";

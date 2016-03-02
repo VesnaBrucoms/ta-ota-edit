@@ -51,7 +51,7 @@ namespace OTAEdit.ViewModels.Controls
                 {
                     if (schemaItem.GetStringValue("Ident") != "")
                     {
-                        return schemaItem.GetStringValue("Ident") + " (" + schemaItem.GetItemName + ")";
+                        return schemaItem.GetItemName + " (" + schemaItem.GetStringValue("Ident") + ")";
                     }
                     else
                         return schemaItem.GetItemName;
