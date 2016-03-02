@@ -64,12 +64,12 @@
             </MenuItem>
         </Menu>
         <ToolBarTray Grid.Row="1" Visibility="{Binding Path=GetToolBarVisibility, Mode=OneWay}">
-            <ToolBar>
+            <ToolBar Visibility="Visible">
                 <Button Content="{StaticResource NewFileToolbar}" Command="{Binding Path=NewOTACommand}" />
                 <Button Content="{StaticResource OpenFolderToolbar}" Command="{Binding Path=OpenOTACommand}" />
                 <Button Content="{StaticResource SaveToolbar}" Command="{Binding Path=SaveOTACommand}" />
             </ToolBar>
-            <ToolBar>
+            <ToolBar Visibility="Visible">
                 <Button x:Name="toolAddUnit" Content="New Unit" Command="{Binding Path=AddItemCommand}" CommandParameter="{Binding ElementName=toolAddUnit, Path=Name}" />
                 <Button x:Name="toolAddFeature" Content="New Feature" Command="{Binding Path=AddItemCommand}" CommandParameter="{Binding ElementName=toolAddFeature, Path=Name}" />
                 <Button x:Name="toolAddSpecial" Content="New Special" Command="{Binding Path=AddItemCommand}" CommandParameter="{Binding ElementName=toolAddSpecial, Path=Name}" />
@@ -111,7 +111,7 @@
                     <TextBlock Grid.Row="0" Grid.Column="2" Text="Players:" />
                     <TextBox Grid.Row="1" Grid.Column="2" IsEnabled="{Binding Path=IsNotEmpty}" Text="{Binding Path=NumPlayers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="0" Grid.Column="4" Text="Memory:" />
-                    <ComboBox Grid.Row="1" Grid.Column="6" IsEnabled="{Binding Path=IsNotEmpty}" ItemsSource="{Binding Path=GetMemory}" SelectedValue="{Binding Path=SetMemory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <ComboBox Grid.Row="1" Grid.Column="6" IsEnabled="{Binding Path=IsNotEmpty}" IsEditable="True" ItemsSource="{Binding Path=GetMemory}" SelectedValue="{Binding Path=SetMemory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Description:" />
                     <TextBox Grid.Row="4" Grid.Column="0" IsEnabled="{Binding Path=IsNotEmpty}" Grid.ColumnSpan="3" MaxLength="128" Text="{Binding Path=MapDesc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />

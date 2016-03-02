@@ -6,10 +6,14 @@
         xmlns:local="clr-namespace:OTAEdit.Views"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Mission Settings" WindowStartupLocation="CenterScreen" Height="200" Width="450" ResizeMode="NoResize">
+        Title="Mission Settings" WindowStartupLocation="CenterScreen" Height="auto" Width="450" ResizeMode="NoResize" SizeToContent="Height">
     <Grid Margin="11,11,11,11">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="11" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="11" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="20" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
@@ -53,7 +57,74 @@
             <!-- <Image Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Visibility="Collapsed" Source="{Binding Path=Image, Mode=OneWay}" /> -->
         </Grid>
 
-        <Button Grid.Row="2" Grid.Column="1" IsDefault="True" Content="Accept" Click="WindowAccept_Click" />
-        <Button Grid.Row="2" Grid.Column="3" IsCancel="True" Content="Cancel" Click="WindowCancel_Click" />
+        <GroupBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Header="Victory conditions">
+            <Grid Margin="4,4,4,4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="11" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="11" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <CheckBox Grid.Row="0" Grid.Column="0">Kill enemy commander</CheckBox>
+                <CheckBox Grid.Row="0" Grid.Column="2">Destroy all units</CheckBox>
+
+                <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="11" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="11" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox Grid.Row="0" Grid.Column="0">Move unit to radius:</CheckBox>
+                    <TextBox Margin="18,0,0,0" Grid.Row="1" Grid.Column="0" />
+
+                    <CheckBox Grid.Row="0" Grid.Column="2">Kill unit:</CheckBox>
+                    <TextBox Margin="18,0,0,0" Grid.Row="1" Grid.Column="2" />
+
+                    <CheckBox Grid.Row="3" Grid.Column="0">Capture unit:</CheckBox>
+                    <TextBox Margin="18,0,0,0" Grid.Row="4" Grid.Column="0" />
+
+                    <CheckBox Grid.Row="3" Grid.Column="2">Build unit:</CheckBox>
+                    <TextBox Margin="18,0,0,0" Grid.Row="4" Grid.Column="2" />
+                </Grid>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" Header="Defeat conditions">
+            <Grid Margin="4,4,4,4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="11" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="11" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <CheckBox Grid.Row="0" Grid.Column="0">Commander killed</CheckBox>
+                <CheckBox Grid.Row="0" Grid.Column="2">All units killed</CheckBox>
+
+                <CheckBox Grid.Row="2" Grid.Column="0">All units kiiled of type:</CheckBox>
+                <TextBox Margin="18,0,0,0" Grid.Row="3" Grid.Column="0" />
+            </Grid>
+        </GroupBox>
+        
+        <Button Grid.Row="6" Grid.Column="1" IsDefault="True" Content="Accept" Click="WindowAccept_Click" />
+        <Button Grid.Row="6" Grid.Column="3" IsCancel="True" Content="Cancel" Click="WindowCancel_Click" />
     </Grid>
 </Window>
