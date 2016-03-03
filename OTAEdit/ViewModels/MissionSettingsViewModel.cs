@@ -15,7 +15,20 @@ namespace OTAEdit.ViewModels
         private string brief;
         private string narration;
         private string glamour;
-        //private BitmapImage imageSource;
+        private bool hasKillEnemyCom;
+        private bool hasDestroyUnits;
+        private bool hasMoveToRadius;
+        private string moveToRadius;
+        private bool hasKillUnit;
+        private string killUnit;
+        private bool hasCaptureUnit;
+        private string captureUnit;
+        private bool hasBuildUnit;
+        private string buildUnit;
+        private bool hasComKilled;
+        private bool hasUnitsKilled;
+        private bool hasUnitTypeKilled;
+        private string unitTypeKilled;
 
         #region ViewModelProperties
         public string Brief
@@ -48,10 +61,170 @@ namespace OTAEdit.ViewModels
             }
         }
 
-        //public BitmapImage Image
-        //{
-            //get { return imageSource; }
-        //}
+        public bool HasKillEnemyCom
+        {
+            get { return hasKillEnemyCom; }
+            set
+            {
+                hasKillEnemyCom = value;
+                OnPropertyChanged("HasKillEnemyCom");
+            }
+        }
+
+        public bool HasDestroyUnits
+        {
+            get { return hasDestroyUnits; }
+            set
+            {
+                hasDestroyUnits = value;
+                OnPropertyChanged("HasDestroyUnits");
+            }
+        }
+
+        public bool HasMoveToRadius
+        {
+            get { return hasMoveToRadius; }
+            set
+            {
+                hasMoveToRadius = value;
+                OnPropertyChanged("HasMoveToRadius");
+            }
+        }
+
+        public string MoveToRadius
+        {
+            get { return moveToRadius; }
+            set
+            {
+                moveToRadius = value;
+                if (!hasMoveToRadius && moveToRadius != "")
+                {
+                    hasMoveToRadius = true;
+                    OnPropertyChanged("HasMoveToRadius");
+                }
+                OnPropertyChanged("MoveToRadius");
+            }
+        }
+
+        public bool HasKillUnit
+        {
+            get { return hasKillUnit; }
+            set
+            {
+                hasKillUnit = value;
+                OnPropertyChanged("HasKillUnit");
+            }
+        }
+
+        public string KillUnit
+        {
+            get { return killUnit; }
+            set
+            {
+                killUnit = value;
+                if (!hasKillUnit && killUnit != "")
+                {
+                    hasKillUnit = true;
+                    OnPropertyChanged("HasKillUnit");
+                }
+                OnPropertyChanged("KillUnit");
+            }
+        }
+
+        public bool HasCaptureUnit
+        {
+            get { return hasCaptureUnit; }
+            set
+            {
+                hasCaptureUnit = value;
+                OnPropertyChanged("HasCaptureUnit");
+            }
+        }
+
+        public string CaptureUnit
+        {
+            get { return captureUnit; }
+            set
+            {
+                captureUnit = value;
+                if (!hasCaptureUnit && captureUnit != "")
+                {
+                    hasCaptureUnit = true;
+                    OnPropertyChanged("HasCaptureUnit");
+                }
+                OnPropertyChanged("CaptureUnit");
+            }
+        }
+
+        public bool HasBuildUnit
+        {
+            get { return hasBuildUnit; }
+            set
+            {
+                hasBuildUnit = value;
+                OnPropertyChanged("HasBuildUnit");
+            }
+        }
+
+        public string BuildUnit
+        {
+            get { return buildUnit; }
+            set
+            {
+                buildUnit = value;
+                if (!hasBuildUnit && buildUnit != "")
+                {
+                    hasBuildUnit = true;
+                    OnPropertyChanged("HasBuildUnit");
+                }
+                OnPropertyChanged("BuildUnit");
+            }
+        }
+
+        public bool HasComKilled
+        {
+            get { return hasComKilled; }
+            set
+            {
+                hasComKilled = value;
+                OnPropertyChanged("HasComKilled");
+            }
+        }
+
+        public bool HasUnitsKilled
+        {
+            get { return hasUnitsKilled; }
+            set
+            {
+                hasUnitsKilled = value;
+                OnPropertyChanged("HasUnitsKilled");
+            }
+        }
+
+        public bool HasUnitTypeKilled
+        {
+            get { return hasUnitTypeKilled; }
+            set
+            {
+                hasUnitTypeKilled = value;
+                OnPropertyChanged("HasUnitTypeKilled");
+            }
+        }
+
+        public string UnitTypeKilled
+        {
+            get { return unitTypeKilled; }
+            set
+            {
+                unitTypeKilled = value;
+                if (!hasBuildUnit && unitTypeKilled != "")
+                {
+                    hasUnitTypeKilled = true;
+                    OnPropertyChanged("HasUnitTypeKilled");
+                }
+                OnPropertyChanged("UnitTypeKilled");
+            }
+        }
         #endregion
 
         #region CommandProperties

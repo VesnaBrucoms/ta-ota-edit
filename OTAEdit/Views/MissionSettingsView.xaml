@@ -70,8 +70,8 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
 
-                <CheckBox Grid.Row="0" Grid.Column="0">Kill enemy commander</CheckBox>
-                <CheckBox Grid.Row="0" Grid.Column="2">Destroy all units</CheckBox>
+                <CheckBox Grid.Row="0" Grid.Column="0" IsChecked="{Binding Path=HasKillEnemyCom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Kill enemy commander</CheckBox>
+                <CheckBox Grid.Row="0" Grid.Column="2" IsChecked="{Binding Path=HasDestroyUnits, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Destroy all units</CheckBox>
 
                 <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
                     <Grid.RowDefinitions>
@@ -87,17 +87,17 @@
                         <ColumnDefinition Width="1*" />
                     </Grid.ColumnDefinitions>
 
-                    <CheckBox Grid.Row="0" Grid.Column="0">Move unit to radius:</CheckBox>
-                    <TextBox Margin="18,0,0,0" Grid.Row="1" Grid.Column="0" />
+                    <CheckBox Grid.Row="0" Grid.Column="0" IsChecked="{Binding Path=HasMoveToRadius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Move unit to radius:</CheckBox>
+                    <TextBox Margin="18,0,0,0" Grid.Row="1" Grid.Column="0" IsEnabled="{Binding Path=HasMoveToRadius, Mode=OneWay}" Text="{Binding Path=MoveToRadius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                    <CheckBox Grid.Row="0" Grid.Column="2">Kill unit:</CheckBox>
-                    <TextBox Margin="18,0,0,0" Grid.Row="1" Grid.Column="2" />
+                    <CheckBox Grid.Row="0" Grid.Column="2" IsChecked="{Binding Path=HasKillUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Kill unit:</CheckBox>
+                    <TextBox Margin="18,0,0,0" Grid.Row="1" Grid.Column="2" IsEnabled="{Binding Path=HasKillUnit, Mode=OneWay}" Text="{Binding Path=KillUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                    <CheckBox Grid.Row="3" Grid.Column="0">Capture unit:</CheckBox>
-                    <TextBox Margin="18,0,0,0" Grid.Row="4" Grid.Column="0" />
+                    <CheckBox Grid.Row="3" Grid.Column="0" IsChecked="{Binding Path=HasCaptureUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Capture unit:</CheckBox>
+                    <TextBox Margin="18,0,0,0" Grid.Row="4" Grid.Column="0" IsEnabled="{Binding Path=HasCaptureUnit, Mode=OneWay}" Text="{Binding Path=CaptureUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                    <CheckBox Grid.Row="3" Grid.Column="2">Build unit:</CheckBox>
-                    <TextBox Margin="18,0,0,0" Grid.Row="4" Grid.Column="2" />
+                    <CheckBox Grid.Row="3" Grid.Column="2" IsChecked="{Binding Path=HasBuildUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Build unit:</CheckBox>
+                    <TextBox Margin="18,0,0,0" Grid.Row="4" Grid.Column="2" IsEnabled="{Binding Path=HasBuildUnit, Mode=OneWay}" Text="{Binding Path=BuildUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </Grid>
         </GroupBox>
@@ -116,11 +116,11 @@
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
 
-                <CheckBox Grid.Row="0" Grid.Column="0">Commander killed</CheckBox>
-                <CheckBox Grid.Row="0" Grid.Column="2">All units killed</CheckBox>
+                <CheckBox Grid.Row="0" Grid.Column="0" IsChecked="{Binding Path=HasComKilled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Commander killed</CheckBox>
+                <CheckBox Grid.Row="0" Grid.Column="2" IsChecked="{Binding Path=HasUnitsKilled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">All units killed</CheckBox>
 
-                <CheckBox Grid.Row="2" Grid.Column="0">All units kiiled of type:</CheckBox>
-                <TextBox Margin="18,0,0,0" Grid.Row="3" Grid.Column="0" />
+                <CheckBox Grid.Row="2" Grid.Column="0" IsChecked="{Binding Path=HasUnitTypeKilled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">All units kiiled of type:</CheckBox>
+                <TextBox Margin="18,0,0,0" Grid.Row="3" Grid.Column="0" IsEnabled="{Binding Path=HasUnitTypeKilled, Mode=OneWay}" Text="{Binding Path=UnitTypeKilled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             </Grid>
         </GroupBox>
         

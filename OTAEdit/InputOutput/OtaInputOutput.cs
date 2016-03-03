@@ -40,8 +40,10 @@ namespace OTAEdit.InputOutput
                 wr.WriteLine("\t" + otaModel.GetWriteString("gravity"));
                 if (otaModel.Properties.ContainsKey("maxunits"))
                     wr.WriteLine("\t" + otaModel.GetWriteString("maxunits"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("waterdoesdamage"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("waterdamage"));
+                if (otaModel.Properties.ContainsKey("waterdoesdamage"))
+                    wr.WriteLine("\t" + otaModel.GetWriteString("waterdoesdamage"));
+                if (otaModel.Properties.ContainsKey("waterdamage"))
+                    wr.WriteLine("\t" + otaModel.GetWriteString("waterdamage"));
                 wr.WriteLine("\t" + otaModel.GetWriteString("numplayers"));
                 wr.WriteLine("\t" + otaModel.GetWriteString("size"));
                 wr.WriteLine("\t" + otaModel.GetWriteString("memory"));

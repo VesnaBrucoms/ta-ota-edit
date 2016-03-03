@@ -823,12 +823,35 @@ namespace OTAEdit.ViewModels
         public void EditMission(object parameter)
         {
             MissionSettingsViewModel newDialog = new MissionSettingsViewModel(otaModel.GetStringValue("brief"), otaModel.GetStringValue("narration"), otaModel.GetStringValue("glamour"));
+            newDialog.HasKillEnemyCom = otaModel.GetBoolValue("KillEnemyCommander");
+            newDialog.HasDestroyUnits = otaModel.GetBoolValue("DestroyAllUnits");
+            newDialog.MoveToRadius = otaModel.GetStringValue("MoveUnitToRadius");
+            newDialog.KillUnit = otaModel.GetStringValue("KillUnitType");
+            newDialog.CaptureUnit = otaModel.GetStringValue("CaptureUnitType");
+            newDialog.BuildUnit = otaModel.GetStringValue("BuildUnitType");
+            newDialog.HasComKilled = otaModel.GetBoolValue("CommanderKilled");
+            newDialog.HasUnitsKilled = otaModel.GetBoolValue("AllUnitsKilled");
+            newDialog.UnitTypeKilled = otaModel.GetStringValue("AllUnitsKilledOfType");
             bool? result = WindowViewLoaderService.GetInstance.ShowDialog(newDialog);
             if (result == true)
             {
                 otaModel.SetValue("brief", newDialog.Brief);
                 otaModel.SetValue("narration", newDialog.Narration);
                 otaModel.SetValue("glamour", newDialog.Glamour);
+                otaModel.SetValue("KillEnemyCommander", newDialog.HasKillEnemyCom);
+                otaModel.SetValue("DestroyAllUnits", newDialog.HasDestroyUnits);
+                if (newDialog.HasMoveToRadius)
+                    otaModel.SetValue("MoveUnitToRadius", newDialog.MoveToRadius);
+                if (newDialog.HasKillUnit)
+                    otaModel.SetValue("KillUnitType", newDialog.KillUnit);
+                if (newDialog.HasCaptureUnit)
+                    otaModel.SetValue("CaptureUnitType", newDialog.CaptureUnit);
+                if (newDialog.HasBuildUnit)
+                    otaModel.SetValue("BuildUnitType", newDialog.BuildUnit);
+                otaModel.SetValue("CommanderKilled", newDialog.HasComKilled);
+                otaModel.SetValue("AllUnitsKilled", newDialog.HasUnitsKilled);
+                if (newDialog.HasUnitTypeKilled)
+                    otaModel.SetValue("AllUnitsKilledOfType", newDialog.UnitTypeKilled);
                 modelModified();
             }
         }
