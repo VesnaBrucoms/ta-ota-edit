@@ -21,51 +21,51 @@ namespace OTAEdit.InputOutput
             {
                 wr.WriteLine("[GlobalHeader]");
                 wr.WriteLine("\t{");
-                wr.WriteLine("\t" + otaModel.GetWriteString("missionname"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("missiondescription"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("planet"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("missionhint"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("brief"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("narration"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("glamour"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("lineofsight"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("mapping"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("tidalstrength"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("solarstrength"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("lavaworld"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("killmul"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("timemul"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("minwindspeed"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("maxwindspeed"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("gravity"));
+                wr.WriteLine("\t" + otaModel.GetWriteString("missionname") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("missiondescription") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("planet") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("missionhint") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("brief") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("narration") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("glamour") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("lineofsight") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("mapping") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("tidalstrength") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("solarstrength") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("lavaworld") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("killmul") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("timemul") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("minwindspeed") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("maxwindspeed") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("gravity") + ";");
                 if (otaModel.Properties.ContainsKey("maxunits"))
-                    wr.WriteLine("\t" + otaModel.GetWriteString("maxunits"));
+                    wr.WriteLine("\t" + otaModel.GetWriteString("maxunits") + ";");
                 if (otaModel.Properties.ContainsKey("waterdoesdamage"))
-                    wr.WriteLine("\t" + otaModel.GetWriteString("waterdoesdamage"));
+                    wr.WriteLine("\t" + otaModel.GetWriteString("waterdoesdamage") + ";");
                 if (otaModel.Properties.ContainsKey("waterdamage"))
-                    wr.WriteLine("\t" + otaModel.GetWriteString("waterdamage"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("numplayers"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("size"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("memory"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("useonlyunits"));
+                    wr.WriteLine("\t" + otaModel.GetWriteString("waterdamage") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("numplayers") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("size") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("memory") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("useonlyunits") + ";");
                 if (otaModel.Properties.ContainsKey("MoveUnitToRadius"))
-                    wr.WriteLine("\t" + otaModel.GetWriteString("MoveUnitToRadius"));
+                    wr.WriteLine("\t" + otaModel.GetWriteString("MoveUnitToRadius") + ";");
                 if (otaModel.Properties.ContainsKey("KillUnitType"))
-                    wr.WriteLine("\t" + otaModel.GetWriteString("KillUnitType"));
+                    wr.WriteLine("\t" + otaModel.GetWriteString("KillUnitType") + ";");
                 if (otaModel.Properties.ContainsKey("KillEnemyCommander"))
-                    wr.WriteLine("\t" + otaModel.GetWriteString("KillEnemyCommander"));
+                    wr.WriteLine("\t" + otaModel.GetWriteString("KillEnemyCommander") + ";");
                 if (otaModel.Properties.ContainsKey("DestroyAllUnits"))
-                    wr.WriteLine("\t" + otaModel.GetWriteString("DestroyAllUnits"));
+                    wr.WriteLine("\t" + otaModel.GetWriteString("DestroyAllUnits") + ";");
                 if (otaModel.Properties.ContainsKey("CaptureUnitType"))
-                    wr.WriteLine("\t" + otaModel.GetWriteString("CaptureUnitType"));
+                    wr.WriteLine("\t" + otaModel.GetWriteString("CaptureUnitType") + ";");
                 if (otaModel.Properties.ContainsKey("BuildUnitType"))
-                    wr.WriteLine("\t" + otaModel.GetWriteString("BuildUnitType"));
+                    wr.WriteLine("\t" + otaModel.GetWriteString("BuildUnitType") + ";");
                 if (otaModel.Properties.ContainsKey("CommanderKilled"))
-                    wr.WriteLine("\t" + otaModel.GetWriteString("CommanderKilled"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("AllUnitsKilled"));
+                    wr.WriteLine("\t" + otaModel.GetWriteString("CommanderKilled") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("AllUnitsKilled") + ";");
                 if (otaModel.Properties.ContainsKey("AllUnitsKilledOfType"))
-                    wr.WriteLine("\t" + otaModel.GetWriteString("AllUnitsKilledOfType"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("SCHEMACOUNT"));
+                    wr.WriteLine("\t" + otaModel.GetWriteString("AllUnitsKilledOfType") + ";");
+                wr.WriteLine("\t" + otaModel.GetWriteString("SCHEMACOUNT") + ";");
                 foreach (SchemaModel schema in otaModel.GetSchemas)
                 {
                     if (schema.IsActive)
@@ -79,19 +79,19 @@ namespace OTAEdit.InputOutput
         {
             wr.WriteLine("\t[" + schemaModel.GetName + "]");
             wr.WriteLine("\t\t{");
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("Type"));
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("aiprofile"));
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("SurfaceMetal"));
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MohoMetal"));
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("HumanMetal"));
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("ComputerMetal"));
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("HumanEnergy"));
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("ComputerEnergy"));
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorWeapon"));
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorRadius"));
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorDensity"));
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorDuration"));
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorInterval"));
+            wr.WriteLine("\t\t" + schemaModel.GetWriteString("Type") + ";");
+            wr.WriteLine("\t\t" + schemaModel.GetWriteString("aiprofile") + ";");
+            wr.WriteLine("\t\t" + schemaModel.GetWriteString("SurfaceMetal") + ";");
+            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MohoMetal") + ";");
+            wr.WriteLine("\t\t" + schemaModel.GetWriteString("HumanMetal") + ";");
+            wr.WriteLine("\t\t" + schemaModel.GetWriteString("ComputerMetal") + ";");
+            wr.WriteLine("\t\t" + schemaModel.GetWriteString("HumanEnergy") + ";");
+            wr.WriteLine("\t\t" + schemaModel.GetWriteString("ComputerEnergy") + ";");
+            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorWeapon") + ";");
+            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorRadius") + ";");
+            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorDensity") + ";");
+            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorDuration") + ";");
+            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorInterval") + ";");
             if (schemaModel.Units.Count != 0)
             {
                 wr.WriteLine("\t\t[units]");
@@ -123,17 +123,17 @@ namespace OTAEdit.InputOutput
         {
             wr.WriteLine("\t\t\t" + itemModel.GetItemIdentifier);
             wr.WriteLine("\t\t\t\t{");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Unitname"));
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Ident"));
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("XPos"));
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("YPos"));
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("ZPos"));
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Player"));
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("HealthPercentage"));
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Angle"));
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Kills"));
+            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Unitname") + ";");
+            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Ident") + ";");
+            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("XPos") + ";");
+            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("YPos") + ";");
+            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("ZPos") + ";");
+            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Player") + ";");
+            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("HealthPercentage") + ";");
+            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Angle") + ";");
+            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Kills") + ";");
             if (itemModel.Properties.ContainsKey("InitialMission"))
-                wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("InitialMission"));
+                wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("InitialMission") + ";");
             wr.WriteLine("\t\t\t\t}");
         }
 
@@ -141,9 +141,9 @@ namespace OTAEdit.InputOutput
         {
             wr.WriteLine("\t\t\t" + itemModel.GetItemIdentifier);
             wr.WriteLine("\t\t\t\t{");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Featurename"));
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("XPos"));
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("ZPos"));
+            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Featurename") + ";");
+            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("XPos") + ";");
+            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("ZPos") + ";");
             wr.WriteLine("\t\t\t\t}");
         }
 
@@ -151,9 +151,9 @@ namespace OTAEdit.InputOutput
         {
             wr.WriteLine("\t\t\t" + itemModel.GetItemIdentifier);
             wr.WriteLine("\t\t\t\t{");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("specialwhat"));
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("XPos"));
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("ZPos"));
+            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("specialwhat") + ";");
+            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("XPos") + ";");
+            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("ZPos") + ";");
             wr.WriteLine("\t\t\t\t}");
         }
         #endregion

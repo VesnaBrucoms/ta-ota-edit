@@ -838,22 +838,27 @@ namespace OTAEdit.ViewModels
                 otaModel.SetValue("brief", newDialog.Brief);
                 otaModel.SetValue("narration", newDialog.Narration);
                 otaModel.SetValue("glamour", newDialog.Glamour);
-                otaModel.SetValue("KillEnemyCommander", newDialog.HasKillEnemyCom);
-                otaModel.SetValue("DestroyAllUnits", newDialog.HasDestroyUnits);
-                if (newDialog.HasMoveToRadius)
-                    otaModel.SetValue("MoveUnitToRadius", newDialog.MoveToRadius);
-                if (newDialog.HasKillUnit)
-                    otaModel.SetValue("KillUnitType", newDialog.KillUnit);
-                if (newDialog.HasCaptureUnit)
-                    otaModel.SetValue("CaptureUnitType", newDialog.CaptureUnit);
-                if (newDialog.HasBuildUnit)
-                    otaModel.SetValue("BuildUnitType", newDialog.BuildUnit);
-                otaModel.SetValue("CommanderKilled", newDialog.HasComKilled);
-                otaModel.SetValue("AllUnitsKilled", newDialog.HasUnitsKilled);
-                if (newDialog.HasUnitTypeKilled)
-                    otaModel.SetValue("AllUnitsKilledOfType", newDialog.UnitTypeKilled);
+                setMissionSetting(newDialog.HasKillEnemyCom, newDialog.HasKillEnemyCom, "KillEnemyCommander");
+                setMissionSetting(newDialog.HasDestroyUnits, newDialog.HasDestroyUnits, "DestroyAllUnits");
+                setMissionSetting(newDialog.HasMoveToRadius, newDialog.MoveToRadius, "MoveUnitToRadius");
+                setMissionSetting(newDialog.HasKillUnit, newDialog.KillUnit, "KillUnitType");
+                setMissionSetting(newDialog.HasCaptureUnit, newDialog.CaptureUnit, "CaptureUnitType");
+                setMissionSetting(newDialog.HasBuildUnit, newDialog.BuildUnit, "BuildUnitType");
+                setMissionSetting(newDialog.HasComKilled, newDialog.HasComKilled, "CommanderKilled");
+                setMissionSetting(newDialog.HasUnitsKilled, newDialog.HasUnitsKilled, "AllUnitsKilled");
+                setMissionSetting(newDialog.HasUnitTypeKilled, newDialog.UnitTypeKilled, "AllUnitsKilledOfType");
                 modelModified();
             }
+        }
+
+        private void setMissionSetting(bool isSet, object data, string propertyKey)
+        {
+            if (isSet)
+            {
+                otaModel.SetValue(propertyKey, data);
+            }
+            else if (!isSet && otaModel.Properties.ContainsKey(propertyKey))
+                otaModel.Properties.Remove(propertyKey);
         }
 
         public bool CanEditMission()
