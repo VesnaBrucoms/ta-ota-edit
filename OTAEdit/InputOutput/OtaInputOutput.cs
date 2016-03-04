@@ -48,8 +48,23 @@ namespace OTAEdit.InputOutput
                 wr.WriteLine("\t" + otaModel.GetWriteString("size"));
                 wr.WriteLine("\t" + otaModel.GetWriteString("memory"));
                 wr.WriteLine("\t" + otaModel.GetWriteString("useonlyunits"));
-                wr.WriteLine("\t" + otaModel.GetWriteString("DestroyAllUnits"));
+                if (otaModel.Properties.ContainsKey("MoveUnitToRadius"))
+                    wr.WriteLine("\t" + otaModel.GetWriteString("MoveUnitToRadius"));
+                if (otaModel.Properties.ContainsKey("KillUnitType"))
+                    wr.WriteLine("\t" + otaModel.GetWriteString("KillUnitType"));
+                if (otaModel.Properties.ContainsKey("KillEnemyCommander"))
+                    wr.WriteLine("\t" + otaModel.GetWriteString("KillEnemyCommander"));
+                if (otaModel.Properties.ContainsKey("DestroyAllUnits"))
+                    wr.WriteLine("\t" + otaModel.GetWriteString("DestroyAllUnits"));
+                if (otaModel.Properties.ContainsKey("CaptureUnitType"))
+                    wr.WriteLine("\t" + otaModel.GetWriteString("CaptureUnitType"));
+                if (otaModel.Properties.ContainsKey("BuildUnitType"))
+                    wr.WriteLine("\t" + otaModel.GetWriteString("BuildUnitType"));
+                if (otaModel.Properties.ContainsKey("CommanderKilled"))
+                    wr.WriteLine("\t" + otaModel.GetWriteString("CommanderKilled"));
                 wr.WriteLine("\t" + otaModel.GetWriteString("AllUnitsKilled"));
+                if (otaModel.Properties.ContainsKey("AllUnitsKilledOfType"))
+                    wr.WriteLine("\t" + otaModel.GetWriteString("AllUnitsKilledOfType"));
                 wr.WriteLine("\t" + otaModel.GetWriteString("SCHEMACOUNT"));
                 foreach (SchemaModel schema in otaModel.GetSchemas)
                 {
