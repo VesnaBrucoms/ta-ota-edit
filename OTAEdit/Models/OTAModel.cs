@@ -9,6 +9,7 @@ namespace OTAEdit.Models
     public class OTAModel : DictionaryModel
     {
         private bool isEmpty;
+        private bool isNew;
         private List<string> memory;
         private List<string> planets;
         private List<string> weapons;
@@ -20,6 +21,11 @@ namespace OTAEdit.Models
         public bool IsEmpty
         {
             get { return isEmpty; }
+        }
+
+        public bool IsNew
+        {
+            get { return isNew; }
         }
 
         public List<string> GetMemory
@@ -45,17 +51,19 @@ namespace OTAEdit.Models
         public OTAModel(bool isEmpty)
         {
             this.isEmpty = isEmpty;
+            isNew = !isEmpty;
             Filename = "untitled.ota";
             Properties = new Dictionary<string, object>();
             init(false);
         }
 
-        public OTAModel(string filename, bool isRead)
+        public OTAModel(string filename)
         {
             isEmpty = false;
+            isNew = false;
             Filename = filename;
             Properties = new Dictionary<string, object>();
-            init(isRead);
+            init(true);
         }
 
         private void init(bool isRead)

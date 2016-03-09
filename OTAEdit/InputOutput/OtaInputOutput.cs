@@ -161,7 +161,7 @@ namespace OTAEdit.InputOutput
         #region Reading
         public static OTAModel Read(string filepath)
         {
-            OTAModel otaModel = new OTAModel(filepath.Substring(filepath.LastIndexOf('\\') + 1), true);
+            OTAModel otaModel = new OTAModel(filepath.Substring(filepath.LastIndexOf('\\') + 1));
             otaModel.Filepath = File.ExtractFilePath(filepath);
 
             using (StreamReader rd = new StreamReader(filepath))

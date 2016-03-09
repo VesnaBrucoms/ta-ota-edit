@@ -595,7 +595,12 @@ namespace OTAEdit.ViewModels
 
         private void updateProperties()
         {
-            if (!otaModel.IsEmpty)
+            if (otaModel.IsNew)
+            {
+                windowTitle = otaModel.Filename + " - OTA Edit";
+                statusBarText = "Created " + otaModel.Filename;
+            }
+            else if (!otaModel.IsEmpty)
             {
                 windowTitle = otaModel.Filename + " - OTA Edit";
                 statusBarText = "Loaded " + otaModel.Filename;
@@ -790,7 +795,7 @@ namespace OTAEdit.ViewModels
                 OtaInputOutput.Write(otaModel.Filepath + "\\" + otaModel.Filename, otaModel);
                 hasModified = false;
                 windowTitle = otaModel.Filename + " - OTA Edit";
-                statusBarText = "Saved to " + otaModel.Filename;
+                statusBarText = "Saved " + otaModel.Filename;
                 OnPropertyChanged("GetWindowTitle");
                 OnPropertyChanged("GetStatusBarText");
             }
@@ -813,7 +818,7 @@ namespace OTAEdit.ViewModels
                 OtaInputOutput.Write(filePath, otaModel);
                 hasModified = false;
                 windowTitle = otaModel.Filename + " - OTA Edit";
-                statusBarText = "Saved to " + otaModel.Filename;
+                statusBarText = "Saved to " + otaModel.Filepath + "\\" + otaModel.Filename;
                 OnPropertyChanged("GetWindowTitle");
                 OnPropertyChanged("GetStatusBarText");
             }
