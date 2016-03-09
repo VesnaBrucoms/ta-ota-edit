@@ -606,7 +606,7 @@ namespace OTAEdit.ViewModels
                 statusBarText = "Ready";
             }
             OnPropertyChanged("GetWindowTitle");
-            OnPropertyChanged("GetStatusText");
+            OnPropertyChanged("GetStatusBarText");
 
             OnPropertyChanged("IsEmpty");
             OnPropertyChanged("IsNotEmpty");
@@ -790,7 +790,9 @@ namespace OTAEdit.ViewModels
                 OtaInputOutput.Write(otaModel.Filepath + "\\" + otaModel.Filename, otaModel);
                 hasModified = false;
                 windowTitle = otaModel.Filename + " - OTA Edit";
+                statusBarText = "Saved to " + otaModel.Filename;
                 OnPropertyChanged("GetWindowTitle");
+                OnPropertyChanged("GetStatusBarText");
             }
             else
                 SaveAsOTA(null);
@@ -811,7 +813,9 @@ namespace OTAEdit.ViewModels
                 OtaInputOutput.Write(filePath, otaModel);
                 hasModified = false;
                 windowTitle = otaModel.Filename + " - OTA Edit";
+                statusBarText = "Saved to " + otaModel.Filename;
                 OnPropertyChanged("GetWindowTitle");
+                OnPropertyChanged("GetStatusBarText");
             }
         }
 
