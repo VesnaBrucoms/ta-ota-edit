@@ -1,0 +1,30 @@
+﻿<Window x:Class="OTAEdit.Views.RemoveDialogView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OTAEdit.Views"
+        mc:Ignorable="d"
+        Title="{Binding Path=GetWindowTitle, Mode=OneWay}" Height="150" Width="375">
+    <Grid Margin="11,11,11,11">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="32" />
+            <ColumnDefinition Width="7" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="75" />
+            <ColumnDefinition Width="7" />
+            <ColumnDefinition Width="75" />
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Row="0" Grid.Column="0" Source="pack://application:,,,/Resources/StatusWarning_32x.png" />
+        <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="4" TextWrapping="WrapWithOverflow"  Text="{Binding Path=GetObjectName, Mode=OneWay}" />
+
+        <Button Grid.Row="2" Grid.Column="3" IsDefault="True" Content="Remove" Click="WindowRemove_Click" Command="{Binding Path=RemoveCommand}" />
+        <Button Grid.Row="2" Grid.Column="5" IsCancel="True" Content="Cancel" Click="WindowCancel_Click" Command="{Binding Path=CancelCommand}" />
+    </Grid>
+</Window>

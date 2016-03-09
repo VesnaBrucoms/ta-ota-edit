@@ -902,10 +902,15 @@ namespace OTAEdit.ViewModels
 
         public void RemoveSchema(object parameter)
         {
-            otaModel.GetSchemas[selectedSchemaIndex] = new SchemaModel();
-            otaModel.SetValue("SCHEMACOUNT", otaModel.GetIntValue("SCHEMACOUNT") - 1);
-            modelModified();
-            createSchemaCollection();
+            RemoveDialogViewModel dialog = new RemoveDialogViewModel("Remove Schema", "Schema " + (selectedSchemaIndex));
+            WindowViewLoaderService.GetInstance.ShowDialog(dialog);
+            if (dialog.GetResult == RemoveDialogViewModel.Result.Remove)
+            {
+                otaModel.GetSchemas[selectedSchemaIndex] = new SchemaModel();
+                otaModel.SetValue("SCHEMACOUNT", otaModel.GetIntValue("SCHEMACOUNT") - 1);
+                modelModified();
+                createSchemaCollection();
+            }
         }
 
         public bool CanRemoveSchema()
@@ -1068,21 +1073,36 @@ namespace OTAEdit.ViewModels
             string param = (string)parameter;
             if (param == "btnRemoveUnit" || param == "listUnits")
             {
-                otaModel.GetSchemas[selectedSchemaIndex].Units.RemoveAt(selectedUnitIndex);
-                modelModified();
-                OnPropertyChanged("GetUnits");
+                RemoveDialogViewModel dialog = new RemoveDialogViewModel("Remove Unit", otaModel.GetSchemas[selectedSchemaIndex].Units[selectedUnitIndex].GetItemName);
+                WindowViewLoaderService.GetInstance.ShowDialog(dialog);
+                if (dialog.GetResult == RemoveDialogViewModel.Result.Remove)
+                {
+                    otaModel.GetSchemas[selectedSchemaIndex].Units.RemoveAt(selectedUnitIndex);
+                    modelModified();
+                    OnPropertyChanged("GetUnits");
+                }
             }
             else if (param == "btnRemoveFeature" || param == "listFeatures")
             {
-                otaModel.GetSchemas[selectedSchemaIndex].Features.RemoveAt(selectedFeatureIndex);
-                modelModified();
-                OnPropertyChanged("GetFeatures");
+                RemoveDialogViewModel dialog = new RemoveDialogViewModel("Remove Feature", otaModel.GetSchemas[selectedSchemaIndex].Features[selectedFeatureIndex].GetItemName);
+                WindowViewLoaderService.GetInstance.ShowDialog(dialog);
+                if (dialog.GetResult == RemoveDialogViewModel.Result.Remove)
+                {
+                    otaModel.GetSchemas[selectedSchemaIndex].Features.RemoveAt(selectedFeatureIndex);
+                    modelModified();
+                    OnPropertyChanged("GetFeatures");
+                }
             }
             else if (param == "btnRemoveSpecial" || param == "listSpecials")
             {
-                otaModel.GetSchemas[selectedSchemaIndex].Specials.RemoveAt(selectedSpecialIndex);
-                modelModified();
-                OnPropertyChanged("GetSpecials");
+                RemoveDialogViewModel dialog = new RemoveDialogViewModel("Remove Special", otaModel.GetSchemas[selectedSchemaIndex].Specials[selectedSpecialIndex].GetItemName);
+                WindowViewLoaderService.GetInstance.ShowDialog(dialog);
+                if (dialog.GetResult == RemoveDialogViewModel.Result.Remove)
+                {
+                    otaModel.GetSchemas[selectedSchemaIndex].Specials.RemoveAt(selectedSpecialIndex);
+                    modelModified();
+                    OnPropertyChanged("GetSpecials");
+                }
             }
         }
 

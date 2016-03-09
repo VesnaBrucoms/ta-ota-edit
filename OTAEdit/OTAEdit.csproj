@@ -75,10 +75,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\MissionSettingsViewModel.cs" />
+    <Compile Include="ViewModels\RemoveDialogViewModel.cs" />
     <Compile Include="ViewModels\SaveDialogViewModel.cs" />
     <Compile Include="ViewModels\Services\EnvironmentService.cs" />
     <Compile Include="Views\MissionSettingsView.xaml.cs">
       <DependentUpon>MissionSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RemoveDialogView.xaml.cs">
+      <DependentUpon>RemoveDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SaveDialogView.xaml.cs">
       <DependentUpon>SaveDialogView.xaml</DependentUpon>
@@ -138,6 +142,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\RemoveDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SaveDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,6 +201,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Save_16x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\StatusWarning_32x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

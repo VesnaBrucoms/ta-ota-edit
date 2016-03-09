@@ -22,6 +22,7 @@ namespace OTAEdit
             WindowViewLoaderService.GetInstance.Register(typeof(MissionSettingsViewModel), typeof(MissionSettingsView));
             WindowViewLoaderService.GetInstance.Register(typeof(AddEditViewModel), typeof(AddEditView));
             WindowViewLoaderService.GetInstance.Register(typeof(SaveDialogViewModel), typeof(SaveDialogView));
+            WindowViewLoaderService.GetInstance.Register(typeof(RemoveDialogViewModel), typeof(RemoveDialogView));
 
             string filePath;
             if (e.Args != null && e.Args.Length > 0)
