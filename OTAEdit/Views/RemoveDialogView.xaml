@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OTAEdit.Views"
         mc:Ignorable="d"
-        Title="{Binding Path=GetWindowTitle, Mode=OneWay}" Height="150" Width="375">
+        Title="{Binding Path=GetWindowTitle, Mode=OneWay}" WindowStartupLocation="CenterOwner" Height="150" Width="375">
     <Grid Margin="11,11,11,11">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OTAEdit.Views"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Mission Settings" WindowStartupLocation="CenterScreen" Height="auto" Width="450" ResizeMode="NoResize" SizeToContent="Height">
+        Title="Mission Settings" WindowStartupLocation="CenterOwner" Height="auto" Width="450" ResizeMode="NoResize" SizeToContent="Height">
     <Grid Margin="11,11,11,11">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />

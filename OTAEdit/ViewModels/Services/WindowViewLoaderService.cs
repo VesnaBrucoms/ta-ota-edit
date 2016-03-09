@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace OTAEdit.ViewModels.Services
 {
@@ -12,10 +13,16 @@ namespace OTAEdit.ViewModels.Services
         private static WindowViewLoaderService instance = new WindowViewLoaderService();
 
         private Dictionary<Type, Type> viewViewModels;
+        private Window parentWindow;
 
         public static WindowViewLoaderService GetInstance
         {
             get { return instance; }
+        }
+
+        public Window SetMainWindow
+        {
+            set { parentWindow = value; }
         }
 
         private WindowViewLoaderService()
@@ -80,6 +87,7 @@ namespace OTAEdit.ViewModels.Services
                     MissionSettingsView window = new MissionSettingsView();
                     MissionSettingsViewModel missionSettingsViewModel = (MissionSettingsViewModel)viewModel;
                     window.DataContext = missionSettingsViewModel;
+                    window.Owner = parentWindow;
                     result = window.ShowDialog();
                 }
                 else if (view == typeof(AddEditView))
@@ -87,6 +95,7 @@ namespace OTAEdit.ViewModels.Services
                     AddEditView window = new AddEditView();
                     AddEditViewModel addEditViewModel = (AddEditViewModel)viewModel;
                     window.DataContext = addEditViewModel;
+                    window.Owner = parentWindow;
                     result = window.ShowDialog();
                 }
                 else if (view == typeof(SaveDialogView))
@@ -94,6 +103,7 @@ namespace OTAEdit.ViewModels.Services
                     SaveDialogView window = new SaveDialogView();
                     SaveDialogViewModel saveDialogViewModel = (SaveDialogViewModel)viewModel;
                     window.DataContext = saveDialogViewModel;
+                    window.Owner = parentWindow;
                     result = window.ShowDialog();
                 }
                 else if (view == typeof(RemoveDialogView))
@@ -101,6 +111,7 @@ namespace OTAEdit.ViewModels.Services
                     RemoveDialogView window = new RemoveDialogView();
                     RemoveDialogViewModel removeDialogViewModel = (RemoveDialogViewModel)viewModel;
                     window.DataContext = removeDialogViewModel;
+                    window.Owner = parentWindow;
                     result = window.ShowDialog();
                 }
             }

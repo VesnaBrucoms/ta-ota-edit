@@ -8,7 +8,7 @@
         xmlns:control="clr-namespace:OTAEdit.Views.Controls"
         xmlns:viewmodel="clr-namespace:OTAEdit.ViewModels"
         mc:Ignorable="d"
-        Title="{Binding Path=GetWindowTitle, Mode=OneWay}" UseLayoutRounding="True" MinHeight="600" Height="800" MinWidth="800" Width="1000">
+        Title="{Binding Path=GetWindowTitle, Mode=OneWay}" UseLayoutRounding="True" MinHeight="675" Height="800" MinWidth="800" Width="1000">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel />
     </Window.DataContext>
@@ -227,7 +227,7 @@
                         <TextBlock Grid.Row="6" Grid.Column="4" Text="Computer energy:" />
                         <xctk:IntegerUpDown Grid.Row="7" Grid.Column="4" IsEnabled="{Binding Path=IsSchemaActive, Mode=OneWay}" Minimum="0" Increment="1" Value="{Binding Path=ComputerEnergy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                        <GroupBox Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="5">
+                        <GroupBox Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="5" Header="Weapon">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />

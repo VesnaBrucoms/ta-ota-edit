@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OTAEdit.ViewModels.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace OTAEdit.Views
         public MainWindow()
         {
             InitializeComponent();
+            WindowViewLoaderService.GetInstance.SetMainWindow = this;
         }
 
         public void ApplicationClose_Click(object sender, RoutedEventArgs e)
