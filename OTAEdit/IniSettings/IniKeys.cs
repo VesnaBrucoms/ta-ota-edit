@@ -10,10 +10,7 @@ namespace OTAEdit.IniSettings
         public const string STRING_OTA_LAST_PATH = "sOTALastPath";
         public const string BOOL_TOOLBAR_VISIBLE = "bIsToolBarVisible";
         public const string BOOL_STATUSBAR_VISIBLE = "bIsStatusBarVisible";
-        public const string BOOL_INCLUDE_CONTENTS = "bIncludeContents";
-        public const string STRING_FILENAME = "sFilename";
-        public const string STRING_ESR_DEFAULT_PATH = "sESRDefaultPath";
-        public const string STRING_GEN_DEFAULT_PATH = "sReadmeDefaultPath";
-        public const string BOOL_OPEN_README = "bOpenReadmeAfterGen";
+        public const string BOOL_TOOLBAR_STAND_VISIBLE = "bIsStandardToolbarVisible";
+        public const string BOOL_TOOLBAR_SETTINGS_VISIBLE = "bIsSettingsToolbarVisible";
     }
 }

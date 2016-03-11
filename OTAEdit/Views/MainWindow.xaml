@@ -58,8 +58,8 @@
                 <MenuItem IsCheckable="True" IsChecked="{Binding Path=IsStatusBarChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Status Bar" />
                 <Separator />
                 <MenuItem Header="Toolbars">
-                    <MenuItem IsCheckable="True" IsChecked="True" Header="Standard" />
-                    <MenuItem IsCheckable="True" IsChecked="True" Header="Settings" />
+                    <MenuItem IsCheckable="True" IsChecked="{Binding Path=IsToolBarStandChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Standard" />
+                    <MenuItem IsCheckable="True" IsChecked="{Binding Path=IsToolBarSettingsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Settings" />
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Help">
@@ -69,12 +69,12 @@
             </MenuItem>
         </Menu>
         <ToolBarTray Grid.Row="1" Visibility="{Binding Path=GetToolBarVisibility, Mode=OneWay}">
-            <ToolBar Visibility="Visible">
+            <ToolBar Visibility="{Binding Path=GetToolBarStandVisibility, Mode=OneWay}">
                 <Button Content="{StaticResource NewFileToolbar}" Command="{Binding Path=NewOTACommand}" />
                 <Button Content="{StaticResource OpenFolderToolbar}" Command="{Binding Path=OpenOTACommand}" />
                 <Button Content="{StaticResource SaveToolbar}" Command="{Binding Path=SaveOTACommand}" />
             </ToolBar>
-            <ToolBar Visibility="Visible">
+            <ToolBar Visibility="{Binding Path=GetToolBarSettingsVisibility, Mode=OneWay}">
                 <Button x:Name="toolAddUnit" Content="New Unit" Command="{Binding Path=AddItemCommand}" CommandParameter="{Binding ElementName=toolAddUnit, Path=Name}" />
                 <Button x:Name="toolAddFeature" Content="New Feature" Command="{Binding Path=AddItemCommand}" CommandParameter="{Binding ElementName=toolAddFeature, Path=Name}" />
                 <Button x:Name="toolAddSpecial" Content="New Special" Command="{Binding Path=AddItemCommand}" CommandParameter="{Binding ElementName=toolAddSpecial, Path=Name}" />

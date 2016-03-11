@@ -373,6 +373,54 @@ namespace OTAEdit.ViewModels
             }
         }
 
+        public bool IsToolBarStandChecked
+        {
+            get { return Convert.ToBoolean(Ini.GetInstance.GetValueByName(IniKeys.BOOL_TOOLBAR_STAND_VISIBLE)); }
+            set
+            {
+                Ini.GetInstance.ChangeValueByName(IniKeys.BOOL_TOOLBAR_STAND_VISIBLE, Convert.ToString(value));
+                OnPropertyChanged("IsToolBarStandChecked");
+                OnPropertyChanged("GetToolBarStandVisibility");
+            }
+        }
+
+        public string GetToolBarStandVisibility
+        {
+            get
+            {
+                if (Convert.ToBoolean(Ini.GetInstance.GetValueByName(IniKeys.BOOL_TOOLBAR_STAND_VISIBLE)))
+                {
+                    return "Visible";
+                }
+                else
+                    return "Collapsed";
+            }
+        }
+
+        public bool IsToolBarSettingsChecked
+        {
+            get { return Convert.ToBoolean(Ini.GetInstance.GetValueByName(IniKeys.BOOL_TOOLBAR_SETTINGS_VISIBLE)); }
+            set
+            {
+                Ini.GetInstance.ChangeValueByName(IniKeys.BOOL_TOOLBAR_SETTINGS_VISIBLE, Convert.ToString(value));
+                OnPropertyChanged("IsToolBarSettingsChecked");
+                OnPropertyChanged("GetToolBarSettingsVisibility");
+            }
+        }
+
+        public string GetToolBarSettingsVisibility
+        {
+            get
+            {
+                if (Convert.ToBoolean(Ini.GetInstance.GetValueByName(IniKeys.BOOL_TOOLBAR_SETTINGS_VISIBLE)))
+                {
+                    return "Visible";
+                }
+                else
+                    return "Collapsed";
+            }
+        }
+
         public bool IsStatusBarChecked
         {
             get { return Convert.ToBoolean(Ini.GetInstance.GetValueByName(IniKeys.BOOL_STATUSBAR_VISIBLE)); }
@@ -562,6 +610,10 @@ namespace OTAEdit.ViewModels
                 Ini.GetInstance.AddNewSetting(IniKeys.BOOL_TOOLBAR_VISIBLE, Convert.ToString(IniDefaultValues.BOOL_TOOLBAR_VISIBLE));
             if (!Ini.GetInstance.SettingExists(IniKeys.BOOL_STATUSBAR_VISIBLE))
                 Ini.GetInstance.AddNewSetting(IniKeys.BOOL_STATUSBAR_VISIBLE, Convert.ToString(IniDefaultValues.BOOL_STATUSBAR_VISIBLE));
+            if (!Ini.GetInstance.SettingExists(IniKeys.BOOL_TOOLBAR_STAND_VISIBLE))
+                Ini.GetInstance.AddNewSetting(IniKeys.BOOL_TOOLBAR_STAND_VISIBLE, Convert.ToString(IniDefaultValues.BOOL_TOOLBAR_STAND_VISIBLE));
+            if (!Ini.GetInstance.SettingExists(IniKeys.BOOL_TOOLBAR_SETTINGS_VISIBLE))
+                Ini.GetInstance.AddNewSetting(IniKeys.BOOL_TOOLBAR_SETTINGS_VISIBLE, Convert.ToString(IniDefaultValues.BOOL_TOOLBAR_SETTINGS_VISIBLE));
 
             unitViewModel = new ItemDataViewModel(ItemDataViewModel.SchemaItemType.Unit);
             featureViewModel = new ItemDataViewModel(ItemDataViewModel.SchemaItemType.Feature);
