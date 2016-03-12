@@ -65,7 +65,7 @@
             <MenuItem Header="_Help">
                 <MenuItem Header="Help" InputGestureText="F1" />
                 <Separator />
-                <MenuItem Header="_About OTA Edit" />
+                <MenuItem Header="_About OTA Edit" Command="{Binding Path=ShowAboutCommand}" />
             </MenuItem>
         </Menu>
         <ToolBarTray Grid.Row="1" Visibility="{Binding Path=GetToolBarVisibility, Mode=OneWay}">

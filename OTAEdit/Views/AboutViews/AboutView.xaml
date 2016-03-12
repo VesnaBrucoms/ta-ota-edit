@@ -1,0 +1,35 @@
+﻿<Window x:Class="OTAEdit.Views.AboutViews.AboutView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OTAEdit.Views.AboutViews"
+        mc:Ignorable="d"
+        Title="About OTA Edit" WindowStartupLocation="CenterOwner" Height="auto" Width="400" ResizeMode="NoResize" SizeToContent="Height">
+    <Grid Margin="11,11,11,11">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="7" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="7" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="7" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="75" />
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=AssemblyName}" />
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Path=AssemblyVersion}" />
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="{Binding Path=AssemblyCopyright}" />
+        <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="License: ">
+            <Hyperlink NavigateUri="{Binding Path=LicenseLink}" Command="{Binding Path=ClickLicenseCommand}">https://opensource.org/licenses/MIT</Hyperlink>
+        </TextBlock>
+        
+        <Button Grid.Row="8" Grid.Column="1" IsDefault="True" Content="OK" Click="WindowOk_Click" />
+    </Grid>
+</Window>

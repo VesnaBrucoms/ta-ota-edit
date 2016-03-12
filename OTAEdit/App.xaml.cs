@@ -1,12 +1,9 @@
 ﻿using OTAEdit.ViewModels;
+using OTAEdit.ViewModels.AboutViewModels;
 using OTAEdit.ViewModels.Services;
 using OTAEdit.Views;
+using OTAEdit.Views.AboutViews;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace OTAEdit
@@ -23,6 +20,7 @@ namespace OTAEdit
             WindowViewLoaderService.GetInstance.Register(typeof(AddEditViewModel), typeof(AddEditView));
             WindowViewLoaderService.GetInstance.Register(typeof(SaveDialogViewModel), typeof(SaveDialogView));
             WindowViewLoaderService.GetInstance.Register(typeof(RemoveDialogViewModel), typeof(RemoveDialogView));
+            WindowViewLoaderService.GetInstance.Register(typeof(AboutViewModel), typeof(AboutView));
 
             string filePath;
             if (e.Args != null && e.Args.Length > 0)

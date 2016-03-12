@@ -1,6 +1,7 @@
 ﻿using OTAEdit.IniSettings;
 using OTAEdit.InputOutput;
 using OTAEdit.Models;
+using OTAEdit.ViewModels.AboutViewModels;
 using OTAEdit.ViewModels.Commands;
 using OTAEdit.ViewModels.Controls;
 using OTAEdit.ViewModels.Services;
@@ -578,6 +579,11 @@ namespace OTAEdit.ViewModels
             get { return new DelegateCommand(EditMission, CanEditMission); }
         }
 
+        public ICommand ShowAboutCommand
+        {
+            get { return new DelegateCommand(ShowAbout); }
+        }
+
         public ICommand AddSchemaCommand
         {
             get { return new DelegateCommand(AddSchema, CanAddSchema); }
@@ -951,6 +957,12 @@ namespace OTAEdit.ViewModels
         public bool CanEditMission()
         {
             return !otaModel.IsEmpty;
+        }
+
+        public void ShowAbout(object parameter)
+        {
+            AboutViewModel aboutViewModel = new AboutViewModel();
+            WindowViewLoaderService.GetInstance.ShowDialog(aboutViewModel);
         }
 
         public void AddSchema(object parameter)

@@ -1,4 +1,6 @@
-﻿using OTAEdit.Views;
+﻿using OTAEdit.ViewModels.AboutViewModels;
+using OTAEdit.Views;
+using OTAEdit.Views.AboutViews;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +72,13 @@ namespace OTAEdit.ViewModels.Services
                     window.DataContext = removeDialogViewModel;
                     window.Show();
                 }
+                else if (view == typeof(AboutView))
+                {
+                    AboutView window = new AboutView();
+                    AboutViewModel aboutViewModel = (AboutViewModel)viewModel;
+                    window.DataContext = aboutViewModel;
+                    window.Show();
+                }
             }
         }
 
@@ -111,6 +120,14 @@ namespace OTAEdit.ViewModels.Services
                     RemoveDialogView window = new RemoveDialogView();
                     RemoveDialogViewModel removeDialogViewModel = (RemoveDialogViewModel)viewModel;
                     window.DataContext = removeDialogViewModel;
+                    window.Owner = parentWindow;
+                    result = window.ShowDialog();
+                }
+                else if (view == typeof(AboutView))
+                {
+                    AboutView window = new AboutView();
+                    AboutViewModel aboutViewModel = (AboutViewModel)viewModel;
+                    window.DataContext = aboutViewModel;
                     window.Owner = parentWindow;
                     result = window.ShowDialog();
                 }
