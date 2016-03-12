@@ -1,4 +1,5 @@
-﻿using OTAEdit.ViewModels.Services;
+﻿using OTAEdit.ViewModels;
+using OTAEdit.ViewModels.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,19 @@ namespace OTAEdit.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        MainWindowViewModel viewModel;
+
         public MainWindow()
         {
             InitializeComponent();
             WindowViewLoaderService.GetInstance.SetMainWindow = this;
+            Loaded += OnMainWindowLoaded;
+        }
+
+        public void OnMainWindowLoaded(object sender, RoutedEventArgs e)
+        {
+            viewModel = DataContext as MainWindowViewModel;
+            Closing += viewModel.OnViewClosing;
         }
 
         public void ApplicationClose_Click(object sender, RoutedEventArgs e)

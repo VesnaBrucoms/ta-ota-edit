@@ -12,6 +12,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace OTAEdit.ViewModels
@@ -739,6 +740,24 @@ namespace OTAEdit.ViewModels
                 hasModified = true;
                 windowTitle = windowTitle + '*';
                 OnPropertyChanged("GetWindowTitle");
+            }
+        }
+
+        public void OnViewClosing(object sender, CancelEventArgs e)
+        {
+            if (hasModified)
+            {
+                SaveDialogViewModel dialog = new SaveDialogViewModel(otaModel.Filename);
+                WindowViewLoaderService.GetInstance.ShowDialog(dialog);
+                if (dialog.GetResult == SaveDialogViewModel.Result.Save)
+                {
+                    SaveAsOTA(null);
+                }
+                else if (dialog.GetResult == SaveDialogViewModel.Result.Cancel)
+                {
+                    e.Cancel = true;
+                    return;
+                }
             }
         }
 
