@@ -26,6 +26,7 @@ namespace OTAEdit.ViewModels
         private bool hasModified;
         private ObservableCollection<SchemaModel> schemaCollection;
         private int selectedSchemaIndex;
+        private int previousSchemaIndex;
         private int selectedUnitIndex;
         private int selectedFeatureIndex;
         private int selectedSpecialIndex;
@@ -640,7 +641,7 @@ namespace OTAEdit.ViewModels
             schemaCollection.Add(otaModel.GetSchemas[2]);
             schemaCollection.Add(otaModel.GetSchemas[3]);
             OnPropertyChanged("GetSchemas");
-            selectedSchemaIndex = 0; //TODO: remember previously selected index
+            selectedSchemaIndex = previousSchemaIndex;
             OnPropertyChanged("SelectedSchema");
             OnPropertyChanged("IsSchemaActive");
         }
@@ -697,6 +698,9 @@ namespace OTAEdit.ViewModels
             OnPropertyChanged("GetUnits");
             OnPropertyChanged("GetFeatures");
             OnPropertyChanged("GetSpecials");
+            unitViewModel.ResetItems();
+            featureViewModel.ResetItems();
+            specialViewModel.ResetItems();
             createSchemaCollection();
         }
 
@@ -722,6 +726,9 @@ namespace OTAEdit.ViewModels
                 OnPropertyChanged("GetUnits");
                 OnPropertyChanged("GetFeatures");
                 OnPropertyChanged("GetSpecials");
+                unitViewModel.ResetItems();
+                featureViewModel.ResetItems();
+                specialViewModel.ResetItems();
             }
         }
 
@@ -931,6 +938,7 @@ namespace OTAEdit.ViewModels
         {
             otaModel.GetSchemas[selectedSchemaIndex] = new SchemaModel(selectedSchemaIndex);
             otaModel.SetValue("SCHEMACOUNT", otaModel.GetIntValue("SCHEMACOUNT") + 1);
+            previousSchemaIndex = selectedSchemaIndex;
             modelModified();
             createSchemaCollection();
         }
@@ -960,8 +968,10 @@ namespace OTAEdit.ViewModels
             {
                 otaModel.GetSchemas[selectedSchemaIndex] = new SchemaModel();
                 otaModel.SetValue("SCHEMACOUNT", otaModel.GetIntValue("SCHEMACOUNT") - 1);
+                previousSchemaIndex = selectedSchemaIndex;
                 modelModified();
                 createSchemaCollection();
+                updateSchemaProperties();
             }
         }
 

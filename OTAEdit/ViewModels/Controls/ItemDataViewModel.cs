@@ -188,5 +188,20 @@ namespace OTAEdit.ViewModels.Controls
             else
                 visibility = "Collapsed";
         }
+
+        public void ResetItems()
+        {
+            schemaItem = null;
+            OnPropertyChanged("GetTitle");
+            OnPropertyChanged("GetIdent");
+            OnPropertyChanged("GetXPos");
+            OnPropertyChanged("GetYPos");
+            OnPropertyChanged("GetZPos");
+            OnPropertyChanged("GetPlayer");
+            OnPropertyChanged("GetHealth");
+            OnPropertyChanged("GetAngle");
+            OnPropertyChanged("GetKills");
+            OnPropertyChanged("GetMission");
+        }
     }
 }
