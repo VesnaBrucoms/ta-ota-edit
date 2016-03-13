@@ -9,9 +9,13 @@
     <Grid Margin="11,11,11,11">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="7" />
+            <RowDefinition Height="5" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="7" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="11" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="11" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="7" />
             <RowDefinition Height="auto" />
@@ -23,13 +27,45 @@
             <ColumnDefinition Width="75" />
         </Grid.ColumnDefinitions>
         
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=AssemblyName}" />
+        <TextBlock Grid.Row="0" Grid.Column="0" FontWeight="Bold" Text="{Binding Path=AssemblyName}" />
         <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Path=AssemblyVersion}" />
         <TextBlock Grid.Row="4" Grid.Column="0" Text="{Binding Path=AssemblyCopyright}" />
-        <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="License: ">
+
+        <Border Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="0.5">
+            <Grid Margin="5,5,5,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="15" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="15" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Written by Trevalyan Stevens" />
+                <TextBlock Grid.Row="2" TextWrapping="WrapWithOverflow" Text="This program is open source and must be distributed with the license." />
+                <TextBlock Grid.Row="4" TextWrapping="WrapWithOverflow" Text="This program can be modified without permission. Provided that I (Trevalyan Stevens) am credited as the original author." />
+                <TextBlock Grid.Row="6" Text="If you wish to redistribute, please contact me first." />
+                <TextBlock Grid.Row="8" Text="Thanks to:" />
+                <TextBlock Grid.Row="10" Text="Cavedog Entertainment for creating Total Annihilation." />
+                <TextBlock Grid.Row="12" TextWrapping="WrapWithOverflow" Text="The TA community for continuing to play, support, and create mods for more than 15 years." />
+            </Grid>
+        </Border>
+        
+        <TextBlock Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Text="Contact: ">
+            <Hyperlink NavigateUri="{Binding Path=EmailLink}" Command="{Binding Path=ClickEmailCommand}">etstevens60@gmail.com</Hyperlink>
+        </TextBlock>
+        <TextBlock Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Text="License: ">
             <Hyperlink NavigateUri="{Binding Path=LicenseLink}" Command="{Binding Path=ClickLicenseCommand}">https://opensource.org/licenses/MIT</Hyperlink>
         </TextBlock>
         
-        <Button Grid.Row="8" Grid.Column="1" IsDefault="True" Content="OK" Click="WindowOk_Click" />
+        <Button Grid.Row="12" Grid.Column="1" IsDefault="True" Content="OK" Click="WindowOk_Click" />
     </Grid>
 </Window>

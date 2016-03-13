@@ -27,14 +27,29 @@ namespace OTAEdit.ViewModels.AboutViewModels
             get { return Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyCopyrightAttribute>().Copyright; }
         }
 
+        public string EmailLink
+        {
+            get { return "mailto:etstevens60@gmail.com"; }
+        }
+
         public string LicenseLink
         {
             get { return "https://opensource.org/licenses/MIT"; }
         }
 
+        public ICommand ClickEmailCommand
+        {
+            get { return new DelegateCommand(ClickEmail); }
+        }
+
         public ICommand ClickLicenseCommand
         {
             get { return new DelegateCommand(ClickLicense); }
+        }
+
+        private void ClickEmail(object parameter)
+        {
+            Process.Start(EmailLink);
         }
 
         private void ClickLicense(object parameter)

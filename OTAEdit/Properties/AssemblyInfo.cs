@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("OTA Edit")]
 [assembly: AssemblyDescription("OTA Edit")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Kernewek Software")]
 [assembly: AssemblyProduct("OTA Edit")]
-[assembly: AssemblyCopyright("Copyright © Trevalyan Stevens 2016")]
+[assembly: AssemblyCopyright("Copyright © 2016 Trevalyan Stevens")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
