@@ -13,13 +13,21 @@
         <viewmodel:MainWindowViewModel />
     </Window.DataContext>
     <Window.Resources>
-        <Image x:Key="NewFileMenu" Source="pack://application:,,,/Resources/NewFile_16x.png" />
-        <Image x:Key="OpenFolderMenu" Source="pack://application:,,,/Resources/OpenFolder_16x.png" />
-        <Image x:Key="SaveMenu" Source="pack://application:,,,/Resources/Save_16x.png" />
+        <Style x:Key="GreyableImage" TargetType="Image">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.25" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Image x:Key="NewFileMenu" Style="{StaticResource GreyableImage}" Source="pack://application:,,,/Resources/NewFile_16x.png" />
+        <Image x:Key="OpenFolderMenu" Style="{StaticResource GreyableImage}" Source="pack://application:,,,/Resources/OpenFolder_16x.png" />
+        <Image x:Key="SaveMenu" Style="{StaticResource GreyableImage}" Source="pack://application:,,,/Resources/Save_16x.png" />
+        <Image x:Key="HelpMenu" Style="{StaticResource GreyableImage}" Source="pack://application:,,,/Resources/StatusHelp_16x.png" />
 
-        <Image x:Key="NewFileToolbar" Source="pack://application:,,,/Resources/NewFile_16x.png" />
-        <Image x:Key="OpenFolderToolbar" Source="pack://application:,,,/Resources/OpenFolder_16x.png" />
-        <Image x:Key="SaveToolbar" Source="pack://application:,,,/Resources/Save_16x.png" />
+        <Image x:Key="NewFileToolbar" Style="{StaticResource GreyableImage}" Source="pack://application:,,,/Resources/NewFile_16x.png" />
+        <Image x:Key="OpenFolderToolbar" Style="{StaticResource GreyableImage}" Source="pack://application:,,,/Resources/OpenFolder_16x.png" />
+        <Image x:Key="SaveToolbar" Style="{StaticResource GreyableImage}" Source="pack://application:,,,/Resources/Save_16x.png" />
     </Window.Resources>
     <Window.InputBindings>
         <KeyBinding Key="N" Modifiers="Ctrl" Command="{Binding Path=NewOTACommand}" />
@@ -63,16 +71,16 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Help">
-                <MenuItem Header="Help" InputGestureText="F1" />
+                <MenuItem Icon="{StaticResource HelpMenu}" Header="Help" InputGestureText="F1" />
                 <Separator />
                 <MenuItem Header="_About OTA Edit" Command="{Binding Path=ShowAboutCommand}" />
             </MenuItem>
         </Menu>
         <ToolBarTray Grid.Row="1" Visibility="{Binding Path=GetToolBarVisibility, Mode=OneWay}">
             <ToolBar Visibility="{Binding Path=GetToolBarStandVisibility, Mode=OneWay}">
-                <Button Content="{StaticResource NewFileToolbar}" Command="{Binding Path=NewOTACommand}" />
-                <Button Content="{StaticResource OpenFolderToolbar}" Command="{Binding Path=OpenOTACommand}" />
-                <Button Content="{StaticResource SaveToolbar}" Command="{Binding Path=SaveOTACommand}" />
+                <Button Content="{StaticResource NewFileToolbar}" ToolTip="New File (Ctrl+N)" Command="{Binding Path=NewOTACommand}" />
+                <Button Content="{StaticResource OpenFolderToolbar}" ToolTip="Open File (Ctrl+O)" Command="{Binding Path=OpenOTACommand}" />
+                <Button Content="{StaticResource SaveToolbar}" ToolTip="Save File (Ctrl+S)" Command="{Binding Path=SaveOTACommand}" />
             </ToolBar>
             <ToolBar Visibility="{Binding Path=GetToolBarSettingsVisibility, Mode=OneWay}">
                 <Button x:Name="toolAddUnit" Content="New Unit" Command="{Binding Path=AddItemCommand}" CommandParameter="{Binding ElementName=toolAddUnit, Path=Name}" />
