@@ -213,6 +213,11 @@ namespace OTAEdit.ViewModels
             }
         }
 
+        public List<string> GetAiProfiles
+        {
+            get { return otaModel.GetAiProfiles; }
+        }
+
         public string AiProfile
         {
             get { return otaModel.GetSchemas[selectedSchemaIndex].GetStringValue("aiprofile"); }
@@ -328,9 +333,9 @@ namespace OTAEdit.ViewModels
             }
         }
 
-        public int Density
+        public float Density
         {
-            get { return otaModel.GetSchemas[selectedSchemaIndex].GetIntValue("MeteorDensity"); }
+            get { return otaModel.GetSchemas[selectedSchemaIndex].GetFloatValue("MeteorDensity"); }
             set
             {
                 otaModel.GetSchemas[selectedSchemaIndex].SetValue("MeteorDensity", value);
@@ -702,6 +707,7 @@ namespace OTAEdit.ViewModels
             OnPropertyChanged("ImpassableWater");
             OnPropertyChanged("WaterDoesDamage");
             OnPropertyChanged("WaterDamage");
+            OnPropertyChanged("UseWeapon");
             OnPropertyChanged("GetUnits");
             OnPropertyChanged("GetFeatures");
             OnPropertyChanged("GetSpecials");

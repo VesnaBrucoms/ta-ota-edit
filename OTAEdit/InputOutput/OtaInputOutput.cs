@@ -37,6 +37,8 @@ namespace OTAEdit.InputOutput
                 wr.WriteLine("\t" + otaModel.GetWriteString("timemul") + ";");
                 wr.WriteLine("\t" + otaModel.GetWriteString("minwindspeed") + ";");
                 wr.WriteLine("\t" + otaModel.GetWriteString("maxwindspeed") + ";");
+                if (otaModel.Properties.ContainsKey("nosealeveltrigger"))
+                    wr.WriteLine("\t" + otaModel.GetWriteString("nosealeveltrigger") + ";");
                 wr.WriteLine("\t" + otaModel.GetWriteString("gravity") + ";");
                 if (otaModel.Properties.ContainsKey("maxunits"))
                     wr.WriteLine("\t" + otaModel.GetWriteString("maxunits") + ";");
@@ -62,7 +64,8 @@ namespace OTAEdit.InputOutput
                     wr.WriteLine("\t" + otaModel.GetWriteString("BuildUnitType") + ";");
                 if (otaModel.Properties.ContainsKey("CommanderKilled"))
                     wr.WriteLine("\t" + otaModel.GetWriteString("CommanderKilled") + ";");
-                wr.WriteLine("\t" + otaModel.GetWriteString("AllUnitsKilled") + ";");
+                if (otaModel.Properties.ContainsKey("AllUnitsKilled"))
+                    wr.WriteLine("\t" + otaModel.GetWriteString("AllUnitsKilled") + ";");
                 if (otaModel.Properties.ContainsKey("AllUnitsKilledOfType"))
                     wr.WriteLine("\t" + otaModel.GetWriteString("AllUnitsKilledOfType") + ";");
                 wr.WriteLine("\t" + otaModel.GetWriteString("SCHEMACOUNT") + ";");
@@ -87,11 +90,22 @@ namespace OTAEdit.InputOutput
             wr.WriteLine("\t\t" + schemaModel.GetWriteString("ComputerMetal") + ";");
             wr.WriteLine("\t\t" + schemaModel.GetWriteString("HumanEnergy") + ";");
             wr.WriteLine("\t\t" + schemaModel.GetWriteString("ComputerEnergy") + ";");
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorWeapon") + ";");
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorRadius") + ";");
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorDensity") + ";");
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorDuration") + ";");
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorInterval") + ";");
+            if (schemaModel.UseWeapon)
+            {
+                wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorWeapon") + ";");
+                wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorRadius") + ";");
+                wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorDensity") + ";");
+                wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorDuration") + ";");
+                wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorInterval") + ";");
+            }
+            else
+            {
+                wr.WriteLine("\t\tMeteorWeapon=" + ";");
+                wr.WriteLine("\t\tMeteorRadius=0" + ";");
+                wr.WriteLine("\t\tMeteorDensity=0" + ";");
+                wr.WriteLine("\t\tMeteorDuration=0" + ";");
+                wr.WriteLine("\t\tMeteorInterval=0" + ";");
+            }
             if (schemaModel.Units.Count != 0)
             {
                 wr.WriteLine("\t\t[units]");
@@ -178,7 +192,10 @@ namespace OTAEdit.InputOutput
                     if (lineText.Contains('='))
                     {
                         string[] splitText = lineText.Split('=');
-                        otaModel.Properties.Add(splitText[0], splitText[1]);
+                        if (!otaModel.Properties.ContainsKey(splitText[0]))
+                        {
+                            otaModel.Properties.Add(splitText[0], splitText[1]);
+                        }
                         continue;
                     }
                     else if (lineText.StartsWith("[Schema"))
@@ -214,6 +231,10 @@ namespace OTAEdit.InputOutput
                 {
                     string[] splitText = lineText.Split('=');
                     schema.Properties.Add(splitText[0], splitText[1]);
+                    if (splitText[0] == "MeteorWeapon" && splitText[1] != "")
+                    {
+                        schema.UseWeapon = true;
+                    }
                     continue;
                 }
                 else if (lineText == "[units]")

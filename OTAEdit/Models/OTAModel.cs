@@ -12,6 +12,7 @@ namespace OTAEdit.Models
         private bool isNew;
         private List<string> memory;
         private List<string> planets;
+        private List<string> aiProfiles;
         private List<string> weapons;
         private SchemaModel[] schemas;
 
@@ -36,6 +37,11 @@ namespace OTAEdit.Models
         public List<string> GetPlanets
         {
             get { return planets; }
+        }
+
+        public List<string> GetAiProfiles
+        {
+            get { return aiProfiles; }
         }
 
         public List<string> GetWeapons
@@ -122,11 +128,22 @@ namespace OTAEdit.Models
             planets.Add("Urban");
             planets.Add("Water World");
             planets.Add("Wet Desert");
+            aiProfiles = new List<string>();
+            aiProfiles.Add("Acid");
+            aiProfiles.Add("AirBattle");
+            aiProfiles.Add("DEFAULT");
+            aiProfiles.Add("Hover");
+            aiProfiles.Add("Krogoth");
+            aiProfiles.Add("Metal");
+            aiProfiles.Add("MISSIONS");
+            aiProfiles.Add("SeaBattle");
+            aiProfiles.Add("Urban");
+            aiProfiles.Add("Waterwrld");
             weapons = new List<string>();
             weapons.Add("");
-            weapons.Add("Earthquake");
-            weapons.Add("Hailstorm");
-            weapons.Add("Meteor");
+            weapons.Add("earthquake");
+            weapons.Add("hailstorm");
+            weapons.Add("meteor");
             schemas = new SchemaModel[4];
             schemas[0] = new SchemaModel();
             schemas[1] = new SchemaModel();

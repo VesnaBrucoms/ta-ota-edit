@@ -223,7 +223,7 @@
                         <TextBlock Grid.Row="0" Grid.Column="0" Text="Type:" />
                         <ComboBox Grid.Row="1" Grid.Column="0" IsEnabled="{Binding Path=IsSchemaActive, Mode=OneWay}" ItemsSource="{Binding Path=GetSchemaTypes, Mode=OneWay}" SelectedValue="{Binding Path=Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Text="AI profile:" />
-                        <TextBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" IsEnabled="{Binding Path=IsSchemaActive, Mode=OneWay}" Text="{Binding Path=AiProfile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <ComboBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" IsEnabled="{Binding Path=IsSchemaActive, Mode=OneWay}" IsEditable="True" ItemsSource="{Binding Path=GetAiProfiles, Mode=OneWay}" Text="{Binding Path=AiProfile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                         <TextBlock Grid.Row="3" Grid.Column="0" Text="Surface metal:" />
                         <xctk:IntegerUpDown Grid.Row="4" Grid.Column="0" IsEnabled="{Binding Path=IsSchemaActive, Mode=OneWay}" Minimum="0" Increment="1" Value="{Binding Path=SurfaceMetal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -264,7 +264,7 @@
                                 <TextBlock Grid.Row="0" Grid.Column="2" Text="Radius:" />
                                 <xctk:IntegerUpDown Grid.Row="1" Grid.Column="2" Minimum="0" Increment="1" IsEnabled="{Binding Path=UseWeapon}" Value="{Binding Path=Radius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 <TextBlock Grid.Row="3" Grid.Column="2" Text="Density:" />
-                                <xctk:IntegerUpDown Grid.Row="4" Grid.Column="2" Minimum="0" Increment="1" IsEnabled="{Binding Path=UseWeapon}" Value="{Binding Path=Density, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <xctk:SingleUpDown Grid.Row="4" Grid.Column="2" Minimum="0" Increment=".1" FormatString="F1" IsEnabled="{Binding Path=UseWeapon}" Value="{Binding Path=Density, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 <TextBlock Grid.Row="0" Grid.Column="4" Text="Duration:" />
                                 <xctk:IntegerUpDown Grid.Row="1" Grid.Column="4" Minimum="0" Increment="1" IsEnabled="{Binding Path=UseWeapon}" Value="{Binding Path=Duration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                 <TextBlock Grid.Row="3" Grid.Column="4" Text="Interval:" />

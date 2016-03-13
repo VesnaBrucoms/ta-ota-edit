@@ -31,6 +31,18 @@ namespace OTAEdit.Models
                 return 0;
         }
 
+        public float GetFloatValue(string dictKey)
+        {
+            if (Properties != null && Properties.ContainsKey(dictKey))
+            {
+                object value;
+                Properties.TryGetValue(dictKey, out value);
+                return Convert.ToSingle(value);
+            }
+            else
+                return 0f;
+        }
+
         public bool GetBoolValue(string dictKey)
         {
             if (Properties != null && Properties.ContainsKey(dictKey))
