@@ -109,7 +109,9 @@
                         <RowDefinition Height="20" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
-                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition MinWidth="90" Width="1*" />
@@ -120,16 +122,19 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Name:" />
-                    <TextBox Grid.Row="1" Grid.Column="0" IsEnabled="{Binding Path=IsNotEmpty}" Text="{Binding Path=MapName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Players:" />
-                    <TextBox Grid.Row="1" Grid.Column="2" IsEnabled="{Binding Path=IsNotEmpty}" Text="{Binding Path=NumPlayers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Grid.Row="0" Grid.Column="4" Text="Memory:" />
-                    <ComboBox Grid.Row="1" Grid.Column="6" IsEnabled="{Binding Path=IsNotEmpty}" IsEditable="True" ItemsSource="{Binding Path=GetMemory}" SelectedValue="{Binding Path=SetMemory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Description:" />
-                    <TextBox Grid.Row="4" Grid.Column="0" IsEnabled="{Binding Path=IsNotEmpty}" Grid.ColumnSpan="3" MaxLength="128" Text="{Binding Path=MapDesc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" IsEnabled="{Binding Path=IsNotEmpty}" Text="{Binding Path=MapName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="0" Grid.Column="4" Text="Players:" />                    
+                    <TextBox Grid.Row="1" Grid.Column="4" IsEnabled="{Binding Path=IsNotEmpty}" Text="{Binding Path=NumPlayers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Size:" />
+                    <TextBox Grid.Row="4" Grid.Column="0" IsEnabled="{Binding Path=IsNotEmpty}" Text="{Binding Path=Size, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="3" Grid.Column="2" Text="Memory:" />
+                    <ComboBox Grid.Row="4" Grid.Column="2" IsEnabled="{Binding Path=IsNotEmpty}" IsEditable="True" ItemsSource="{Binding Path=GetMemory}" SelectedValue="{Binding Path=SetMemory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="3" Grid.Column="4" Text="Planet:" />
                     <ComboBox Grid.Row="4" Grid.Column="4" IsEnabled="{Binding Path=IsNotEmpty}" IsEditable="True" ItemsSource="{Binding Path=GetPlanets}" SelectedValue="{Binding Path=SetPlanet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock Grid.Row="6" Grid.Column="0" Text="Description:" />
+                    <TextBox Grid.Row="7" Grid.Column="0" IsEnabled="{Binding Path=IsNotEmpty}" Grid.ColumnSpan="3" MaxLength="128" Text="{Binding Path=MapDesc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </GroupBox>
             <GroupBox Grid.Row="0" Grid.Column="2" Header="Settings">

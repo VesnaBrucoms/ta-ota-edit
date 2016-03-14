@@ -89,7 +89,7 @@ namespace OTAEdit.Models
                 Properties.Add("solarstrength", 0);
                 Properties.Add("lavaworld", false);
                 Properties.Add("killmul", 50);
-                Properties.Add("timemul", "");
+                Properties.Add("timemul", 0);
                 Properties.Add("minwindspeed", 0);
                 Properties.Add("maxwindspeed", 0);
                 Properties.Add("gravity", 0);

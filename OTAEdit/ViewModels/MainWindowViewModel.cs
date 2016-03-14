@@ -66,6 +66,17 @@ namespace OTAEdit.ViewModels
             }
         }
 
+        public string Size
+        {
+            get { return otaModel.GetStringValue("size"); }
+            set
+            {
+                otaModel.SetValue("size", value);
+                modelModified();
+                OnPropertyChanged("Size");
+            }
+        }
+
         public List<string> GetMemory
         {
             get { return otaModel.GetMemory; }
@@ -682,6 +693,7 @@ namespace OTAEdit.ViewModels
             OnPropertyChanged("IsNotEmpty");
             OnPropertyChanged("MapName");
             OnPropertyChanged("MapDesc");
+            OnPropertyChanged("Size");
             OnPropertyChanged("SetMemory");
             OnPropertyChanged("AiProfile");
             OnPropertyChanged("SetPlanet");
@@ -861,6 +873,7 @@ namespace OTAEdit.ViewModels
                 else if (dialog.GetResult == SaveDialogViewModel.Result.DontSave)
                 {
                     otaModel = new OTAModel(true);
+                    hasModified = false;
                     updateProperties();
                 }
                 else
