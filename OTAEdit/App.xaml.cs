@@ -15,10 +15,12 @@ namespace OTAEdit
     public partial class App : Application
     {
         Ini iniSettings;
+        EnvironmentService environmentService;
 
         public void App_Startup(object sender, StartupEventArgs e)
         {
             iniSettings = new Ini();
+            environmentService = new EnvironmentService();
             iniSettings.Read(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\OTA Edit", "settings");
             WindowViewLoaderService.GetInstance.Register(typeof(MissionSettingsViewModel), typeof(MissionSettingsView));
             WindowViewLoaderService.GetInstance.Register(typeof(AddEditViewModel), typeof(AddEditView));
@@ -36,16 +38,16 @@ namespace OTAEdit
                     Uri uri = new Uri(filePath);
                     filePath = uri.LocalPath;
 
-                    EnvironmentService.GetInstance.StartupFilePath = filePath;
+                    environmentService.StartupFilePath = filePath;
                 }
                 catch (Exception ex)
                 {
-                    //TODO: implement exception
+                    environmentService.HasStartupFailed = true;
                 }
             }
 
             Views.MainWindow mainWindow = new Views.MainWindow();
-            mainWindow.DataContext = new MainWindowViewModel(iniSettings);
+            mainWindow.DataContext = new MainWindowViewModel(iniSettings, environmentService);
             MainWindow = mainWindow;
             mainWindow.Show();
 

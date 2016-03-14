@@ -8,14 +8,8 @@ namespace OTAEdit.ViewModels.Services
 {
     class EnvironmentService
     {
-        private static EnvironmentService instance = new EnvironmentService();
-
         private string startupFilePath;
-
-        public static EnvironmentService GetInstance
-        {
-            get { return instance; }
-        }
+        private bool hasStartupFailed;
 
         public string StartupFilePath
         {
@@ -23,9 +17,16 @@ namespace OTAEdit.ViewModels.Services
             set { startupFilePath = value; }
         }
 
-        private EnvironmentService()
+        public bool HasStartupFailed
+        {
+            get { return hasStartupFailed; }
+            set { hasStartupFailed = value; }
+        }
+
+        public EnvironmentService()
         {
             startupFilePath = "";
+            hasStartupFailed = false;
         }
     }
 }

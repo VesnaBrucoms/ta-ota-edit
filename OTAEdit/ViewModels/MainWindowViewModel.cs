@@ -627,7 +627,7 @@ namespace OTAEdit.ViewModels
         }
         #endregion
 
-        public MainWindowViewModel(Ini iniSettings)
+        public MainWindowViewModel(Ini iniSettings, EnvironmentService environmentService)
         {
             this.iniSettings = iniSettings;
             if (!iniSettings.SettingExists(IniKeys.STRING_OTA_LAST_PATH))
@@ -650,9 +650,13 @@ namespace OTAEdit.ViewModels
             statusBarText = "Ready";
             createSchemaCollection();
 
-            if (EnvironmentService.GetInstance.StartupFilePath != null && EnvironmentService.GetInstance.StartupFilePath != "")
+            if (environmentService.StartupFilePath != null && environmentService.StartupFilePath != "")
             {
-                open(EnvironmentService.GetInstance.StartupFilePath);
+                open(environmentService.StartupFilePath);
+            }
+            else if (environmentService.HasStartupFailed)
+            {
+                statusBarText = "Error: failed to load " + environmentService.StartupFilePath;
             }
 
             hasModified = false;
