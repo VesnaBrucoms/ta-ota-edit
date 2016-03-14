@@ -20,6 +20,7 @@ namespace OTAEdit.ViewModels
 {
     class MainWindowViewModel : ViewModel
     {
+        private Ini iniSettings;
         private ItemDataViewModel unitViewModel;
         private ItemDataViewModel featureViewModel;
         private ItemDataViewModel specialViewModel;
@@ -370,10 +371,10 @@ namespace OTAEdit.ViewModels
         #region ViewModelProperties
         public bool IsToolBarChecked
         {
-            get { return Convert.ToBoolean(Ini.GetInstance.GetValueByName(IniKeys.BOOL_TOOLBAR_VISIBLE)); }
+            get { return Convert.ToBoolean(iniSettings.GetValueByName(IniKeys.BOOL_TOOLBAR_VISIBLE)); }
             set
             {
-                Ini.GetInstance.ChangeValueByName(IniKeys.BOOL_TOOLBAR_VISIBLE, Convert.ToString(value));
+                iniSettings.ChangeValueByName(IniKeys.BOOL_TOOLBAR_VISIBLE, Convert.ToString(value));
                 OnPropertyChanged("IsTooBarChecked");
                 OnPropertyChanged("GetToolBarVisibility");
             }
@@ -383,7 +384,7 @@ namespace OTAEdit.ViewModels
         {
             get
             {
-                if (Convert.ToBoolean(Ini.GetInstance.GetValueByName(IniKeys.BOOL_TOOLBAR_VISIBLE)))
+                if (Convert.ToBoolean(iniSettings.GetValueByName(IniKeys.BOOL_TOOLBAR_VISIBLE)))
                 {
                     return "Visible";
                 }
@@ -394,10 +395,10 @@ namespace OTAEdit.ViewModels
 
         public bool IsToolBarStandChecked
         {
-            get { return Convert.ToBoolean(Ini.GetInstance.GetValueByName(IniKeys.BOOL_TOOLBAR_STAND_VISIBLE)); }
+            get { return Convert.ToBoolean(iniSettings.GetValueByName(IniKeys.BOOL_TOOLBAR_STAND_VISIBLE)); }
             set
             {
-                Ini.GetInstance.ChangeValueByName(IniKeys.BOOL_TOOLBAR_STAND_VISIBLE, Convert.ToString(value));
+                iniSettings.ChangeValueByName(IniKeys.BOOL_TOOLBAR_STAND_VISIBLE, Convert.ToString(value));
                 OnPropertyChanged("IsToolBarStandChecked");
                 OnPropertyChanged("GetToolBarStandVisibility");
             }
@@ -407,7 +408,7 @@ namespace OTAEdit.ViewModels
         {
             get
             {
-                if (Convert.ToBoolean(Ini.GetInstance.GetValueByName(IniKeys.BOOL_TOOLBAR_STAND_VISIBLE)))
+                if (Convert.ToBoolean(iniSettings.GetValueByName(IniKeys.BOOL_TOOLBAR_STAND_VISIBLE)))
                 {
                     return "Visible";
                 }
@@ -418,10 +419,10 @@ namespace OTAEdit.ViewModels
 
         public bool IsToolBarSettingsChecked
         {
-            get { return Convert.ToBoolean(Ini.GetInstance.GetValueByName(IniKeys.BOOL_TOOLBAR_SETTINGS_VISIBLE)); }
+            get { return Convert.ToBoolean(iniSettings.GetValueByName(IniKeys.BOOL_TOOLBAR_SETTINGS_VISIBLE)); }
             set
             {
-                Ini.GetInstance.ChangeValueByName(IniKeys.BOOL_TOOLBAR_SETTINGS_VISIBLE, Convert.ToString(value));
+                iniSettings.ChangeValueByName(IniKeys.BOOL_TOOLBAR_SETTINGS_VISIBLE, Convert.ToString(value));
                 OnPropertyChanged("IsToolBarSettingsChecked");
                 OnPropertyChanged("GetToolBarSettingsVisibility");
             }
@@ -431,7 +432,7 @@ namespace OTAEdit.ViewModels
         {
             get
             {
-                if (Convert.ToBoolean(Ini.GetInstance.GetValueByName(IniKeys.BOOL_TOOLBAR_SETTINGS_VISIBLE)))
+                if (Convert.ToBoolean(iniSettings.GetValueByName(IniKeys.BOOL_TOOLBAR_SETTINGS_VISIBLE)))
                 {
                     return "Visible";
                 }
@@ -442,10 +443,10 @@ namespace OTAEdit.ViewModels
 
         public bool IsStatusBarChecked
         {
-            get { return Convert.ToBoolean(Ini.GetInstance.GetValueByName(IniKeys.BOOL_STATUSBAR_VISIBLE)); }
+            get { return Convert.ToBoolean(iniSettings.GetValueByName(IniKeys.BOOL_STATUSBAR_VISIBLE)); }
             set
             {
-                Ini.GetInstance.ChangeValueByName(IniKeys.BOOL_STATUSBAR_VISIBLE, Convert.ToString(value));
+                iniSettings.ChangeValueByName(IniKeys.BOOL_STATUSBAR_VISIBLE, Convert.ToString(value));
                 OnPropertyChanged("IsStatusBarChecked");
                 OnPropertyChanged("GetStatusBarVisibility");
             }
@@ -455,7 +456,7 @@ namespace OTAEdit.ViewModels
         {
             get
             {
-                if (Convert.ToBoolean(Ini.GetInstance.GetValueByName(IniKeys.BOOL_STATUSBAR_VISIBLE)))
+                if (Convert.ToBoolean(iniSettings.GetValueByName(IniKeys.BOOL_STATUSBAR_VISIBLE)))
                 {
                     return "Visible";
                 }
@@ -626,18 +627,19 @@ namespace OTAEdit.ViewModels
         }
         #endregion
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(Ini iniSettings)
         {
-            if (!Ini.GetInstance.SettingExists(IniKeys.STRING_OTA_LAST_PATH))
-                Ini.GetInstance.AddNewSetting(IniKeys.STRING_OTA_LAST_PATH, IniDefaultValues.STRING_OTA_LAST_PATH);
-            if (!Ini.GetInstance.SettingExists(IniKeys.BOOL_TOOLBAR_VISIBLE))
-                Ini.GetInstance.AddNewSetting(IniKeys.BOOL_TOOLBAR_VISIBLE, Convert.ToString(IniDefaultValues.BOOL_TOOLBAR_VISIBLE));
-            if (!Ini.GetInstance.SettingExists(IniKeys.BOOL_STATUSBAR_VISIBLE))
-                Ini.GetInstance.AddNewSetting(IniKeys.BOOL_STATUSBAR_VISIBLE, Convert.ToString(IniDefaultValues.BOOL_STATUSBAR_VISIBLE));
-            if (!Ini.GetInstance.SettingExists(IniKeys.BOOL_TOOLBAR_STAND_VISIBLE))
-                Ini.GetInstance.AddNewSetting(IniKeys.BOOL_TOOLBAR_STAND_VISIBLE, Convert.ToString(IniDefaultValues.BOOL_TOOLBAR_STAND_VISIBLE));
-            if (!Ini.GetInstance.SettingExists(IniKeys.BOOL_TOOLBAR_SETTINGS_VISIBLE))
-                Ini.GetInstance.AddNewSetting(IniKeys.BOOL_TOOLBAR_SETTINGS_VISIBLE, Convert.ToString(IniDefaultValues.BOOL_TOOLBAR_SETTINGS_VISIBLE));
+            this.iniSettings = iniSettings;
+            if (!iniSettings.SettingExists(IniKeys.STRING_OTA_LAST_PATH))
+                iniSettings.AddNewSetting(IniKeys.STRING_OTA_LAST_PATH, IniDefaultValues.STRING_OTA_LAST_PATH);
+            if (!iniSettings.SettingExists(IniKeys.BOOL_TOOLBAR_VISIBLE))
+                iniSettings.AddNewSetting(IniKeys.BOOL_TOOLBAR_VISIBLE, Convert.ToString(IniDefaultValues.BOOL_TOOLBAR_VISIBLE));
+            if (!iniSettings.SettingExists(IniKeys.BOOL_STATUSBAR_VISIBLE))
+                iniSettings.AddNewSetting(IniKeys.BOOL_STATUSBAR_VISIBLE, Convert.ToString(IniDefaultValues.BOOL_STATUSBAR_VISIBLE));
+            if (!iniSettings.SettingExists(IniKeys.BOOL_TOOLBAR_STAND_VISIBLE))
+                iniSettings.AddNewSetting(IniKeys.BOOL_TOOLBAR_STAND_VISIBLE, Convert.ToString(IniDefaultValues.BOOL_TOOLBAR_STAND_VISIBLE));
+            if (!iniSettings.SettingExists(IniKeys.BOOL_TOOLBAR_SETTINGS_VISIBLE))
+                iniSettings.AddNewSetting(IniKeys.BOOL_TOOLBAR_SETTINGS_VISIBLE, Convert.ToString(IniDefaultValues.BOOL_TOOLBAR_SETTINGS_VISIBLE));
 
             unitViewModel = new ItemDataViewModel(ItemDataViewModel.SchemaItemType.Unit);
             featureViewModel = new ItemDataViewModel(ItemDataViewModel.SchemaItemType.Feature);
@@ -839,14 +841,14 @@ namespace OTAEdit.ViewModels
 
         private void open()
         {
-            string filepath = File.GetOpenFileName(Ini.GetInstance.GetValueByName(IniKeys.STRING_OTA_LAST_PATH), "OTA file (*.ota)|*.ota");
+            string filepath = File.GetOpenFileName(iniSettings.GetValueByName(IniKeys.STRING_OTA_LAST_PATH), "OTA file (*.ota)|*.ota");
 
             if (filepath != null)
             {
                 otaModel = OtaInputOutput.Read(filepath);
                 updateProperties();
 
-                Ini.GetInstance.ChangeValueByName(IniKeys.STRING_OTA_LAST_PATH, File.ExtractFilePath(filepath));
+                iniSettings.ChangeValueByName(IniKeys.STRING_OTA_LAST_PATH, File.ExtractFilePath(filepath));
             }
         }
 
@@ -855,7 +857,7 @@ namespace OTAEdit.ViewModels
             otaModel = OtaInputOutput.Read(filepath);
             updateProperties();
 
-            Ini.GetInstance.ChangeValueByName(IniKeys.STRING_OTA_LAST_PATH, File.ExtractFilePath(filepath));
+            iniSettings.ChangeValueByName(IniKeys.STRING_OTA_LAST_PATH, File.ExtractFilePath(filepath));
         }
 
         public void CloseOTA(object parameter)

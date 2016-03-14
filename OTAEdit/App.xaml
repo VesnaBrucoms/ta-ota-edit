@@ -4,7 +4,6 @@
              xmlns:local="clr-namespace:OTAEdit"
              xmlns:viewmodel="clr-namespace:OTAEdit.ViewModels"
              xmlns:view="clr-namespace:OTAEdit.Views"
-             StartupUri="Views/MainWindow.xaml"
              Startup="App_Startup"
              Exit="App_Exit">
     <Application.Resources>

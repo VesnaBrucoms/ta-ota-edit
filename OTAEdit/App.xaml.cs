@@ -1,4 +1,5 @@
-﻿using OTAEdit.ViewModels;
+﻿using OTAEdit.IniSettings;
+using OTAEdit.ViewModels;
 using OTAEdit.ViewModels.AboutViewModels;
 using OTAEdit.ViewModels.Services;
 using OTAEdit.Views;
@@ -13,9 +14,12 @@ namespace OTAEdit
     /// </summary>
     public partial class App : Application
     {
+        Ini iniSettings;
+
         public void App_Startup(object sender, StartupEventArgs e)
         {
-            IniSettings.Ini.GetInstance.Read(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\OTA Edit", "settings");
+            iniSettings = new Ini();
+            iniSettings.Read(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\OTA Edit", "settings");
             WindowViewLoaderService.GetInstance.Register(typeof(MissionSettingsViewModel), typeof(MissionSettingsView));
             WindowViewLoaderService.GetInstance.Register(typeof(AddEditViewModel), typeof(AddEditView));
             WindowViewLoaderService.GetInstance.Register(typeof(SaveDialogViewModel), typeof(SaveDialogView));
@@ -39,6 +43,11 @@ namespace OTAEdit
                     //TODO: implement exception
                 }
             }
+
+            Views.MainWindow mainWindow = new Views.MainWindow();
+            mainWindow.DataContext = new MainWindowViewModel(iniSettings);
+            MainWindow = mainWindow;
+            mainWindow.Show();
 
             /*if (AppDomain.CurrentDomain.SetupInformation.ActivationArguments != null)
             {
@@ -65,7 +74,7 @@ namespace OTAEdit
 
         public void App_Exit(object sender, ExitEventArgs e)
         {
-            IniSettings.Ini.GetInstance.Write(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\OTA Edit", "settings");
+            iniSettings.Write(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\OTA Edit", "settings");
         }
     }
 }

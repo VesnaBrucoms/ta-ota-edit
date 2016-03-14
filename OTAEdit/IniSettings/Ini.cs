@@ -8,18 +8,11 @@ namespace OTAEdit.IniSettings
 {
     class Ini
     {
-        private static Ini instance = new Ini();
-
         private const char DELIMITER = '=';
 
         private List<SettingKey> settings;
 
-        public static Ini GetInstance
-        {
-            get { return instance; }
-        }
-
-        private Ini()
+        public Ini()
         {
             settings = new List<SettingKey>();
         }

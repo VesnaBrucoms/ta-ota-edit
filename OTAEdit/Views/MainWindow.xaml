@@ -9,9 +9,6 @@
         xmlns:viewmodel="clr-namespace:OTAEdit.ViewModels"
         mc:Ignorable="d"
         Title="{Binding Path=GetWindowTitle, Mode=OneWay}" UseLayoutRounding="True" MinHeight="675" Height="800" MinWidth="800" Width="1000">
-    <Window.DataContext>
-        <viewmodel:MainWindowViewModel />
-    </Window.DataContext>
     <Window.Resources>
         <Style x:Key="GreyableImage" TargetType="Image">
             <Style.Triggers>
