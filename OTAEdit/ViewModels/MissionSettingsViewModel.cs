@@ -217,7 +217,7 @@ namespace OTAEdit.ViewModels
             set
             {
                 unitTypeKilled = value;
-                if (!hasBuildUnit && unitTypeKilled != "")
+                if (!hasUnitTypeKilled && unitTypeKilled != "")
                 {
                     hasUnitTypeKilled = true;
                     OnPropertyChanged("HasUnitTypeKilled");

@@ -134,7 +134,7 @@
                     <ComboBox Grid.Row="4" Grid.Column="4" IsEnabled="{Binding Path=IsNotEmpty}" IsEditable="True" ItemsSource="{Binding Path=GetPlanets}" SelectedValue="{Binding Path=SetPlanet, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock Grid.Row="6" Grid.Column="0" Text="Description:" />
-                    <TextBox Grid.Row="7" Grid.Column="0" IsEnabled="{Binding Path=IsNotEmpty}" Grid.ColumnSpan="3" MaxLength="128" Text="{Binding Path=MapDesc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Grid.Row="7" Grid.Column="0" IsEnabled="{Binding Path=IsNotEmpty}" Grid.ColumnSpan="5" MaxLength="128" Text="{Binding Path=MapDesc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </Grid>
             </GroupBox>
             <GroupBox Grid.Row="0" Grid.Column="2" Header="Settings">
@@ -161,15 +161,13 @@
                     <xctk:IntegerUpDown Grid.Row="1" Grid.Column="0" IsEnabled="{Binding Path=IsNotEmpty}" Minimum="0" Increment="1" Value="{Binding Path=MinWindSpeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="0" Grid.Column="2" Text="Tidal strength:" />
                     <xctk:IntegerUpDown Grid.Row="1" Grid.Column="2" IsEnabled="{Binding Path=IsNotEmpty}" Minimum="0" Increment="1" Value="{Binding Path=TidalStrength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Grid.Row="0" Grid.Column="4" Text="Sea level:" />
-                    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="4" IsEnabled="{Binding Path=IsNotEmpty}" Minimum="0" Increment="1" />
+                    <TextBlock Grid.Row="0" Grid.Column="4" Text="Gravity:" />
+                    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="4" IsEnabled="{Binding Path=IsNotEmpty}" Minimum="0" Increment="1" Value="{Binding Path=Gravity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Max wind speed:" />
                     <xctk:IntegerUpDown Grid.Row="4" Grid.Column="0" IsEnabled="{Binding Path=IsNotEmpty}" Minimum="0" Increment="1" Value="{Binding Path=MaxWindSpeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="3" Grid.Column="2" Text="Solar strength:" />
                     <xctk:IntegerUpDown Grid.Row="4" Grid.Column="2" IsEnabled="{Binding Path=IsNotEmpty}" Minimum="0" Increment="1" Value="{Binding Path=SolarStrength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Grid.Row="3" Grid.Column="4" Text="Gravity:" />
-                    <xctk:IntegerUpDown Grid.Row="4" Grid.Column="4" IsEnabled="{Binding Path=IsNotEmpty}" Minimum="0" Increment="1" Value="{Binding Path=Gravity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <CheckBox Grid.Row="6" Grid.Column="0" IsEnabled="{Binding Path=IsNotEmpty}" IsChecked="{Binding Path=ImpassableWater, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Impassable water</CheckBox>
                     <CheckBox Grid.Row="6" Grid.Column="2" IsEnabled="{Binding Path=IsNotEmpty}" IsChecked="{Binding Path=WaterDoesDamage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Water does damage</CheckBox>
