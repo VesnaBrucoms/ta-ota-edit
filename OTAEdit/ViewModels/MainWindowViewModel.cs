@@ -5,15 +5,11 @@ using OTAEdit.ViewModels.AboutViewModels;
 using OTAEdit.ViewModels.Commands;
 using OTAEdit.ViewModels.Controls;
 using OTAEdit.ViewModels.Services;
-using OTAEdit.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace OTAEdit.ViewModels
@@ -596,6 +592,11 @@ namespace OTAEdit.ViewModels
             get { return new DelegateCommand(EditMission, CanEditMission); }
         }
 
+        public ICommand ShowHelpCommand
+        {
+            get { return new DelegateCommand(ShowHelp); }
+        }
+
         public ICommand ShowAboutCommand
         {
             get { return new DelegateCommand(ShowAbout); }
@@ -982,6 +983,11 @@ namespace OTAEdit.ViewModels
         public bool CanEditMission()
         {
             return !otaModel.IsEmpty;
+        }
+
+        public void ShowHelp(object parameter)
+        {
+            Process.Start("Help\\index.html");
         }
 
         public void ShowAbout(object parameter)

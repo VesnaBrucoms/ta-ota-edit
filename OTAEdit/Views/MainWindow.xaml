@@ -68,7 +68,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Help">
-                <MenuItem Icon="{StaticResource HelpMenu}" Header="Help" InputGestureText="F1" />
+                <MenuItem Icon="{StaticResource HelpMenu}" Header="Help" InputGestureText="F1" Command="{Binding Path=ShowHelpCommand}" />
                 <Separator />
                 <MenuItem Header="_About OTA Edit" Command="{Binding Path=ShowAboutCommand}" />
             </MenuItem>
