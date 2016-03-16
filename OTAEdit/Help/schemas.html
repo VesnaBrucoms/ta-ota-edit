@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta author="Trevalyan Stevens" />
     <title>Schemas</title>
-    <link rel="stylesheet" type="text/css" href="mainStyle.css" media="screen" />
+    <link rel="stylesheet" href="mainStyle.css" media="screen" />
 </head>
 <body>
     <header>
@@ -35,6 +35,7 @@
             add new units, features, and specials. To remove a schema, simply select the schema you wish to remove by selecting it in the drop down box, and then 
             click the "Remove" button. A prompt will ask if you are sure you wish to proceed, clicking the second "Remove" button will confirm your desicion.
         </p>
+
         <h3>General</h3>
         <p>
             There are eight general schema fields: type, AI profile, surface metal, moho metal, human metal, human energy, computer metal, and computer energy.
@@ -62,7 +63,46 @@
         <p>
             These are exactly the same as the human metal and energy fields, except they're for copmuter players.
         </p>
+
         <h3>Weapon</h3>
+        <p>
+            To add a map weapon simply check the "Use weapon" check box. Weapons have five fields: weapon, radius, duration, density, and interval.
+        </p>
+        <h4>Weapon</h4>
+        <p>
+            This is where you can select the type of weapon of wish the map to have. There are three options: earthquake, meteor, and hailstorm.
+        </p>
+        <h4>Radius</h4>
+        <p>
+            As the name suggests, this determines how large of an area is impacted by the weapon when it triggers.
+        </p>
+        <h4>Duration</h4>
+        <p>
+            Determines for how long in seconds the weapon will "fire" for.
+        </p>
+        <h4>Density</h4>
+        <p>
+            The spread of the weapon's "projectiles".
+        </p>
+        <h4>Interval</h4>
+        <p>
+            How long between each "firing" of the weapon.
+        </p>
+
+        <h3>Objects</h3>
+        <p>
+            The large, tabbed area taking up the bulk of the schemas section is dedicated to adding, editing, and viewing the objects added to the schema. These objects can 
+            be units, features, and specials.
+        </p>
+        <ul>
+            <li>Units are structure and vehicles belonging to an AI or human player.</li>
+            <li>Features are extra map features that you can add.</li>
+            <li>The only special object is <i>StartPosX</i>, where <i>X</i> is replaced by a number.</li>
+        </ul>
+        <p>
+            Adding a new object is easy. Simply click the "Add..." button, and a dialog will appear. For features and specials you only need to input the object's name and 
+            it's location on the map. For units you'll need much more.
+        </p>
     </section>
     <footer>
         <small>&copy; Copyright 2016 Trevalyan Stevens.</small>
