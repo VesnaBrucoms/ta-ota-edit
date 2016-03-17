@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta author="Trevalyan Stevens" />
+    <title>Mission Settings</title>
+    <link rel="stylesheet" href="mainStyle.css" media="screen" />
+</head>
+<body>
+    <header>
+        <h1>OTA Edit Help</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="map.html">Map</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="schemas.html">Schemas</a></li>
+                <li><a href="mission.html">Mission Settings</a></li>
+                <li><a href="license.html">License</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <h2>Mission Settings</h2>
+        <p><img class="image" src="images/mission_overview.png" alt="Mission settings" width="480" /></p>
+        <p>
+            The <b>Mission Settings</b> dialog is where you can modify all of the map's campaign specific settings. The dialog is split into three sections: general, 
+            victory conditions, and defeat conditions.
+        </p>
+
+        <h3>General</h3>
+        <p>
+            At the top we have three fields: brief, narration, and glamour shot.
+        </p>
+        <p>
+            <b>Brief</b><br/>The brief is the text seen in the mission briefing menu. You'll need to input the text file containing the brief, or you can use the 
+            small browse button to the right of the text box.
+        </p>
+        <p>
+            <b>Narration</b><br/>The narration is the name of the .wav file. This is played during the mission briefing screen. Like the brief, you can use the browse 
+            button to select it.
+        </p>
+        <p>
+            <b>Glamour shot</b><br/>This is the name of a .pcx image file. The image will be displayed once the player wins the mission.
+        </p>
+
+        <h3>Victory Conditions</h3>
+        <p>
+            Here you can define all of the objectives that the player will need to achieve to win the mission.
+        </p>
+        <p>
+            <b>Kill enemy commander</b><br/>As it suggests, complete this objective by kiiling the enemy's commander.
+        </p>
+        <p>
+            <b>Destroy all units</b><br/>As with above, just destroy every single enemy unit to complete the objective.
+        </p>
+        <p>
+            <b>Move unit to radius</b><br/>To achieve this, the player will need to move a unit to the specified area. For this objective you'll need to input the 
+            name of the unit, the x/y coordinate, and the radius size of the area you want the unit to move to. The format is: <code>UNITNAME, X, Y, SIZE</code>.
+        </p>
+        <p>
+            <b>Kill unit</b><br/>The player will need to kill a certain number of a particular unit type. You'll need to input the unit's name and the number of 
+            units to destroy in the format <code>UNITNAME, QUANTITY</code>.
+        </p>
+        <p>
+            <b>Capture unit</b><br/>The player will need to capture the specified unit. All you need to input here is the unit's name.
+        </p>
+        <p>
+            <b>Build unit</b><br/>The player will simply need to build the specified unit. Like capture unit above, you only need to input the unit's name.
+        </p>
+
+        <h3>Defeat Conditions</h3>
+        <p>
+            All mission failure states are defined here. The player will only need to "achieve" one of these (if there's more than one) to fail the mission.
+        </p>
+        <p>
+            <b>Commander killed</b><br/>Like it says, the player is defeated if they let their commander die.
+        </p>
+        <p>
+            <b>All units killed</b><br/>Like commander killed above, the player is defeated if they lose all of their units.
+        </p>
+        <p>
+            <b>All units killed of type</b><br/>The player loses if all units of a particular type are killed. You simply need to input the unit's name.
+        </p>
+    </section>
+    <footer>
+        <small>&copy; Copyright 2016 Trevalyan Stevens.</small>
+    </footer>
+</body>
+</html>

@@ -20,6 +20,33 @@ nav li
     margin-right:5px;
 }
 
+header
+{
+    width:80%;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+section
+{
+    width:80%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+footer
+{
+    width:80%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+h3
+{
+    margin-top:30px;
+}
+
 .image
 {
     box-shadow: 0px 0px 18px black;
