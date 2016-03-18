@@ -17,23 +17,26 @@
                 <li><a href="settings.html">Settings</a></li>
                 <li><a href="schemas.html">Schemas</a></li>
                 <li><a href="mission.html">Mission Settings</a></li>
+                <li><a href="objects.html">Units, Features, and Specials</a></li>
+                <li><a href="commands.html">Commands</a></li>
                 <li><a href="license.html">License</a></li>
             </ul>
         </nav>
     </header>
     <section>
-        <h2>The Schemas Section</h2>
+        <h2>Schemas</h2>
         <p><img class="image" src="images/schemas_overview.png" alt="The Schema section" width="720" /></p>
         <p>
-            The schema section is where you can define the starting conditions for the map, whether it's for a skirmish/multiplayer game or for one of the three 
-            campaign difficulties. You can create up to four different schemas, one for each schema type. The types are: Network 1, Easy, Medium, Hard. Looking 
-            through the vanilla maps you'll note that skirmish maps will contain a single Network 1 schema, while missions will have one for each campaign difficulty. 
-            Given that a map can contain up to four schemas, it should be possible for a map to be played both as a campaign mission as well as a skirmish map.
+            A <b>schema</b> is a variation of the map based on difficulty or if the map is used for skirmishes/multiplayer. You can create up to four schemas; 
+            one for each difficulty and one for multiplayer maps. Having schemas allows you to change player starting conditions, map weapons, and starting 
+            objects between each schema type. For example, on the easy schema you can start the player off with 4000 of each resource and have map weapon 
+            turned off. Then for the hard schema the player starts off with 1000 of each resource, and the map now features earthquakes.
         </p>
         <p>
-            To create a new schema, first select an "EMPTY" schema and then click the "Add" button. You will now be able to modify the schema fields, as well as 
-            add new units, features, and specials. To remove a schema, simply select the schema you wish to remove by selecting it in the drop down box, and then 
-            click the "Remove" button. A prompt will ask if you are sure you wish to proceed, clicking the second "Remove" button will confirm your desicion.
+            To create a new schema, first select an <i>EMPTY</i> schema and then click the "Add" button. You will now be able to modify the schema fields, as 
+            well as add new units, features, and specials. To remove a schema, simply select the schema you wish to remove by selecting it in the drop down box, 
+            and then click the "Remove" button. A prompt will ask if you are sure you wish to proceed, clicking the second "Remove" button will confirm your 
+            decision.
         </p>
 
         <h3>General</h3>
@@ -41,28 +44,24 @@
         <p>
             There are eight general schema fields: type, AI profile, surface metal, moho metal, human metal, human energy, computer metal, and computer energy.
         </p>
-        <h4>Type</h4>
         <p>
-            This is a simple drop down box where you can select what type of schema this is. <b>Network 1</b> will be chosen for skirmish and multiplayer games. 
-            <b>Easy</b>, <b>Medium</b>, and <b>Hard</b> will be chosen if the respective campaign diffuculty is chosen.
+            <b>Type</b><br/>This is a simple drop down box where you can select what type of schema this is. A <b>Network 1</b> schema will be chosen for skirmish 
+            and multiplayer games. An <b>Easy</b>, <b>Medium</b>, or <b>Hard</b> schema will be chosen if the respective campaign diffuculty is chosen.
         </p>
-        <h4>AI Profile</h4>
         <p>
-            Here you can choose what AI profile the AI will run with. Or you can type in your own custom profile name.
+            <b>AI Profile</b><br/>Here you can choose what AI profile the AI will run with. Or you can type in your own custom profile name. The name must be the 
+            same as the filename containing the profile (minus extension).
         </p>
-        <h4>Surface &amp; Moho Metal</h4>
         <p>
-            These two fields determine how much metal the basic and moho metal extractors will produce. These function just like the tidal and solar strength fields 
-            where a value of 4 will mean that 4 metal will be produced.
+            <b>Surface &amp; Moho Metal</b><br/>These two fields determine how much metal the basic and moho metal extractors will produce. These function just 
+            like the tidal and solar strength fields in <a href="settings.html">settings</a>, where a value of 4 will mean that 4 metal will be produced.
         </p>
-        <h4>Human Metal &amp; Human Energy</h4>
         <p>
-            These determine the starting amount of metal and energy for the player. These will be ignored by the values set in the skirmish menu, so they are 
-            only really used for campaigns.
+            <b>Human Metal &amp; Human Energy</b><br/>These determine the starting amount of metal and energy for the player. These will be ignored by the values 
+            set in the skirmish menu, so they are only really used for campaigns.
         </p>
-        <h4>Computer Metal &amp; Computer Energy</h4>
         <p>
-            These are exactly the same as the human metal and energy fields, except they're for copmuter players.
+            <b>Computer Metal &amp; Computer Energy</b><br/>These are exactly the same as the human metal and energy fields, except they're for computer players.
         </p>
 
         <h3>Weapon</h3>
@@ -70,41 +69,67 @@
         <p>
             To add a map weapon simply check the "Use weapon" check box. Weapons have five fields: weapon, radius, duration, density, and interval.
         </p>
-        <h4>Weapon</h4>
         <p>
-            This is where you can select the type of weapon of wish the map to have. There are three options: earthquake, meteor, and hailstorm.
+            <b>Weapon</b><br/>This is where you can select the type of weapon of wish the map to have. There are three options: earthquake, meteor, and hailstorm.
         </p>
-        <h4>Radius</h4>
         <p>
-            As the name suggests, this determines how large of an area is impacted by the weapon when it triggers.
+            <b>Radius</b><br/>As the name suggests, this determines how large of an area is impacted by the weapon when it triggers.
         </p>
-        <h4>Duration</h4>
         <p>
-            Determines for how long in seconds the weapon will "fire" for.
+            <b>Duration</b><br/>Determines for how long the weapon will last.
         </p>
-        <h4>Density</h4>
         <p>
-            The spread of the weapon's "projectiles".
+            <b>Density</b><br/>The spread of the weapon's "projectiles".
         </p>
-        <h4>Interval</h4>
         <p>
-            How long between each "firing" of the weapon.
+            <b>Interval</b><br/>How often the weapon will occur.
         </p>
 
-        <h3>Objects</h3>
+        <h3>Units, Features, and Specials</h3>
         <p><img class="image" src="images/schemas_objects_overview.png" alt="Schema objects section" width="720" /></p>
         <p>
-            The large, tabbed area taking up the bulk of the schemas section is dedicated to adding, editing, and viewing the objects added to the schema. These objects can 
-            be units, features, and specials.
+            The large, tabbed area taking up the bulk of the section is dedicated to the units, features, and specials (start positions) added to map by the schema. 
+            You can start players off with extra units, add extra map features (e.g. metal deposits), and add or modify player start positions.
         </p>
-        <ul>
-            <li>Units are structure and vehicles belonging to an AI or human player.</li>
-            <li>Features are extra map features that you can add.</li>
-            <li>The only special object is <i>StartPosX</i>, where <i>X</i> is replaced by a number.</li>
-        </ul>
         <p>
-            Adding a new object is easy. Simply click the "Add..." button, and a dialog will appear. For features and specials you only need to input the object's name and 
-            it's location on the map. For units you'll need much more.
+            Adding a new object is easy. Simply click the "Add..." button, and a dialog will appear. Features and specials only need the object's name and 
+            its location on the map. For units you'll need much more.
+        </p>
+        <h4>Units</h4>
+        <p><img class="image" src="images/schemas_add_unit_overview.png" alt="Adding a unit" width="480" /></p>
+        <p>
+            <b>Name</b><br/>The internal name for the unit. For example, ARMCOM for the Arm Commander.
+        </p>
+        <p>
+            <b>X, Y, Z positions</b><br/>The (X, Y, Z) start coordinate for the unit. The Y position is for setting the unit in the air.
+        </p>
+        <p>
+            <b>Ident</b><br/>The unique identifier for the unit.
+        </p>
+        <p>
+            <b>Player</b><br/>To which player does the unit belong to?
+        </p>
+        <p>
+            <b>Health percentage</b><br/>How much of its health does the unit start off with? Setting this to 100 will mean the unit starts off with a full bar of 
+            health.
+        </p>
+        <p>
+            <b>Angle</b><br/>Which way is the unit facing at the start of the game?
+        </p>
+        <p>
+            <b>Kills</b><br/>How many kills has the unit already achieved? This is useful for setting veterency.
+        </p>
+        <p>
+            <b>Initial mission</b><br/>Here is where things get interesting. Initial mission is simply a list of commands that the unit will follow until it reaches 
+            the end; at which point control is released back to either the human player or the AI. For a list of commands, <a href="commands.html">see here</a>.
+        </p>
+        <h4>Features and Specials</h4>
+        <p><img class="image" src="images/schemas_add_feature_overview.png" alt="Assing a feature or special" width="480" /></p>
+        <p>
+            <b>Name</b><br/>The internal name for the feature or special.
+        </p>
+        <p>
+            <b>X, Z positions</b><br/>The starting coordiantes for the object.
         </p>
     </section>
     <footer>

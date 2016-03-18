@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta author="Trevalyan Stevens" />
+    <title>Commands</title>
+    <link rel="stylesheet" href="mainStyle.css" media="screen" />
+</head>
+<body>
+    <header>
+        <h1>OTA Edit Help</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="map.html">Map</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="schemas.html">Schemas</a></li>
+                <li><a href="mission.html">Mission Settings</a></li>
+                <li><a href="objects.html">Units, Features, and Specials</a></li>
+                <li><a href="commands.html">Commands</a></li>
+                <li><a href="license.html">License</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <h2>Commands</h2>
+        <p>
+            The <a href="schemas.html#Units">initial mission</a> field for schema added units is essentially where the bulk of mission making happens.
+        </p>
+        <table border="1" style="width:auto">
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>m X, Y</code></td>
+                    <td>Move to coordinates <code>X</code> and <code>Y</code></td>
+                </tr>
+                <tr>
+                    <td><code>p X, Y</code></td>
+                    <td>Patrol between the unit's starting location and the coords given in the command.</td>
+                </tr>
+                <tr>
+                    <td><code>a UNITNAME</code></td>
+                    <td>Attack the nearest specified unit type. <code>UNITNAME</code> can be the internal name for a unit type, or it can be a specific 
+                    unit's identifier.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <footer>
+        <small>&copy; Copyright 2016 Trevalyan Stevens.</small>
+    </footer>
+</body>
+</html>
