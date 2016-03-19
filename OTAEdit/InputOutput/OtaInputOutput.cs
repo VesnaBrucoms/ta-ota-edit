@@ -82,14 +82,22 @@ namespace OTAEdit.InputOutput
         {
             wr.WriteLine("\t[" + schemaModel.GetName + "]");
             wr.WriteLine("\t\t{");
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("Type") + ";");
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("aiprofile") + ";");
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("SurfaceMetal") + ";");
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("MohoMetal") + ";");
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("HumanMetal") + ";");
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("ComputerMetal") + ";");
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("HumanEnergy") + ";");
-            wr.WriteLine("\t\t" + schemaModel.GetWriteString("ComputerEnergy") + ";");
+            if (schemaModel.Properties.ContainsKey("Type"))
+                wr.WriteLine("\t\t" + schemaModel.GetWriteString("Type") + ";");
+            if (schemaModel.Properties.ContainsKey("aiprofile"))
+                wr.WriteLine("\t\t" + schemaModel.GetWriteString("aiprofile") + ";");
+            if (schemaModel.Properties.ContainsKey("SurfaceMetal"))
+                wr.WriteLine("\t\t" + schemaModel.GetWriteString("SurfaceMetal") + ";");
+            if (schemaModel.Properties.ContainsKey("MohoMetal"))
+                wr.WriteLine("\t\t" + schemaModel.GetWriteString("MohoMetal") + ";");
+            if (schemaModel.Properties.ContainsKey("HumanMetal"))
+                wr.WriteLine("\t\t" + schemaModel.GetWriteString("HumanMetal") + ";");
+            if (schemaModel.Properties.ContainsKey("ComputerMetal"))
+                wr.WriteLine("\t\t" + schemaModel.GetWriteString("ComputerMetal") + ";");
+            if (schemaModel.Properties.ContainsKey("HumanEnergy"))
+                wr.WriteLine("\t\t" + schemaModel.GetWriteString("HumanEnergy") + ";");
+            if (schemaModel.Properties.ContainsKey("ComputerEnergy"))
+                wr.WriteLine("\t\t" + schemaModel.GetWriteString("ComputerEnergy") + ";");
             if (schemaModel.UseWeapon)
             {
                 wr.WriteLine("\t\t" + schemaModel.GetWriteString("MeteorWeapon") + ";");
@@ -137,15 +145,24 @@ namespace OTAEdit.InputOutput
         {
             wr.WriteLine("\t\t\t" + itemModel.GetItemIdentifier);
             wr.WriteLine("\t\t\t\t{");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Unitname") + ";");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Ident") + ";");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("XPos") + ";");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("YPos") + ";");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("ZPos") + ";");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Player") + ";");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("HealthPercentage") + ";");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Angle") + ";");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Kills") + ";");
+            if (itemModel.Properties.ContainsKey("Unitname"))
+                wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Unitname") + ";");
+            if (itemModel.Properties.ContainsKey("Ident"))
+                wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Ident") + ";");
+            if (itemModel.Properties.ContainsKey("XPos"))
+                wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("XPos") + ";");
+            if (itemModel.Properties.ContainsKey("YPos"))
+                wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("YPos") + ";");
+            if (itemModel.Properties.ContainsKey("ZPos"))
+                wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("ZPos") + ";");
+            if (itemModel.Properties.ContainsKey("Player"))
+                wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Player") + ";");
+            if (itemModel.Properties.ContainsKey("HealthPercentage"))
+                wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("HealthPercentage") + ";");
+            if (itemModel.Properties.ContainsKey("Angle"))
+                wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Angle") + ";");
+            if (itemModel.Properties.ContainsKey("Kills"))
+                wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Kills") + ";");
             if (itemModel.Properties.ContainsKey("InitialMission"))
                 wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("InitialMission") + ";");
             wr.WriteLine("\t\t\t\t}");
@@ -155,9 +172,12 @@ namespace OTAEdit.InputOutput
         {
             wr.WriteLine("\t\t\t" + itemModel.GetItemIdentifier);
             wr.WriteLine("\t\t\t\t{");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Featurename") + ";");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("XPos") + ";");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("ZPos") + ";");
+            if (itemModel.Properties.ContainsKey("Featurename"))
+                wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("Featurename") + ";");
+            if (itemModel.Properties.ContainsKey("XPos"))
+                wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("XPos") + ";");
+            if (itemModel.Properties.ContainsKey("ZPos"))
+                wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("ZPos") + ";");
             wr.WriteLine("\t\t\t\t}");
         }
 
@@ -165,9 +185,12 @@ namespace OTAEdit.InputOutput
         {
             wr.WriteLine("\t\t\t" + itemModel.GetItemIdentifier);
             wr.WriteLine("\t\t\t\t{");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("specialwhat") + ";");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("XPos") + ";");
-            wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("ZPos") + ";");
+            if (itemModel.Properties.ContainsKey("specialwhat"))
+                wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("specialwhat") + ";");
+            if (itemModel.Properties.ContainsKey("XPos"))
+                wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("XPos") + ";");
+            if (itemModel.Properties.ContainsKey("ZPos"))
+                wr.WriteLine("\t\t\t\t" + itemModel.GetWriteString("ZPos") + ";");
             wr.WriteLine("\t\t\t\t}");
         }
         #endregion
