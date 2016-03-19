@@ -13,6 +13,7 @@ namespace OTAEdit.Models
         public string GetItemIdentifier
         {
             get { return itemIdentifier; }
+            set { itemIdentifier = value; }
         }
 
         public string GetItemName

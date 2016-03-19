@@ -1201,6 +1201,7 @@ namespace OTAEdit.ViewModels
                 WindowViewLoaderService.GetInstance.ShowDialog(dialog);
                 if (dialog.GetResult == RemoveDialogViewModel.Result.Remove)
                 {
+                    updateItemIdentifiers(otaModel.GetSchemas[selectedSchemaIndex].Units, selectedUnitIndex + 1, 0);
                     otaModel.GetSchemas[selectedSchemaIndex].Units.RemoveAt(selectedUnitIndex);
                     modelModified();
                     OnPropertyChanged("GetUnits");
@@ -1212,6 +1213,7 @@ namespace OTAEdit.ViewModels
                 WindowViewLoaderService.GetInstance.ShowDialog(dialog);
                 if (dialog.GetResult == RemoveDialogViewModel.Result.Remove)
                 {
+                    updateItemIdentifiers(otaModel.GetSchemas[selectedSchemaIndex].Features, selectedFeatureIndex + 1, 1);
                     otaModel.GetSchemas[selectedSchemaIndex].Features.RemoveAt(selectedFeatureIndex);
                     modelModified();
                     OnPropertyChanged("GetFeatures");
@@ -1223,10 +1225,41 @@ namespace OTAEdit.ViewModels
                 WindowViewLoaderService.GetInstance.ShowDialog(dialog);
                 if (dialog.GetResult == RemoveDialogViewModel.Result.Remove)
                 {
+                    updateItemIdentifiers(otaModel.GetSchemas[selectedSchemaIndex].Specials, selectedSpecialIndex + 1, 2);
                     otaModel.GetSchemas[selectedSchemaIndex].Specials.RemoveAt(selectedSpecialIndex);
                     modelModified();
                     OnPropertyChanged("GetSpecials");
                 }
+            }
+        }
+
+        private void updateItemIdentifiers(List<SchemaItemModel> itemList, int startIndex, byte listType)
+        {
+            int wordLength = 0;
+            string ident = "";
+
+            if (listType == 0)
+            {
+                wordLength = 5;
+                ident = "[unit";
+            }
+            else if (listType == 1)
+            {
+                wordLength = 8;
+                ident = "[feature";
+            }
+            else if (listType == 2)
+            {
+                wordLength = 8;
+                ident = "[special";
+            }
+
+            for (int i = startIndex; i < itemList.Count; i++)
+            {
+                string numberString = itemList[i].GetItemIdentifier.Substring(wordLength, itemList[i].GetItemIdentifier.Length - (wordLength + 1));
+                int number = Convert.ToInt32(numberString);
+                number--;
+                itemList[i].GetItemIdentifier = ident + number + "]";
             }
         }
 
