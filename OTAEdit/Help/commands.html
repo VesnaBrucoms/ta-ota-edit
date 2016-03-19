@@ -49,6 +49,39 @@
                     <td>Attack the nearest specified unit type. <code>UNITNAME</code> can be the internal name for a unit type, or it can be a specific 
                     unit's identifier.</td>
                 </tr>
+                <tr>
+                    <td><code>w SECONDS</code></td>
+                    <td>Wait the specified number of seconds before continuing with the commands. It's also possible to input decimals like 0.4.</td>
+                </tr>
+                <tr>
+                    <td><code>b UNITTYPE X Y</code></td>
+                    <td>Tells the unit to build the specified unit type at the given coordinates.</td>
+                </tr>
+                <tr>
+                    <td><code>b UNITTYPE N</code></td>
+                    <td>Build <code>N</code> number of units.</td>
+                </tr>
+                <tr>
+                    <td><code>s</code></td>
+                    <td>Make the unit selectable while it's still performing its commands.</td>
+                </tr>
+                <tr>
+                    <td><code>i UNITNAME</code></td>
+                    <td>Load inside the specified transport.</td>
+                </tr>
+                <tr>
+                    <td><code>u X Y</code></td>
+                    <td>Unload the transport at specified coordinates.</td>
+                </tr>
+                <tr>
+                    <td><code>wa</code></td>
+                    <td>Wait until attacked.</td>
+                </tr>
+                <tr>
+                    <td><code>wa IDENTIFIER</code></td>
+                    <td>Wait until the specified unit is attacked. Unlike previous commands, this requires a unique identifier and will not accept a 
+                    unit type name.</td>
+                </tr>
             </tbody>
         </table>
     </section>

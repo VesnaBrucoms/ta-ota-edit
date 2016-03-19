@@ -260,7 +260,7 @@
 
                                 <CheckBox Grid.Row="1" Grid.Column="0" IsEnabled="{Binding Path=IsSchemaActive, Mode=OneWay}" IsChecked="{Binding Path=UseWeapon}">Use weapon</CheckBox>
                                 <TextBlock Grid.Row="3" Grid.Column="0" Text="Weapon:" />
-                                <ComboBox Grid.Row="4" Grid.Column="0" IsEnabled="{Binding Path=UseWeapon}" ItemsSource="{Binding Path=GetWeapons}" SelectedValue="{Binding Path=SetWeapon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <ComboBox Grid.Row="4" Grid.Column="0" IsEnabled="{Binding Path=UseWeapon}" IsEditable="True" ItemsSource="{Binding Path=GetWeapons}" SelectedValue="{Binding Path=SetWeapon, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                                 <TextBlock Grid.Row="0" Grid.Column="2" Text="Radius:" />
                                 <xctk:IntegerUpDown Grid.Row="1" Grid.Column="2" Minimum="0" Increment="1" IsEnabled="{Binding Path=UseWeapon}" Value="{Binding Path=Radius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
