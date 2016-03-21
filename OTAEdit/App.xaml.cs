@@ -20,7 +20,7 @@ namespace OTAEdit
         public void App_Startup(object sender, StartupEventArgs e)
         {
             iniSettings = new Ini();
-            environmentService = new EnvironmentService();
+            environmentService = new EnvironmentService(AppDomain.CurrentDomain.BaseDirectory);
             iniSettings.Read(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\OTA Edit", "settings");
             WindowViewLoaderService.GetInstance.Register(typeof(MissionSettingsViewModel), typeof(MissionSettingsView));
             WindowViewLoaderService.GetInstance.Register(typeof(AddEditViewModel), typeof(AddEditView));

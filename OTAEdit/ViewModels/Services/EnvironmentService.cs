@@ -8,8 +8,14 @@ namespace OTAEdit.ViewModels.Services
 {
     class EnvironmentService
     {
+        private string appPath;
         private string startupFilePath;
         private bool hasStartupFailed;
+
+        public string GetAppPath
+        {
+            get { return appPath; }
+        }
 
         public string StartupFilePath
         {
@@ -23,8 +29,9 @@ namespace OTAEdit.ViewModels.Services
             set { hasStartupFailed = value; }
         }
 
-        public EnvironmentService()
+        public EnvironmentService(string appPath)
         {
+            this.appPath = appPath;
             startupFilePath = "";
             hasStartupFailed = false;
         }

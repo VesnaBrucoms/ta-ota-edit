@@ -17,6 +17,7 @@ namespace OTAEdit.ViewModels
     class MainWindowViewModel : ViewModel
     {
         private Ini iniSettings;
+        private EnvironmentService environmentService;
         private ItemDataViewModel unitViewModel;
         private ItemDataViewModel featureViewModel;
         private ItemDataViewModel specialViewModel;
@@ -631,6 +632,7 @@ namespace OTAEdit.ViewModels
         public MainWindowViewModel(Ini iniSettings, EnvironmentService environmentService)
         {
             this.iniSettings = iniSettings;
+            this.environmentService = environmentService;
             if (!iniSettings.SettingExists(IniKeys.STRING_OTA_LAST_PATH))
                 iniSettings.AddNewSetting(IniKeys.STRING_OTA_LAST_PATH, IniDefaultValues.STRING_OTA_LAST_PATH);
             if (!iniSettings.SettingExists(IniKeys.BOOL_TOOLBAR_VISIBLE))
@@ -987,7 +989,15 @@ namespace OTAEdit.ViewModels
 
         public void ShowHelp(object parameter)
         {
-            Process.Start("Help\\index.html");
+            try
+            {
+                Process.Start(environmentService.GetAppPath + "Help\\index.html");
+            }
+            catch (Win32Exception ex)
+            {
+                statusBarText = "Help files not found";
+                OnPropertyChanged("GetStatusBarText");
+            }
         }
 
         public void ShowAbout(object parameter)
