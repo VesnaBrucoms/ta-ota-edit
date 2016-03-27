@@ -15,6 +15,7 @@ namespace OTAEdit.ViewModels
         private string brief;
         private string narration;
         private string glamour;
+        private string useOnlyUnits;
         private bool hasKillEnemyCom;
         private bool hasDestroyUnits;
         private bool hasMoveToRadius;
@@ -58,6 +59,16 @@ namespace OTAEdit.ViewModels
             {
                 glamour = value;
                 OnPropertyChanged("Glamour");
+            }
+        }
+
+        public string UseOnlyUnits
+        {
+            get { return useOnlyUnits; }
+            set
+            {
+                useOnlyUnits = value;
+                OnPropertyChanged("UseOnlyUnits");
             }
         }
 
@@ -242,13 +253,19 @@ namespace OTAEdit.ViewModels
         {
             get { return new DelegateCommand(openGlamour); }
         }
+
+        public ICommand OpenUseOnlyCommand
+        {
+            get { return new DelegateCommand(openUseOnly); }
+        }
         #endregion
 
-        public MissionSettingsViewModel(string brief, string narration, string glamour)
+        public MissionSettingsViewModel(string brief, string narration, string glamour, string useOnlyUnits)
         {
             this.brief = brief;
             this.narration = narration;
             this.glamour = glamour;
+            this.useOnlyUnits = useOnlyUnits;
         }
 
         #region Commands
@@ -282,6 +299,16 @@ namespace OTAEdit.ViewModels
                 //imageSource = new BitmapImage(path);
                 Glamour = File.RemoveExtension(File.ExtractFileName(filePath));
                 //OnPropertyChanged("Image");
+            }
+        }
+
+        private void openUseOnly(object parameter)
+        {
+            string filePath = File.GetOpenFileName(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "TDF file (*.tdf)|*.tdf");
+
+            if (filePath != null)
+            {
+                UseOnlyUnits = File.ExtractFileName(filePath);
             }
         }
         #endregion

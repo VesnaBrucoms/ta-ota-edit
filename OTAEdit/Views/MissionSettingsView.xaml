@@ -51,8 +51,11 @@
             <Button Grid.Row="1" Grid.Column="6" Content="..." Command="{Binding Path=OpenNarrationCommand}" />
 
             <TextBlock Grid.Row="3" Grid.Column="0" Text="Glamour shot:" />
-            <TextBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Text="{Binding Path=Glamour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <Button Grid.Row="4" Grid.Column="6" Content="..." Command="{Binding Path=OpenGlamourCommand}" />
+            <TextBox Grid.Row="4" Grid.Column="0" Text="{Binding Path=Glamour, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Grid.Row="4" Grid.Column="2" Content="..." Command="{Binding Path=OpenGlamourCommand}" />
+            <TextBlock Grid.Row="3" Grid.Column="4" Text="Use only units:" />
+            <TextBox Grid.Row="4" Grid.Column="4" Text="{Binding Path=UseOnlyUnits, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Grid.Row="4" Grid.Column="6" Content="..." Command="{Binding Path=OpenUseOnlyCommand}" />
 
             <!-- <Image Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Visibility="Collapsed" Source="{Binding Path=Image, Mode=OneWay}" /> -->
         </Grid>

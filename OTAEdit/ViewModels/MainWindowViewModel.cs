@@ -943,7 +943,7 @@ namespace OTAEdit.ViewModels
 
         public void EditMission(object parameter)
         {
-            MissionSettingsViewModel newDialog = new MissionSettingsViewModel(otaModel.GetStringValue("brief"), otaModel.GetStringValue("narration"), otaModel.GetStringValue("glamour"));
+            MissionSettingsViewModel newDialog = new MissionSettingsViewModel(otaModel.GetStringValue("brief"), otaModel.GetStringValue("narration"), otaModel.GetStringValue("glamour"), otaModel.GetStringValue("useonlyunits"));
             newDialog.HasKillEnemyCom = otaModel.GetBoolValue("KillEnemyCommander");
             newDialog.HasDestroyUnits = otaModel.GetBoolValue("DestroyAllUnits");
             newDialog.MoveToRadius = otaModel.GetStringValue("MoveUnitToRadius");
@@ -959,6 +959,7 @@ namespace OTAEdit.ViewModels
                 otaModel.SetValue("brief", newDialog.Brief);
                 otaModel.SetValue("narration", newDialog.Narration);
                 otaModel.SetValue("glamour", newDialog.Glamour);
+                otaModel.SetValue("useonlyunits", newDialog.UseOnlyUnits);
                 setMissionSetting(newDialog.HasKillEnemyCom, newDialog.HasKillEnemyCom, "KillEnemyCommander");
                 setMissionSetting(newDialog.HasDestroyUnits, newDialog.HasDestroyUnits, "DestroyAllUnits");
                 setMissionSetting(newDialog.HasMoveToRadius, newDialog.MoveToRadius, "MoveUnitToRadius");

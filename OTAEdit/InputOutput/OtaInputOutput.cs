@@ -49,7 +49,8 @@ namespace OTAEdit.InputOutput
                 wr.WriteLine("\t" + otaModel.GetWriteString("numplayers") + ";");
                 wr.WriteLine("\t" + otaModel.GetWriteString("size") + ";");
                 wr.WriteLine("\t" + otaModel.GetWriteString("memory") + ";");
-                wr.WriteLine("\t" + otaModel.GetWriteString("useonlyunits") + ";");
+                if (otaModel.Properties.ContainsKey("useonlyunits"))
+                    wr.WriteLine("\t" + otaModel.GetWriteString("useonlyunits") + ";");
                 if (otaModel.Properties.ContainsKey("MoveUnitToRadius"))
                     wr.WriteLine("\t" + otaModel.GetWriteString("MoveUnitToRadius") + ";");
                 if (otaModel.Properties.ContainsKey("KillUnitType"))
