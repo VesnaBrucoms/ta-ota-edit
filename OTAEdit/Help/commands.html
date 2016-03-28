@@ -26,7 +26,17 @@
     <section>
         <h2>Commands</h2>
         <p>
-            The <a href="schemas.html#Units">initial mission</a> field for schema added units is essentially where the bulk of mission making happens.
+            The <a href="schemas.html#Units">initial mission</a> field for schema added units is where a lot of the mission making happens. A unit's initial 
+            mission is a list of simple commands that it will try to follow; with each command is split by a comma. For example:
+        </p>
+        <p>
+            <code>m 546 213, w 20, a ARMCOM</code>
+        </p>
+        <p>
+            The unit will move to coordinates <i>(546, 213)</i> then wait 20 seconds before attacking the nearest Arm Commander.
+        </p>
+        <p>
+            The available commands are as follows:
         </p>
         <table border="1" style="width:auto">
             <thead>
@@ -37,11 +47,11 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><code>m X, Y</code></td>
+                    <td><code>m X Y</code></td>
                     <td>Move to coordinates <code>X</code> and <code>Y</code></td>
                 </tr>
                 <tr>
-                    <td><code>p X, Y</code></td>
+                    <td><code>p X Y</code></td>
                     <td>Patrol between the unit's starting location and the coords given in the command.</td>
                 </tr>
                 <tr>
@@ -55,11 +65,15 @@
                 </tr>
                 <tr>
                     <td><code>b UNITTYPE X Y</code></td>
-                    <td>Tells the unit to build the specified unit type at the given coordinates.</td>
+                    <td><b>Mobile construction units only.</b> Tells the unit to build the specified unit type at the given coordinates.</td>
                 </tr>
                 <tr>
                     <td><code>b UNITTYPE N</code></td>
-                    <td>Build <code>N</code> number of units.</td>
+                    <td><b>Construction structures only.</b> Build <code>N</code> number of units.</td>
+                </tr>
+                <tr>
+                    <td><code>d</code></td>
+                    <td>Destroys the unit.</td>
                 </tr>
                 <tr>
                     <td><code>s</code></td>
